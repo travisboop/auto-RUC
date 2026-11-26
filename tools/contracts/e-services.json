@@ -1,0 +1,442 @@
+{
+  "profiles": [
+    {
+      "id": "e_office",
+      "origin": "https://jiesujiban.ruc.edu.cn",
+      "entry": "https://jiesujiban.ruc.edu.cn/cp/pl-rmdx/",
+      "headers": {
+        "platform": "web"
+      },
+      "authPaths": [
+        "/api/jsjb/v1/ruc-cas-login",
+        "/api/jsjb/v1/ruc-cas-callback"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://jiesujiban.ruc.edu.cn/api/jsjb/v1/ruc-cas-login",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "assertion": {
+          "path": "/api/admin/v1/users/self",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "id"
+                ],
+                "type": "string"
+              },
+              {
+                "path": [
+                  "currentRole"
+                ],
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "query",
+            "parameter": "token",
+            "header": "Authorization",
+            "prefix": "Bearer "
+          }
+        ]
+      }
+    },
+    {
+      "id": "warm_service",
+      "origin": "https://wxyb.ruc.edu.cn",
+      "entry": "https://wxyb.ruc.edu.cn/cp/pl-sz/apps/rmdxtssp/",
+      "headers": {
+        "platform": "web"
+      },
+      "authPaths": [
+        "/api/jsjb/v1/ruc-cas-login",
+        "/api/jsjb/v1/ruc-cas-callback"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://wxyb.ruc.edu.cn/api/jsjb/v1/ruc-cas-login",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "assertion": {
+          "path": "/api/admin/v1/users/self",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "id"
+                ],
+                "type": "string"
+              },
+              {
+                "path": [
+                  "currentRole"
+                ],
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "query",
+            "parameter": "token",
+            "header": "Authorization",
+            "prefix": "Bearer "
+          }
+        ]
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "eoffice.identity",
+      "name": "人大e办本人身份及当前角色",
+      "description": "人大e办本人身份及当前角色；不切换角色。",
+      "platform": "e_office",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/admin/v1/users/self"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "id"
+            ],
+            "type": "string"
+          },
+          {
+            "path": [
+              "currentRole"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jiesujiban.ruc.edu.cn/cp/pl-rmdx/assets/index-seat13-dd60c926ce66.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "eoffice.navigation",
+      "name": "人大e办当前应用导航",
+      "description": "人大e办当前应用导航；不切换角色。",
+      "platform": "e_office",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/jsjb/v1/apps/rmdx/navs",
+        "query": {
+          "page": {
+            "$param": "page"
+          },
+          "size": {
+            "$param": "size"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "content"
+            ],
+            "type": "array"
+          }
+        ],
+        "pagination": {
+          "itemsPath": [
+            "content"
+          ],
+          "totalPath": [
+            "totalElements"
+          ],
+          "pageParameter": "page",
+          "firstPage": 0,
+          "totalEncoding": "decimal_string"
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jiesujiban.ruc.edu.cn/cp/pl-rmdx/assets/index-seat13-dd60c926ce66.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "eoffice.tables",
+      "name": "人大e办当前应用数据表目录",
+      "description": "人大e办当前应用数据表目录；不切换角色。",
+      "platform": "e_office",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/jsjb/v1/apps/rmdx/tbs"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [],
+            "type": "array"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jiesujiban.ruc.edu.cn/cp/pl-rmdx/assets/index-seat13-dd60c926ce66.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "warm.identity",
+      "name": "温馨易办本人身份及当前角色",
+      "description": "温馨易办本人身份及当前角色；不切换角色。",
+      "platform": "warm_service",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/admin/v1/users/self"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "id"
+            ],
+            "type": "string"
+          },
+          {
+            "path": [
+              "currentRole"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://wxyb.ruc.edu.cn/cp/pl-sz/assets/index-worker-summary-98ee9de5d56543.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "warm.navigation",
+      "name": "温馨易办当前应用导航",
+      "description": "温馨易办当前应用导航；不切换角色。",
+      "platform": "warm_service",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/jsjb/v1/apps/rmdxtssp/navs",
+        "query": {
+          "page": {
+            "$param": "page"
+          },
+          "size": {
+            "$param": "size"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "content"
+            ],
+            "type": "array"
+          }
+        ],
+        "pagination": {
+          "itemsPath": [
+            "content"
+          ],
+          "totalPath": [
+            "totalElements"
+          ],
+          "pageParameter": "page",
+          "firstPage": 0,
+          "totalEncoding": "decimal_string"
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://wxyb.ruc.edu.cn/cp/pl-sz/assets/index-worker-summary-98ee9de5d56543.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "warm.tables",
+      "name": "温馨易办当前应用数据表目录",
+      "description": "温馨易办当前应用数据表目录；不切换角色。",
+      "platform": "warm_service",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/jsjb/v1/apps/rmdxtssp/tbs"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [],
+            "type": "array"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://wxyb.ruc.edu.cn/cp/pl-sz/assets/index-worker-summary-98ee9de5d56543.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "eoffice.table_schema",
+      "name": "人大e办当前应用数据表字段和业务配置",
+      "description": "app_slug 和 table_slug 均从 eoffice.tables 当前返回的 appSlug/tbSlug 取得；只读取配置。",
+      "platform": "e_office",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_slug": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+$"
+          },
+          "table_slug": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+$"
+          }
+        },
+        "required": [
+          "app_slug",
+          "table_slug"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/jsjb/v1/apps/{app_slug}/tbs/{table_slug}"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [],
+            "type": "object"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jiesujiban.ruc.edu.cn/cp/pl-rmdx/assets/index-seat13-dd60c926ce66.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "warm.table_schema",
+      "name": "温馨易办当前应用数据表字段和业务配置",
+      "description": "app_slug 和 table_slug 均从 warm.tables 当前返回的 appSlug/tbSlug 取得；只读取配置。",
+      "platform": "warm_service",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_slug": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+$"
+          },
+          "table_slug": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+$"
+          }
+        },
+        "required": [
+          "app_slug",
+          "table_slug"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/jsjb/v1/apps/{app_slug}/tbs/{table_slug}"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [],
+            "type": "object"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://wxyb.ruc.edu.cn/cp/pl-sz/assets/index-worker-summary-98ee9de5d56543.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

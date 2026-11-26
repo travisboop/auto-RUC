@@ -1,0 +1,712 @@
+{
+  "version": "0.4.0",
+  "updatedOn": "2026-11-27",
+  "coverageMeaning": "每个平台只确认下列能力；门户入口数量不是业务完成数量。",
+  "platforms": [
+    {
+      "id": "quiet_booths",
+      "name": "静音舱",
+      "entry": "https://jyc.ruc.edu.cn/space/",
+      "authentication": "quiet_booths",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "quiet_booths",
+        "booths.notices",
+        "booths.usage_types",
+        "booths.required_fields",
+        "booths.my_reservations",
+        "booths.my_breaches",
+        "booths.my_scores",
+        "booths.my_blacklist"
+      ],
+      "actionCapabilities": [
+        "booths.reserve"
+      ],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "undergraduate_teaching",
+      "name": "本科教务",
+      "entry": "https://jw.ruc.edu.cn/secService/oauthlogin2",
+      "authentication": "academic",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "classrooms",
+        "grades",
+        "rankings",
+        "academic_options",
+        "academic.calendar",
+        "academic.timetable_modes",
+        "academic.timetable",
+        "academic.exam_batches",
+        "academic.exams"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "digital_portal",
+      "name": "数智人大",
+      "entry": "https://my.ruc.edu.cn/",
+      "authentication": "portal",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "applications"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "library_seats",
+      "name": "图书馆座位",
+      "entry": "https://zwlib.ruc.edu.cn/jsq-v/",
+      "authentication": "library",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "library_seats"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "sports_venues",
+      "name": "体育场馆",
+      "entry": "https://cgyy.ruc.edu.cn/venue/home",
+      "authentication": "sports",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "sports_venues"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "ai_center",
+      "name": "AI 智慧学伴",
+      "entry": "https://i.ruc.edu.cn/",
+      "authentication": "ai",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "ai.profile",
+        "ai.applications",
+        "ai.homepage",
+        "ai.installed"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "business_career",
+      "name": "商学院职业发展",
+      "entry": "https://career.rmbs.ruc.edu.cn/stuv",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "business_career.news",
+        "business_career.detail",
+        "business_career.consultations"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "business_students",
+      "name": "商学院学生发展",
+      "entry": "https://student.rmbs.ruc.edu.cn/home/AdminIndex",
+      "authentication": "legacy_oauth",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "business.home",
+        "business.profile",
+        "business.activities",
+        "business.activity_logs",
+        "business.evaluation",
+        "business.other_activities",
+        "business.awards",
+        "business.student_work",
+        "business.conduct",
+        "business.books",
+        "business.essays"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "canteen_heat",
+      "name": "食堂热度",
+      "entry": "https://cardview.ruc.edu.cn/zgrd/canteenHeatAnalysis?isFullPage=true",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "canteen.summary",
+        "canteen.overview",
+        "canteen.options",
+        "canteen.detail"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "career",
+      "name": "就业创业",
+      "entry": "https://career.ruc.edu.cn/stu/",
+      "authentication": "legacy_oauth",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "career.identity",
+        "career.profile",
+        "career.competencies",
+        "career.procedures",
+        "career.activity_hours",
+        "career.resumes",
+        "career.majors",
+        "career.message_types",
+        "career.carousels",
+        "career.jobs",
+        "career.messages",
+        "career.guiding_activities",
+        "career.news",
+        "career.guidance_courses",
+        "career.quizzes",
+        "career.counseling_slots",
+        "career.badges"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "computing_cloud",
+      "name": "公共计算云",
+      "entry": "https://cc.ruc.edu.cn/user-info",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "cloud.profile",
+        "cloud.tutors",
+        "cloud.storage_quotas",
+        "cloud.storage_systems",
+        "cloud.notifications",
+        "cloud.application_specs"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "e_office",
+      "name": "人大 e 办",
+      "entry": "https://jiesujiban.ruc.edu.cn/cp/pl-rmdx/",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "eoffice.identity",
+        "eoffice.navigation",
+        "eoffice.tables",
+        "eoffice.table_schema"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "warm_service",
+      "name": "温馨易办",
+      "entry": "https://wxyb.ruc.edu.cn/cp/pl-sz/apps/rmdxtssp/",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "warm.identity",
+        "warm.navigation",
+        "warm.tables",
+        "warm.table_schema"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "library_resources",
+      "name": "图书馆电子资源",
+      "entry": "https://libproxy.ruc.edu.cn/ermsClient/browse.do",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "eresources.catalog",
+        "eresources.tags",
+        "eresources.detail"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "forms",
+      "name": "数智人大表单",
+      "entry": "https://my.ruc.edu.cn/easyform3/",
+      "authentication": "portal",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "forms.identity",
+        "forms.my_submissions",
+        "forms.todo",
+        "forms.done",
+        "forms.context",
+        "forms.schema"
+      ],
+      "actionCapabilities": [
+        "forms.submit",
+        "forms.create"
+      ],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "future_classroom",
+      "name": "未来课堂",
+      "entry": "https://k.ruc.edu.cn/UserClient/homePage.html",
+      "authentication": "future_classroom",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "future.profile",
+        "future.terms",
+        "future.current_term",
+        "future.courses",
+        "future.links",
+        "future.unread",
+        "future.notices",
+        "future.homework",
+        "future.timetable",
+        "future.meetings",
+        "future.class_detail"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "innovation_courses",
+      "name": "创新研学",
+      "entry": "https://cyk.ruc.edu.cn/student2025/index.php",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "innovation.catalog",
+        "innovation.announcements",
+        "innovation.my_research",
+        "innovation.my_teams",
+        "innovation.messages",
+        "innovation.course_detail"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "legacy_portal",
+      "name": "微人大",
+      "entry": "https://v.ruc.edu.cn/me",
+      "authentication": "legacy",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "legacy.roles"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "course_teaching",
+      "name": "课程教学",
+      "entry": "https://course.ruc.edu.cn/kcjxpt/rdmooc/rdIndividualTeachingHome.do",
+      "authentication": "legacy_oauth",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "course.identity",
+        "course.profile",
+        "course.terms",
+        "course.classes",
+        "course.weeks",
+        "course.periods",
+        "course.timetable",
+        "course.notices",
+        "course.unread_count"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "media_works",
+      "name": "新闻传播公开作品",
+      "entry": "https://mediaview.ruc.edu.cn/",
+      "authentication": "public",
+      "implementation": "public_http",
+      "readCapabilities": [
+        "media.years",
+        "media.works",
+        "media.detail"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "media_account",
+      "name": "新闻传播作品个人账户",
+      "entry": "https://mediaview.ruc.edu.cn/user.html",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "media.profile",
+        "media.activities"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "mobile_campus",
+      "name": "手机门户与校园卡",
+      "entry": "https://m.ruc.edu.cn/site/onecardSolu/index",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "mobile.profile",
+        "mobile.cards",
+        "mobile.card_history_types",
+        "mobile.card_history"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "museum",
+      "name": "博物馆预约",
+      "entry": "https://go2rucm.ruc.edu.cn/#/home/activitySelect",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "museum.profile",
+        "museum.areas",
+        "museum.notice",
+        "museum.reservations",
+        "museum.breaches"
+      ],
+      "actionCapabilities": [
+        "museum.cancel_reservation"
+      ],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "office_workflow",
+      "name": "办公系统",
+      "entry": "https://bpm.ruc.edu.cn/r/casOAServlet",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "office.navigation",
+        "office.home",
+        "office.urgent_tasks",
+        "office.login_history"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "library_catalog",
+      "name": "馆藏与借阅",
+      "entry": "https://opac.ruc.edu.cn/",
+      "authentication": "opac",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "opac.identity",
+        "opac.loans",
+        "opac.loan_history",
+        "opac.loan_rules",
+        "opac.loan_chart",
+        "opac.behaviors"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "party_school",
+      "name": "党校培训",
+      "entry": "https://zg.ruc.edu.cn/front/",
+      "authentication": "party_school",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "party.profile",
+        "party.categories",
+        "party.study_collections",
+        "party.dashboard",
+        "party.hour_years",
+        "party.personal_hours",
+        "party.collective_hours",
+        "party.notices",
+        "party.training"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "philosophy_rooms",
+      "name": "哲学院会议室",
+      "entry": "https://zxyhy.ruc.edu.cn/web/auth",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "philosophy.rooms",
+        "philosophy.my_reservations",
+        "philosophy.room_bookings"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "postgraduate",
+      "name": "研究生服务",
+      "entry": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/portal/index.do",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "graduate.profile",
+        "graduate.applications"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "red_innovation",
+      "name": "红色创新",
+      "entry": "https://rdhc.ruc.edu.cn/",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "red.member_page"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "resource_booking",
+      "name": "校园预约目录",
+      "entry": "https://easybook.ruc.edu.cn/venue/home",
+      "authentication": "resources",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "resources.applications",
+        "resources.my_applications",
+        "resources.catalog",
+        "resources.search_fields",
+        "resources.order_fields"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "personal_data",
+      "name": "个人数据助手",
+      "entry": "https://me.ruc.edu.cn/page/site/homeIndex",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "personal.identity",
+        "personal.menus",
+        "personal.categories",
+        "personal.applications",
+        "personal.overview",
+        "personal.tasks_count",
+        "personal.associations",
+        "personal.messages_count",
+        "personal.tables",
+        "personal.records"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "service_hall",
+      "name": "办事大厅",
+      "entry": "https://service.ruc.edu.cn/v2/site/index",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "services.identity",
+        "services.applications",
+        "services.reservation_halls",
+        "services.todo",
+        "services.my_applications",
+        "services.my_forms",
+        "services.favorites",
+        "services.search"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "social_science_data",
+      "name": "社会科学数据资源公开平台",
+      "entry": "https://cssd.ruc.edu.cn/",
+      "authentication": "public",
+      "implementation": "public_http",
+      "readCapabilities": [
+        "datasets.featured",
+        "datasets.spaces",
+        "datasets.fieldsets",
+        "datasets.metadata",
+        "datasets.region_levels",
+        "datasets.search"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "licensed_software",
+      "name": "正版软件",
+      "entry": "https://gsp.ruc.edu.cn/index/index/index.html",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "software.home",
+        "software.catalog",
+        "software.help",
+        "software.guides"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "student_affairs",
+      "name": "学务中心",
+      "entry": "https://xwzx.ruc.edu.cn/campus",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "affairs.activity_types",
+        "affairs.activities",
+        "affairs.todo",
+        "affairs.honors",
+        "affairs.score_summary",
+        "affairs.score_tags",
+        "affairs.my_activities",
+        "affairs.appointment_types",
+        "affairs.appointments",
+        "affairs.my_appointments",
+        "affairs.scores"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "study_spaces",
+      "name": "通州研学空间",
+      "entry": "https://yxkj.ruc.edu.cn/jsq-v/",
+      "authentication": "study_spaces",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "study.identity",
+        "study.catalog",
+        "study.current",
+        "study.rooms",
+        "study.timeline",
+        "study.slices",
+        "study.start_times",
+        "study.end_times",
+        "study.seats"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "teaching_mobile",
+      "name": "掌上教务",
+      "entry": "https://zsjw.ruc.edu.cn/#/home",
+      "authentication": "legacy_oauth",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "teaching.profile",
+        "teaching.terms",
+        "teaching.applications",
+        "teaching.todo",
+        "teaching.exams",
+        "teaching.timetable",
+        "teaching.notices"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "virtual_labs",
+      "name": "虚拟仿真实验",
+      "entry": "https://ilab-x.ruc.edu.cn/virexp/",
+      "authentication": "public",
+      "implementation": "public_http",
+      "readCapabilities": [
+        "virtual_labs.colleges",
+        "virtual_labs.projects"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "visitor",
+      "name": "访客平台",
+      "entry": "https://guest.ruc.edu.cn/iportal/",
+      "authentication": "cas_cookie",
+      "implementation": "fresh_session_http",
+      "readCapabilities": [
+        "visitor.systems",
+        "visitor.menus",
+        "visitor.workbenches",
+        "visitor.records",
+        "visitor.record_count",
+        "visitor.purposes"
+      ],
+      "actionCapabilities": [],
+      "realActionValidation": false,
+      "evidence": "evidence/public-validation.json"
+    }
+  ],
+  "extensionMechanism": {
+    "config": [
+      "tools/contracts.json",
+      "tools/contracts/*.json"
+    ],
+    "taskRegistration": "ruc_register_contract",
+    "browser": "optional_playwright",
+    "transport": [
+      "cli",
+      "json",
+      "jsonl",
+      "mcp_stdio"
+    ]
+  }
+}

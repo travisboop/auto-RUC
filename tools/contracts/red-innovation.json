@@ -1,0 +1,66 @@
+{
+  "profiles": [
+    {
+      "id": "red_innovation",
+      "origin": "https://rdhc.ruc.edu.cn",
+      "entry": "https://rdhc.ruc.edu.cn/",
+      "documentPaths": [
+        "/"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://rdhc.ruc.edu.cn/",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "assertion": {
+          "path": "/",
+          "response": {
+            "format": "html",
+            "checks": [
+              {
+                "path": [
+                  "text"
+                ],
+                "contains": "权益卡"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "red.member_page",
+      "name": "人大红创权益卡当前页面",
+      "description": "人大红创权益卡当前页面；返回当前服务端页面的文字、链接和字段。",
+      "platform": "red_innovation",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "text"
+            ],
+            "contains": "权益卡"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://rdhc.ruc.edu.cn/",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

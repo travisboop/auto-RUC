@@ -1,0 +1,255 @@
+{
+  "profiles": [
+    {
+      "id": "canteen_heat",
+      "origin": "https://cardview.ruc.edu.cn",
+      "entry": "https://cardview.ruc.edu.cn/zgrd/canteenHeatAnalysis?isFullPage=true",
+      "headers": {
+        "x-deepcloud-from": "admin"
+      },
+      "authPaths": [
+        "/zgrd/canteenHeatAuth"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://cardview.ruc.edu.cn/zgrd/canteenHeatAuth",
+        "service": "https://cardview.ruc.edu.cn/zgrd/canteenHeatAuth",
+        "tokenBindings": [
+          {
+            "source": "cookie",
+            "parameter": "Admin-Token",
+            "header": "X-Token"
+          },
+          {
+            "source": "cookie",
+            "parameter": "Admin-Token",
+            "header": "Authorization",
+            "prefix": "Bearer "
+          }
+        ],
+        "assertion": {
+          "path": "/ddsPhoneApi/canteen/realtime/summary",
+          "method": "POST",
+          "body": {
+            "campus": ""
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 200
+              }
+            ],
+            "dataPath": [
+              "data"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "canteen.summary",
+      "name": "食堂热度汇总",
+      "description": "食堂热度汇总；官网返回更新时刻，不能将过期数据当实时余量。",
+      "platform": "canteen_heat",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "campus": {
+            "type": "string",
+            "maxLength": 100,
+            "default": "",
+            "minLength": 0
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/ddsPhoneApi/canteen/realtime/summary",
+        "body": {
+          "campus": {
+            "$param": "campus"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/chunk-03b8894f.js",
+        "protocol": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/app.js",
+        "checkedOn": "2026-11-27",
+        "scope": "当前页面 mock=false；只使用热度读取接口，不调用 trackDashboardVisit",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "canteen.overview",
+      "name": "各食堂当前热度",
+      "description": "各食堂当前热度；官网返回更新时刻，不能将过期数据当实时余量。",
+      "platform": "canteen_heat",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "campus": {
+            "type": "string",
+            "maxLength": 100,
+            "default": "",
+            "minLength": 0
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/ddsPhoneApi/canteen/realtime/overview",
+        "body": {
+          "campus": {
+            "$param": "campus"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/chunk-03b8894f.js",
+        "protocol": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/app.js",
+        "checkedOn": "2026-11-27",
+        "scope": "当前页面 mock=false；只使用热度读取接口，不调用 trackDashboardVisit",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "canteen.options",
+      "name": "食堂筛选目录",
+      "description": "食堂筛选目录；官网返回更新时刻，不能将过期数据当实时余量。",
+      "platform": "canteen_heat",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "campus": {
+            "type": "string",
+            "maxLength": 100,
+            "default": "",
+            "minLength": 0
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/ddsPhoneApi/canteen/realtime/selectOptions",
+        "body": {
+          "campus": {
+            "$param": "campus"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/chunk-03b8894f.js",
+        "protocol": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/app.js",
+        "checkedOn": "2026-11-27",
+        "scope": "当前页面 mock=false；只使用热度读取接口，不调用 trackDashboardVisit",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "canteen.detail",
+      "name": "指定食堂热度详情",
+      "description": "指定食堂热度详情；官网返回更新时刻，不能将过期数据当实时余量。",
+      "platform": "canteen_heat",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "canteenName": {
+            "type": "string",
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "canteenName"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/ddsPhoneApi/canteen/realtime/detail",
+        "body": {
+          "canteenName": {
+            "$param": "canteenName"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/chunk-03b8894f.js",
+        "protocol": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/app.js",
+        "checkedOn": "2026-11-27",
+        "scope": "当前页面 mock=false；只使用热度读取接口，不调用 trackDashboardVisit",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

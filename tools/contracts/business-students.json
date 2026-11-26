@@ -1,0 +1,432 @@
+{
+  "profiles": [
+    {
+      "id": "business_students",
+      "origin": "https://student.rmbs.ruc.edu.cn",
+      "entry": "https://student.rmbs.ruc.edu.cn/home/AdminIndex",
+      "documentPaths": [
+        "/home/AdminIndex",
+        "/Student/Edit",
+        "/Activity/StudentIndex",
+        "/Activity/ActivityLogs",
+        "/Student/EvaluateIndex",
+        "/ActivityOthers",
+        "/StudentsAwards/StudentIndex",
+        "/StudentsWorks/StudentIndex",
+        "/StudentsSpirituals/StudentIndex",
+        "/Books/StudentIndex",
+        "/Essays/StudentIndex"
+      ],
+      "authPaths": [
+        "/Account/loginvruc",
+        "/Account/LoginVruc"
+      ],
+      "auth": {
+        "kind": "legacy_oauth",
+        "entry": "https://student.rmbs.ruc.edu.cn/Account/loginvruc",
+        "service": "https://student.rmbs.ruc.edu.cn/Account/LoginVruc",
+        "assertion": {
+          "path": "/home/AdminIndex",
+          "response": {
+            "format": "html",
+            "checks": [
+              {
+                "path": [
+                  "linkPaths"
+                ],
+                "contains": "/Student/Edit"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "business.home",
+      "name": "学生发展网首页",
+      "description": "学生发展网首页；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/home/AdminIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "首页"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/home/AdminIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.profile",
+      "name": "学生发展网本人资料",
+      "description": "学生发展网本人资料；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/Student/Edit"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "学生信息管理-修改"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/Student/Edit",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.activities",
+      "name": "当前活动报名目录",
+      "description": "当前活动报名目录；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/Activity/StudentIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "活动报名"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/Activity/StudentIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.activity_logs",
+      "name": "本人活动参与记录",
+      "description": "本人活动参与记录；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/Activity/ActivityLogs"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "活动参与"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/Activity/ActivityLogs",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.evaluation",
+      "name": "本人的素质拓展测评",
+      "description": "本人的素质拓展测评；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/Student/EvaluateIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "素质拓展测评"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/Student/EvaluateIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.other_activities",
+      "name": "本人的其他活动认定",
+      "description": "本人的其他活动认定；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/ActivityOthers"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "活动参与认定管理"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/ActivityOthers",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.awards",
+      "name": "本人奖励荣誉",
+      "description": "本人奖励荣誉；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/StudentsAwards/StudentIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "我获得的奖励荣誉"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/StudentsAwards/StudentIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.student_work",
+      "name": "本人学生工作",
+      "description": "本人学生工作；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/StudentsWorks/StudentIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "我的学生工作"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/StudentsWorks/StudentIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.conduct",
+      "name": "本人精神风貌记录",
+      "description": "本人精神风貌记录；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/StudentsSpirituals/StudentIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "我的精神风貌"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/StudentsSpirituals/StudentIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.books",
+      "name": "学院书目目录",
+      "description": "学院书目目录；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/Books/StudentIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "书目展示"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/Books/StudentIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business.essays",
+      "name": "本人的读书心得",
+      "description": "本人的读书心得；读取当前服务器 HTML 的文字、表格、链接和表单值，不执行页面脚本。",
+      "platform": "business_students",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/Essays/StudentIndex"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "我的读书心得"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://student.rmbs.ruc.edu.cn/Essays/StudentIndex",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人登录后的学生菜单及只读页面",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

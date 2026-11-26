@@ -1,0 +1,263 @@
+{
+  "profiles": [
+    {
+      "id": "philosophy_rooms",
+      "origin": "https://zxyhy.ruc.edu.cn",
+      "entry": "https://zxyhy.ruc.edu.cn/web/auth",
+      "documentPaths": [
+        "/web/auth",
+        "/web/auth/callback",
+        "/web/rooms",
+        "/web/my-bookings"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "entryDiscovery": {
+          "path": "/api/auth/oauth/url",
+          "responsePath": [
+            "data",
+            "authorizeUrl"
+          ],
+          "acceptedStatuses": [
+            200
+          ]
+        },
+        "upgradeHttpPaths": [
+          "/web/auth/callback"
+        ],
+        "exchange": {
+          "parameters": {
+            "code": {
+              "source": "query",
+              "parameter": "code"
+            },
+            "state": {
+              "source": "query",
+              "parameter": "state"
+            }
+          },
+          "request": {
+            "method": "GET",
+            "path": "/api/auth/oauth/callback",
+            "query": {
+              "code": {
+                "$param": "code"
+              },
+              "state": {
+                "$param": "state"
+              }
+            }
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 200
+              },
+              {
+                "path": [
+                  "data",
+                  "token"
+                ],
+                "type": "string"
+              },
+              {
+                "path": [
+                  "data",
+                  "user",
+                  "id"
+                ],
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "response",
+            "path": [
+              "data",
+              "token"
+            ],
+            "header": "Authorization",
+            "prefix": "Bearer "
+          }
+        ],
+        "assertion": {
+          "path": "/api/client/bookings/my",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 200
+              },
+              {
+                "path": [
+                  "data"
+                ],
+                "type": "array"
+              }
+            ],
+            "dataPath": [
+              "data"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "philosophy.rooms",
+      "name": "哲学院会议室目录",
+      "description": "哲学院会议室目录；保留官网字段。可读取不代表具有预约权限，官网仅允许哲学院账号预约。",
+      "platform": "philosophy_rooms",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/client/rooms",
+        "query": {
+          "isActive": "true"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zxyhy.ruc.edu.cn/web/assets/rooms-xI05SQr_.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "philosophy.my_reservations",
+      "name": "哲学院会议室本人预约",
+      "description": "哲学院会议室本人预约；保留官网字段。可读取不代表具有预约权限，官网仅允许哲学院账号预约。",
+      "platform": "philosophy_rooms",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/client/bookings/my"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zxyhy.ruc.edu.cn/web/assets/rooms-xI05SQr_.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "philosophy.room_bookings",
+      "name": "哲学院会议室指定日期占用记录",
+      "description": "哲学院会议室指定日期占用记录；保留官网字段。可读取不代表具有预约权限，官网仅允许哲学院账号预约。",
+      "platform": "philosophy_rooms",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "room_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "取自当次 philosophy.rooms 的 id"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "room_id",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/client/rooms/{room_id}/bookings",
+        "query": {
+          "date": {
+            "$param": "date"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zxyhy.ruc.edu.cn/web/assets/rooms-xI05SQr_.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

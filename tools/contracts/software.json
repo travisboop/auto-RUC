@@ -1,0 +1,172 @@
+{
+  "profiles": [
+    {
+      "id": "licensed_software",
+      "origin": "https://gsp.ruc.edu.cn",
+      "entry": "https://gsp.ruc.edu.cn/index/index/index.html",
+      "documentPaths": [
+        "/index/index/index.html",
+        "/index/product/index",
+        "/index/problem/index",
+        "/index/video/index"
+      ],
+      "authPaths": [
+        "/index/login/cas.html",
+        "/index/login/cas"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://gsp.ruc.edu.cn/index/login/cas.html",
+        "service": "https://gsp.ruc.edu.cn/index/login/cas",
+        "assertion": {
+          "path": "/index/index/index.html",
+          "response": {
+            "format": "html",
+            "checks": [
+              {
+                "path": [
+                  "linkPaths"
+                ],
+                "contains": "/index/login/logout.html"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "software.home",
+      "name": "正版软件首页",
+      "description": "正版软件首页；读取目录和说明，不发起下载或修改激活状态。",
+      "platform": "licensed_software",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/index/index/index.html"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "linkPaths"
+            ],
+            "contains": "/index/login/logout.html"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://gsp.ruc.edu.cn/index/index/index.html",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "software.catalog",
+      "name": "正版软件下载目录",
+      "description": "正版软件下载目录；读取目录和说明，不发起下载或修改激活状态。",
+      "platform": "licensed_software",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/index/product/index"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "linkPaths"
+            ],
+            "contains": "/index/login/logout.html"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://gsp.ruc.edu.cn/index/product/index",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "software.help",
+      "name": "正版软件常见问题",
+      "description": "正版软件常见问题；读取目录和说明，不发起下载或修改激活状态。",
+      "platform": "licensed_software",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/index/problem/index"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "linkPaths"
+            ],
+            "contains": "/index/login/logout.html"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://gsp.ruc.edu.cn/index/problem/index",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "software.guides",
+      "name": "正版软件使用技巧",
+      "description": "正版软件使用技巧；读取目录和说明，不发起下载或修改激活状态。",
+      "platform": "licensed_software",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/index/video/index"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "linkPaths"
+            ],
+            "contains": "/index/login/logout.html"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://gsp.ruc.edu.cn/index/video/index",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

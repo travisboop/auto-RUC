@@ -1,0 +1,133 @@
+{
+  "profiles": [
+    {
+      "id": "virtual_labs",
+      "origin": "https://ilab-x.ruc.edu.cn",
+      "entry": "https://ilab-x.ruc.edu.cn/virexp/",
+      "auth": {
+        "kind": "public"
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "platform": "virtual_labs",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://ilab-x.ruc.edu.cn/virexp/",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "id": "virtual_labs.colleges",
+      "name": "虚拟仿真实验学院目录",
+      "description": "公开学院编号和名称映射。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/virexp/exp/project/!getAllCollege"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [],
+            "type": "object"
+          }
+        ]
+      }
+    },
+    {
+      "platform": "virtual_labs",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://ilab-x.ruc.edu.cn/virexp/",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "id": "virtual_labs.projects",
+      "name": "虚拟仿真实验项目检索",
+      "description": "公开实验项目和详情链接；不启动实验、报名或提交成绩。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "default": "",
+            "minLength": 0,
+            "maxLength": 200
+          },
+          "college_id": {
+            "type": "string",
+            "default": "",
+            "minLength": 0,
+            "maxLength": 100
+          },
+          "page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 100,
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/virexp/exp/project/!getExpProjectByFactor",
+        "query": {
+          "projectName": {
+            "$param": "keyword"
+          },
+          "collageId": {
+            "$param": "college_id"
+          },
+          "pageNum": {
+            "$param": "page"
+          },
+          "pageSize": {
+            "$param": "page_size"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "articles"
+            ],
+            "type": "array"
+          },
+          {
+            "path": [
+              "hasNext"
+            ],
+            "type": "boolean"
+          }
+        ],
+        "dataPath": [
+          "articles"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "articles"
+          ],
+          "hasNextPath": [
+            "hasNext"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      }
+    }
+  ]
+}

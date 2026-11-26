@@ -1,0 +1,355 @@
+{
+  "profiles": [
+    {
+      "id": "resource_booking",
+      "origin": "https://easybook.ruc.edu.cn",
+      "entry": "https://easybook.ruc.edu.cn/venue/home",
+      "adapter": "resources",
+      "documentPaths": [
+        "/venue/",
+        "/venue/home"
+      ],
+      "authPaths": [
+        "/venue-server/oauth_login"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "resources.applications",
+      "name": "公共资源和服务应用目录",
+      "description": "公共资源和服务应用目录，以当前学生角色和当次目录为准。",
+      "platform": "resource_booking",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "default": 20
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/venue-server/api/app/manages/front_search",
+        "query": {
+          "page": {
+            "$param": "page"
+          },
+          "size": {
+            "$param": "size"
+          },
+          "frontKeywords": {
+            "$param": "keyword"
+          }
+        },
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "content"
+          ],
+          "totalPath": [
+            "data",
+            "totalElements"
+          ],
+          "pageParameter": "page",
+          "firstPage": 0,
+          "identityPath": [
+            "id"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://easybook.ruc.edu.cn/venue/js/chingo.b9e684a9.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "resources.my_applications",
+      "name": "本人可办理的内置预约应用",
+      "description": "本人可办理的内置预约应用，以当前学生角色和当次目录为准。",
+      "platform": "resource_booking",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "default": 20
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/venue-server/api/app/manages/front_search",
+        "query": {
+          "page": {
+            "$param": "page"
+          },
+          "size": {
+            "$param": "size"
+          },
+          "myBuildApp": 1
+        },
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "content"
+          ],
+          "totalPath": [
+            "data",
+            "totalElements"
+          ],
+          "pageParameter": "page",
+          "firstPage": 0,
+          "identityPath": [
+            "id"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://easybook.ruc.edu.cn/venue/js/chunk-2f07e2d6.3ccdc97f.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "resources.catalog",
+      "name": "所选应用的资源目录",
+      "description": "所选应用的资源目录，以当前学生角色和当次目录为准。",
+      "platform": "resource_booking",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_id": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "app_id"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/venue-server/api/app/front/resources",
+        "query": {
+          "appId": {
+            "$param": "app_id"
+          },
+          "searchFieldJSON": "[]"
+        },
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://easybook.ruc.edu.cn/venue/js/chunk-412036e4.6552ef66.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "resources.search_fields",
+      "name": "资源检索的当前自定义字段",
+      "description": "资源检索的当前自定义字段，以当前学生角色和当次目录为准。",
+      "platform": "resource_booking",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_id": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "app_id"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/venue-server/api/app/built/field_list",
+        "query": {
+          "appId": {
+            "$param": "app_id"
+          },
+          "fieldType": "1",
+          "isEnable": 1,
+          "isSearch": 1
+        },
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://easybook.ruc.edu.cn/venue/js/chunk-412036e4.6552ef66.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "resources.order_fields",
+      "name": "当前预约表单的自定义字段",
+      "description": "当前预约表单的自定义字段，以当前学生角色和当次目录为准。",
+      "platform": "resource_booking",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_id": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "app_id"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/venue-server/api/app/built/field_list",
+        "query": {
+          "appId": {
+            "$param": "app_id"
+          },
+          "fieldType": "2",
+          "isEnable": 1
+        },
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://easybook.ruc.edu.cn/venue/js/chunk-5f654ec0.2571f112.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

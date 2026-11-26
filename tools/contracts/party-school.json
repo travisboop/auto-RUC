@@ -1,0 +1,484 @@
+{
+  "profiles": [
+    {
+      "id": "party_school",
+      "adapter": "party_school",
+      "origin": "https://zg.ruc.edu.cn",
+      "entry": "https://zg.ruc.edu.cn/front/",
+      "documentPaths": [
+        "/front/",
+        "/front/login"
+      ],
+      "authPaths": [
+        "/apihome/login/ruc",
+        "/apihome/login/ruc/callback",
+        "/front/login"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "party.profile",
+      "name": "党校培训本人资料",
+      "description": "党校培训本人资料；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/user/user/info"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.categories",
+      "name": "党校培训学习栏目",
+      "description": "党校培训学习栏目；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/ws/learn/cate"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.study_collections",
+      "name": "党校培训学习专辑目录",
+      "description": "读取党校学习专辑目录；不传 page/limit，单次响应按官网 total 检查完整性。当前小页翻页存在跨页重复，不能据此声称取全。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/ws/learn/coll",
+        "query": {
+          "name": {
+            "$param": "keyword"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "list"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.dashboard",
+      "name": "党校培训首页目录与统计",
+      "description": "党校培训首页目录与统计；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/index/index/data"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.hour_years",
+      "name": "党校培训学时年份",
+      "description": "党校培训学时年份；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/hour/hour/year"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.personal_hours",
+      "name": "党校培训本人个人学习学时记录",
+      "description": "党校培训本人个人学习学时记录；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/hour/hour/gr"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "list"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.collective_hours",
+      "name": "党校培训本人集中学习学时记录",
+      "description": "党校培训本人集中学习学时记录；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/hour/hour/jz"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "list"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.notices",
+      "name": "党校培训通知目录",
+      "description": "党校培训通知目录；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/notice/notice"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "list"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "party.training",
+      "name": "党校培训本人培训班级",
+      "description": "党校培训本人培训班级；保留本次账号身份，不进行阅读打卡、登记学时或提交作业。",
+      "platform": "party_school",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "process": {
+            "type": "integer",
+            "enum": [
+              1,
+              2
+            ],
+            "default": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/apihome/ws/ws",
+        "query": {
+          "page": {
+            "$param": "page"
+          },
+          "limit": {
+            "$param": "limit"
+          },
+          "process": {
+            "$param": "process"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "list"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

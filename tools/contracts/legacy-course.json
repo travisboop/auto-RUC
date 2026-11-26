@@ -1,0 +1,603 @@
+{
+  "profiles": [
+    {
+      "id": "legacy_portal",
+      "adapter": "legacy",
+      "origin": "https://v.ruc.edu.cn",
+      "entry": "https://v.ruc.edu.cn/me",
+      "documentPaths": [
+        "/me"
+      ],
+      "authPaths": [
+        "/auth/login",
+        "/auth/captcha",
+        "/oauth2/authorize"
+      ]
+    },
+    {
+      "id": "course_teaching",
+      "origin": "https://course.ruc.edu.cn",
+      "entry": "https://course.ruc.edu.cn/kcjxpt/rdmooc/rdIndividualTeachingHome.do",
+      "documentPaths": [
+        "/kcjxpt/rdmooc/rdIndividualTeachingHome.do"
+      ],
+      "auth": {
+        "kind": "legacy_oauth",
+        "entry": "https://course.ruc.edu.cn/kcjxpt/callback/login",
+        "service": "https://course.ruc.edu.cn/kcjxpt/callback/login",
+        "formBridge": {
+          "path": "/onLineClass/rdmooc/simulationLoginOne",
+          "fields": [
+            "usercode"
+          ]
+        },
+        "assertion": {
+          "path": "/kcjxpt/rdmooc/checkYhIdentity.do",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": "200"
+              },
+              {
+                "path": [
+                  "result",
+                  "jsdm"
+                ],
+                "equals": 3
+              }
+            ]
+          }
+        }
+      },
+      "authPaths": [
+        "/kcjxpt/callback/login",
+        "/onLineClass/rdmooc/simulationLoginOne"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "course.identity",
+      "name": "课程平台本人角色",
+      "description": "课程平台本人角色，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/kcjxpt/rdmooc/checkYhIdentity.do",
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/rdmooc/rdIndividualTeachingHome.do",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.profile",
+      "name": "课程平台本人资料",
+      "description": "课程平台本人资料，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/kcjxpt/rdmooc/getTeacherMessage.do",
+        "encoding": "form",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/rdmooc/rdIndividualTeachingHome.do",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.terms",
+      "name": "课程平台学期目录",
+      "description": "课程平台学期目录，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/kcjxpt/rdmooc/getXnxqList.do",
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/resources/rdMoocRes/rdkcjx/modular/n_personal/grzx-wdkc.vue",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.classes",
+      "name": "本人在线课程目录",
+      "description": "本人在线课程目录，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "course.terms 返回的 XNXQ；不同于教务系统的学期 id"
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "required": [
+          "term"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/kcjxpt/rdmooc/GetIndividualClassList.do",
+        "encoding": "form",
+        "body": {
+          "xnxq": {
+            "$param": "term"
+          },
+          "kcmcTab": {
+            "$param": "keyword"
+          },
+          "sfzjkc": "0"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/rdmooc/rdIndividualTeachingHome.do",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.weeks",
+      "name": "课程平台周次目录",
+      "description": "课程平台周次目录，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "course.terms 返回的 XNXQ；不同于教务系统的学期 id"
+          }
+        },
+        "required": [
+          "term"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/kcjxpt/rdmooc/getScheduleWeekly",
+        "encoding": "form",
+        "query": {
+          "xnxq": {
+            "$param": "term"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/resources/rdMoocRes/rdkcjx/modular/n_personal/grzx-wdkb.vue",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.periods",
+      "name": "课程平台上课节次",
+      "description": "课程平台上课节次，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "course.terms 返回的 XNXQ；不同于教务系统的学期 id"
+          }
+        },
+        "required": [
+          "term"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/kcjxpt/rdmooc/getJcsjList",
+        "encoding": "form",
+        "query": {
+          "xnxq": {
+            "$param": "term"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/resources/rdMoocRes/rdkcjx/modular/n_personal/grzx-wdkb.vue",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.timetable",
+      "name": "课程平台本人周课表",
+      "description": "课程平台本人周课表，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "course.terms 返回的 XNXQ；不同于教务系统的学期 id"
+          },
+          "week": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 60
+          }
+        },
+        "required": [
+          "term",
+          "week"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/kcjxpt/rdmooc/GetScheduleList",
+        "encoding": "form",
+        "query": {
+          "xnxq": {
+            "$param": "term"
+          },
+          "zc": {
+            "$param": "week"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/resources/rdMoocRes/rdkcjx/modular/n_personal/grzx-wdkb.vue",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.notices",
+      "name": "课程平台通知列表",
+      "description": "课程平台通知列表，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/kcjxpt/rdmooc/queryNoticeList",
+        "encoding": "form",
+        "query": {
+          "pageNo": {
+            "$param": "page"
+          },
+          "pageSize": {
+            "$param": "size"
+          },
+          "fsbtTab": {
+            "$param": "keyword"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "result",
+            "noticeList"
+          ],
+          "totalPath": [
+            "result",
+            "NoticePage",
+            "rowCount"
+          ],
+          "pageParameter": "page",
+          "firstPage": 0
+        }
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/resources/rdMoocRes/rdkcjx/modular/n_personal/grzx-xxzx.vue",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "course.unread_count",
+      "name": "课程平台未读通知数量",
+      "description": "课程平台未读通知数量，保持本人学生角色。",
+      "platform": "course_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/kcjxpt/rdmooc/getNoReadNotices",
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "200"
+          },
+          {
+            "path": [
+              "result"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "result"
+        ]
+      },
+      "evidence": {
+        "source": "https://course.ruc.edu.cn/kcjxpt/rdmooc/rdIndividualTeachingHome.do",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "verification": "fresh_session_verified"
+    },
+    {
+      "id": "legacy.roles",
+      "name": "微人大本人角色和身份",
+      "description": "微人大本人当前角色；不会切换或新增角色。",
+      "platform": "legacy_portal",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v3/api/me/roles"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "err_code"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://v.ruc.edu.cn/staticv3/js/app.09f585b4.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

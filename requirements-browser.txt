@@ -1,0 +1,2 @@
+# Optional JS page fallback; install a browser separately (see README).
+playwright==1.65.2

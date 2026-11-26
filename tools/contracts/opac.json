@@ -1,0 +1,360 @@
+{
+  "profiles": [
+    {
+      "id": "library_catalog",
+      "adapter": "opac",
+      "origin": "https://opac.ruc.edu.cn",
+      "entry": "https://opac.ruc.edu.cn/",
+      "documentPaths": [
+        "/"
+      ],
+      "authPaths": [
+        "/sso-cas/cas/ruc/init",
+        "/sso-cas/cas/index/ruc",
+        "/passport/api/v2/casreceive",
+        "/find/sso/login/ruc/0"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "opac.identity",
+      "name": "图书馆检索系统本人资料",
+      "description": "图书馆检索系统本人资料；使用当前本人馆藏账号。",
+      "platform": "library_catalog",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/oga/userinfo"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "success"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://opac.ruc.edu.cn/static/js/4.180cb7aed792139e4542.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "opac.loans",
+      "name": "当前借阅",
+      "description": "当前借阅；使用当前本人馆藏账号。",
+      "platform": "library_catalog",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "rows": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "searchContent": {
+            "type": "string",
+            "default": "",
+            "minLength": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/find/loanInfo/loanList",
+        "body": {
+          "page": {
+            "$param": "page"
+          },
+          "rows": {
+            "$param": "rows"
+          },
+          "searchType": 1,
+          "searchContent": {
+            "$param": "searchContent"
+          },
+          "sortType": 0,
+          "startDate": null,
+          "endDate": null
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "success"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "searchResult"
+          ],
+          "totalPath": [
+            "data",
+            "numFound"
+          ],
+          "identityPath": [
+            "loanId"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://opac.ruc.edu.cn/static/js/4.180cb7aed792139e4542.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "opac.loan_history",
+      "name": "本人借阅历史",
+      "description": "本人借阅历史；使用当前本人馆藏账号。",
+      "platform": "library_catalog",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "rows": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "searchContent": {
+            "type": "string",
+            "default": "",
+            "minLength": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/find/loanInfo/loanHistoryList",
+        "body": {
+          "page": {
+            "$param": "page"
+          },
+          "rows": {
+            "$param": "rows"
+          },
+          "searchType": 1,
+          "searchContent": {
+            "$param": "searchContent"
+          },
+          "sortType": 0,
+          "startDate": null,
+          "endDate": null
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "success"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "searchResult"
+          ],
+          "totalPath": [
+            "data",
+            "numFound"
+          ],
+          "identityPath": [
+            "loanId"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://opac.ruc.edu.cn/static/js/4.180cb7aed792139e4542.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "opac.loan_rules",
+      "name": "本人的图书借阅规则",
+      "description": "本人的图书借阅规则；使用当前本人馆藏账号。",
+      "platform": "library_catalog",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/find/userInfo/UserLoanRules",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "success"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://opac.ruc.edu.cn/static/js/4.180cb7aed792139e4542.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "opac.loan_chart",
+      "name": "本人借阅统计",
+      "description": "本人借阅统计；使用当前本人馆藏账号。",
+      "platform": "library_catalog",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/find/loanInfo/loanChart",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "success"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://opac.ruc.edu.cn/static/js/4.180cb7aed792139e4542.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "opac.behaviors",
+      "name": "本人图书馆行为记录",
+      "description": "本人图书馆行为记录；使用当前本人馆藏账号。",
+      "platform": "library_catalog",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pageNum": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 15
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/find/behaviourManager/getBehaviourList",
+        "body": {
+          "pageNum": {
+            "$param": "pageNum"
+          },
+          "pageSize": {
+            "$param": "pageSize"
+          },
+          "processFlag": null
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "success"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "result"
+          ],
+          "totalPath": [
+            "data",
+            "totalNum"
+          ],
+          "pageParameter": "pageNum",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://opac.ruc.edu.cn/static/js/4.180cb7aed792139e4542.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

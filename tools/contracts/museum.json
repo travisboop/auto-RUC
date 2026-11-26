@@ -1,0 +1,453 @@
+{
+  "profiles": [
+    {
+      "id": "museum",
+      "origin": "https://go2rucm.ruc.edu.cn",
+      "entry": "https://go2rucm.ruc.edu.cn/#/home/activitySelect",
+      "documentPaths": [
+        "/"
+      ],
+      "headers": {
+        "party": "1"
+      },
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://cas.ruc.edu.cn/cas/oauth2.0/authorize?response_type=code&client_id=uMqXjSjGQuBvlmhebCjr-dep&state=123456789&scope=all&redirect_uri=https%3A%2F%2Fgo2rucm.ruc.edu.cn%2F%23%2Flogin",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "exchange": {
+          "parameters": {
+            "code": {
+              "source": "fragment_query",
+              "parameter": "code"
+            }
+          },
+          "request": {
+            "method": "POST",
+            "path": "/bwg/static/public/cg/pcLoginWrd/{code}",
+            "body": {}
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "status"
+                ],
+                "equals": true
+              },
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 200
+              },
+              {
+                "path": [
+                  "data",
+                  "token"
+                ],
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "response",
+            "path": [
+              "data",
+              "token"
+            ],
+            "header": "Authorization",
+            "prefix": "Bearer "
+          }
+        ],
+        "assertion": {
+          "path": "/bwg/static/frontApi/user/getUserInfo",
+          "method": "POST",
+          "body": {},
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "status"
+                ],
+                "equals": true
+              },
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 200
+              },
+              {
+                "path": [
+                  "data"
+                ],
+                "type": "object"
+              }
+            ],
+            "dataPath": [
+              "data"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "museum.profile",
+      "name": "博物馆本人资料",
+      "description": "博物馆本人资料；保持当前用户身份。",
+      "platform": "museum",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/bwg/static/frontApi/user/getUserInfo",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://go2rucm.ruc.edu.cn/static/js/app.64959e8d735ea8437d7a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "museum.areas",
+      "name": "博物馆校区目录",
+      "description": "博物馆校区目录；保持当前用户身份。",
+      "platform": "museum",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/bwg/static/frontApi/area/findAllSchArea"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://go2rucm.ruc.edu.cn/static/js/app.64959e8d735ea8437d7a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "museum.notice",
+      "name": "博物馆预约须知",
+      "description": "博物馆预约须知；保持当前用户身份。",
+      "platform": "museum",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/bwg/static/public/cg/getNotice"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "string"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://go2rucm.ruc.edu.cn/static/js/app.64959e8d735ea8437d7a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "museum.reservations",
+      "name": "博物馆本人预约记录",
+      "description": "博物馆本人预约记录；保持当前用户身份。",
+      "platform": "museum",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/bwg/static/frontResApi/make/findAllMakeLogPage",
+        "body": {
+          "currentPage": {
+            "$param": "currentPage"
+          },
+          "pageSize": {
+            "$param": "pageSize"
+          },
+          "sortField": "makeDateStr",
+          "sortType": "desc"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "pageList"
+          ],
+          "totalPath": [
+            "data",
+            "totalCount"
+          ],
+          "pageParameter": "currentPage",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://go2rucm.ruc.edu.cn/static/js/app.64959e8d735ea8437d7a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "museum.breaches",
+      "name": "博物馆本人违约记录",
+      "description": "博物馆本人违约记录；保持当前用户身份。",
+      "platform": "museum",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/bwg/static/frontResApi/make/findAllBreachPage",
+        "body": {
+          "currentPage": {
+            "$param": "currentPage"
+          },
+          "pageSize": {
+            "$param": "pageSize"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "pageList"
+          ],
+          "totalPath": [
+            "data",
+            "totalCount"
+          ],
+          "pageParameter": "currentPage",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://go2rucm.ruc.edu.cn/static/js/app.64959e8d735ea8437d7a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "museum.cancel_reservation",
+      "name": "取消本人的博物馆预约",
+      "description": "reservation_id 必须取自本人预约记录；执行后读取 museum.reservations 核实状态。开发阶段仅做离线验证。",
+      "platform": "museum",
+      "readOnly": false,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "reservation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "reservation_id"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/bwg/static/frontResApi/make/operate/cancelMake/{reservation_id}",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "receiptQuery": "museum.reservations",
+      "verification": "source_verified_not_live_executed",
+      "evidence": {
+        "source": "https://go2rucm.ruc.edu.cn/static/js/app.64959e8d735ea8437d7a.js",
+        "checkedOn": "2026-11-27",
+        "scope": "当前前端 cancelMake 调用；没有执行真实取消"
+      }
+    }
+  ]
+}

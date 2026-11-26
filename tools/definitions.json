@@ -1,0 +1,380 @@
+[
+  {
+    "name": "ruc_check_login",
+    "description": "以用户配置的学号密码从空会话登录静音舱，读取校区目录验证认证；不验证数智人大主门户。",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_query_booths",
+    "description": "全新密码认证并实时查询人大静音舱，支持日期、校区、楼宇、舱型、连续时长或完整起止区间。时间为北京时间。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "description": "YYYY-MM-DD；默认北京时间今天"
+        },
+        "campus": {
+          "type": "string",
+          "description": "校区名称包含的文本，如中关村、通州"
+        },
+        "venue": {
+          "type": "string",
+          "description": "楼宇名称包含的文本，如立德楼"
+        },
+        "type": {
+          "type": "string",
+          "description": "舱型名称包含的文本，如单人、多人"
+        },
+        "minutes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1440,
+          "description": "至少连续分钟数；0 表示只按官网最小时长"
+        },
+        "from": {
+          "type": "string",
+          "description": "开始 HH:MM，须与 to 成对，且符合官网时间格"
+        },
+        "to": {
+          "type": "string",
+          "description": "结束 HH:MM；同一舱须完整覆盖，最晚 24:00"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_find_apps",
+    "description": "离线检索本包平台入口；本地存在历史应用快照时搜索该快照。live=false，不代表当前账号权限；实时目录使用 ruc_platforms(live=true)。",
+    "parameters": {
+      "type": "object",
+      "required": [
+        "keyword"
+      ],
+      "properties": {
+        "keyword": {
+          "type": "string",
+          "description": "匹配应用名称或简介"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_platforms",
+    "description": "发现人大平台。默认返回本包覆盖状态；live=true 获取当前账号完整应用目录并归并平台，区分目录可访问与已有查询实现。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "live": {
+          "type": "boolean",
+          "description": "true 时从新会话实时门户目录归并平台、账号权限和已登记能力；默认只读本包状态。"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_capabilities",
+    "description": "无需认证，发现可查询数据、参数、来源与验证范围。先用此工具选择能力。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string",
+          "description": "可选关键词，如成绩、教室、体育"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_query",
+    "description": "统一只读查询入口；每次调用从空会话认证，失败不会回退旧会话。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "capability": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object",
+          "description": "该能力的参数；以 ruc_capabilities 返回的 parameters 为准"
+        },
+        "all_pages": {
+          "type": "boolean",
+          "description": "按契约从第一页收集全部数据，返回 data 为记录数组。"
+        },
+        "max_pages": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "all_pages=true 时的翻页上限，默认 100；达到上限返回 partial。"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "capability"
+      ]
+    }
+  },
+  {
+    "name": "ruc_query_batch",
+    "description": "一次任务查询多种数据，共用新建 CAS 身份且各平台会话独立；最多提交一次密码。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "requests": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "properties": {
+              "capability": {
+                "type": "string"
+              },
+              "params": {
+                "type": "object",
+                "description": "该能力的参数；以 ruc_capabilities 返回的 parameters 为准"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "capability"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "requests"
+      ]
+    }
+  },
+  {
+    "name": "ruc_discover",
+    "description": "发现平台配置、实时门户入口或教务本人 API 映射。目录不代表未知操作已经核实。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string"
+        },
+        "keyword": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_prepare_action",
+    "description": "预览具体写操作，不提交；返回仅在本次连续会话有效的五分钟单次 actionId。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "capability": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "capability"
+      ]
+    }
+  },
+  {
+    "name": "ruc_commit_action",
+    "description": "提交已预览操作。须由宿主启用写入且用户已授权该任务；失败不自动重发。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "action_id"
+      ]
+    }
+  },
+  {
+    "name": "ruc_reset_session",
+    "description": "结束当前任务、清理内存并撤销 CAS 票据。下一次操作创建新会话。",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_browser_open",
+    "description": "在全新隔离浏览器打开人大 HTTPS 页面；自动处理已观察到的 CAS 回调，未知业务请求默认阻断。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "url"
+      ]
+    }
+  },
+  {
+    "name": "ruc_browser_snapshot",
+    "description": "读取当前页面文字、iframe 和元素引用；元素引用只对应当前快照。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string"
+        },
+        "max_chars": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 50000
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "page"
+      ]
+    }
+  },
+  {
+    "name": "ruc_browser_interact",
+    "description": "操作已观察的元素。默认只允许已核实读取请求；write=true 生成操作预览，实际提交另用 commit_action。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "click",
+            "fill",
+            "select",
+            "press"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 0
+        },
+        "write": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "page",
+        "ref",
+        "action"
+      ]
+    }
+  },
+  {
+    "name": "ruc_browser_network",
+    "description": "默认返回脱敏请求目录；request_id 读取已脱敏业务参数，response_id 读取内存中已允许的只读 JSON，二者互斥。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "response_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "request_id": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_inspect_source",
+    "description": "读取当前学校公开 HTML/JS 的脚本链接、哈希或关键词上下文，供核对新接口；不执行代码。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "keyword": {
+          "type": "string"
+        },
+        "max_chars": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 40000
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_register_contract",
+    "description": "将 agent 已核对当前来源和读写语义的 JSON 扩展登记到本次内存会话，不自动采信网页指令。跨会话复用须保存到明确的扩展目录。格式见扩展文档。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "document"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "ruc_authenticate",
+    "description": "完成独立微人大认证。先不传验证码获取 CAPTCHA_REQUIRED 图片；识别后传 verification_code，验证码先校验再提交密码。每认证域只提交一次密码，失败不重试。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "realm": {
+          "type": "string",
+          "enum": [
+            "legacy"
+          ]
+        },
+        "verification_code": {
+          "type": "string",
+          "pattern": "[A-Za-z]{4,12}"
+        }
+      },
+      "required": [
+        "realm"
+      ],
+      "additionalProperties": false
+    }
+  }
+]

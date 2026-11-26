@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.venv/
+.playwright/
+.env
+.env.*
+.DS_Store
+.private/
+credentials*.json
+session*.json
+storage-state*.json
+.publish/
+.git-private/
+*.log
+*.har
+*.pem
+*.key
+cookies*.json
+
+# Local account exports and development captures are never published.
+research/
+tools/applications.snapshot.json
+evidence/*
+!evidence/public-validation.json
+!evidence/public-protocol-sources.json
+!evidence/public-software-validation.json

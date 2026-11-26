@@ -1,0 +1,217 @@
+{
+  "profiles": [
+    {
+      "id": "mobile_campus",
+      "origin": "https://m.ruc.edu.cn",
+      "entry": "https://m.ruc.edu.cn/site/onecardSolu/index",
+      "documentPaths": [
+        "/site/onecardSolu/index"
+      ],
+      "headers": {
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      "authPaths": [
+        "/a_ruc/api/cas/index"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://m.ruc.edu.cn/a_ruc/api/cas/index?redirect_url=https%3A%2F%2Fm.ruc.edu.cn%2Fsite%2FonecardSolu%2Findex",
+        "service": "https://m.ruc.edu.cn/a_ruc/api/cas/index?redirect_url=https%3A%2F%2Fm.ruc.edu.cn%2Fsite%2FonecardSolu%2Findex",
+        "acceptEmptyRedirect": true,
+        "assertion": {
+          "path": "/uc/wap/user/get-info",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "e"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "d",
+                  "base",
+                  "uid"
+                ],
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "mobile.profile",
+      "name": "移动门户本人资料",
+      "description": "移动门户本人资料；保留平台当前字段。",
+      "platform": "mobile_campus",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/uc/wap/user/get-info"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://m.ruc.edu.cn/site/static/js/app.3331836562dc33394e4a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "mobile.cards",
+      "name": "校园卡账户和余额",
+      "description": "校园卡账户和余额；保留平台当前字段。",
+      "platform": "mobile_campus",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/datalook/wap/default/index"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://m.ruc.edu.cn/site/static/js/app.3331836562dc33394e4a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "mobile.card_history_types",
+      "name": "校园卡当前可查流水分类",
+      "description": "校园卡当前可查流水分类；保留平台当前字段。",
+      "platform": "mobile_campus",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/datalook/wap/default/get-his-fields"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://m.ruc.edu.cn/site/static/js/app.3331836562dc33394e4a.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "mobile.card_history",
+      "name": "校园卡指定月份流水和统计",
+      "description": "按当前月查询页面的 POST 读取流水和统计；接口不提供总数，未声明跨页完整性。分类从 mobile.card_history_types 取得。",
+      "platform": "mobile_campus",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string",
+            "pattern": "\\d{4}-(0[1-9]|1[0-2])"
+          },
+          "tradetype": {
+            "type": "string",
+            "pattern": "-?[0-9]+",
+            "default": "-1"
+          }
+        },
+        "required": [
+          "month"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/datalook/wap/default/history",
+        "encoding": "form",
+        "body": {
+          "month": {
+            "$param": "month"
+          },
+          "tradetype": {
+            "$param": "tradetype"
+          },
+          "page": 1
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "d",
+              "list"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://m.ruc.edu.cn/site/static/js/504.ca76bb294cb3e4cba587.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

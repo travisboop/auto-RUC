@@ -1,0 +1,2 @@
+# Optional standard agent transport. Core CLI/JSONL do not import this package.
+mcp==2.3.0

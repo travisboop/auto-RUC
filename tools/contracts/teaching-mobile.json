@@ -1,0 +1,442 @@
+{
+  "profiles": [
+    {
+      "id": "teaching_mobile",
+      "origin": "https://zsjw.ruc.edu.cn",
+      "entry": "https://zsjw.ruc.edu.cn/#/home",
+      "documentPaths": [
+        "/"
+      ],
+      "auth": {
+        "kind": "legacy_oauth",
+        "entry": "https://zsjw.ruc.edu.cn/view/web/oauth/url",
+        "service": "https://zsjw.ruc.edu.cn/view/web/getcode",
+        "exchange": {
+          "parameters": {
+            "code": {
+              "source": "fragment_query",
+              "parameter": "code"
+            }
+          },
+          "request": {
+            "method": "GET",
+            "path": "/view/get/token",
+            "query": {
+              "state": "web",
+              "code": {
+                "$param": "code"
+              }
+            }
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "errorCode"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "data"
+                ],
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "response",
+            "path": [
+              "data"
+            ],
+            "header": "ZjwToken"
+          }
+        ],
+        "assertion": {
+          "path": "/api/get/user",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "errorCode"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "data"
+                ],
+                "type": "object"
+              }
+            ],
+            "dataPath": [
+              "data"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "teaching.profile",
+      "name": "掌上教务本人资料",
+      "description": "掌上教务本人资料；保持当前用户身份。",
+      "platform": "teaching_mobile",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/get/user"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zsjw.ruc.edu.cn/assets/index.aa43711f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "teaching.terms",
+      "name": "掌上教务学期目录",
+      "description": "掌上教务学期目录；保持当前用户身份。",
+      "platform": "teaching_mobile",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/get/term/list"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zsjw.ruc.edu.cn/assets/index.aa43711f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "teaching.applications",
+      "name": "掌上教务学生功能目录",
+      "description": "掌上教务学生功能目录；保持本人学生角色。",
+      "platform": "teaching_mobile",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/self/manage/list",
+        "query": {
+          "type": 2
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zsjw.ruc.edu.cn/assets/Home.d4ce6825.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "teaching.todo",
+      "name": "掌上教务本人待办",
+      "description": "掌上教务本人待办；保持本人学生角色。",
+      "platform": "teaching_mobile",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/teacher/untodo/list",
+        "query": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zsjw.ruc.edu.cn/assets/Home.d4ce6825.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "teaching.exams",
+      "name": "掌上教务学期考试",
+      "description": "掌上教务学期考试；保持本人学生角色。",
+      "platform": "teaching_mobile",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "term"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/exam/scdu/list",
+        "query": {
+          "term": {
+            "$param": "term"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zsjw.ruc.edu.cn/assets/exam-schedule-search.ddad48db.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "teaching.timetable",
+      "name": "掌上教务学生周课表",
+      "description": "掌上教务学生周课表；当前账号学生角色。",
+      "platform": "teaching_mobile",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "week": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "term",
+          "week"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/teacher/schedule",
+        "query": {
+          "userType": 2,
+          "term": {
+            "$param": "term"
+          },
+          "zc": {
+            "$param": "week"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zsjw.ruc.edu.cn/assets/Home.d4ce6825.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "teaching.notices",
+      "name": "掌上教务通知列表",
+      "description": "掌上教务通知列表；当前账号学生角色。",
+      "platform": "teaching_mobile",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/notice/self/list",
+        "query": {
+          "current": {
+            "$param": "page"
+          },
+          "size": {
+            "$param": "size"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "data"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1,
+          "identityPath": [
+            "id"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://zsjw.ruc.edu.cn/assets/message.81ab078b.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,374 @@
+{
+  "profiles": [
+    {
+      "id": "media_works",
+      "origin": "https://mediaview.ruc.edu.cn",
+      "entry": "https://mediaview.ruc.edu.cn/",
+      "auth": {
+        "kind": "public"
+      },
+      "documentPaths": [
+        "/",
+        "/index.html",
+        "/detail.html"
+      ]
+    },
+    {
+      "id": "media_account",
+      "origin": "https://mediaview.ruc.edu.cn",
+      "entry": "https://mediaview.ruc.edu.cn/user.html",
+      "documentPaths": [
+        "/user.html",
+        "/project.html"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "entryDiscovery": {
+          "path": "/studentUser/weirda/auth-url",
+          "query": {
+            "type": 2
+          },
+          "responsePath": [
+            "data",
+            "auth_url"
+          ],
+          "acceptedStatuses": [
+            200
+          ]
+        },
+        "exchange": {
+          "parameters": {
+            "code": {
+              "source": "query",
+              "parameter": "code"
+            }
+          },
+          "request": {
+            "method": "GET",
+            "path": "/studentUser/weirda/oauth/callback",
+            "query": {
+              "type": 2,
+              "code": {
+                "$param": "code"
+              }
+            }
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "data",
+                  "token"
+                ],
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "response",
+            "path": [
+              "data",
+              "token"
+            ],
+            "header": "x-token"
+          }
+        ],
+        "assertion": {
+          "path": "/studentUser/getUserInfo",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "data",
+                  "ID"
+                ],
+                "type": "integer"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "media.years",
+      "name": "新闻传播作品平台作品年份",
+      "description": "新闻传播作品平台作品年份；读取接口不提交作品或修改个人资料。",
+      "platform": "media_works",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              4,
+              5,
+              6
+            ],
+            "default": 1,
+            "description": "作品栏目，使用官网当前栏目编号"
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/studentUser/getYearList",
+        "query": {
+          "type": {
+            "$param": "type"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://mediaview.ruc.edu.cn/",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "media.works",
+      "name": "新闻传播作品平台公开作品目录",
+      "description": "新闻传播作品平台公开作品目录；读取接口不提交作品或修改个人资料。",
+      "platform": "media_works",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              4,
+              5,
+              6
+            ],
+            "default": 1,
+            "description": "作品栏目，使用官网当前栏目编号"
+          },
+          "year": {
+            "type": "string",
+            "pattern": "[0-9]{4}"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "year"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/studentUser/getWorkList",
+        "query": {
+          "type": {
+            "$param": "type"
+          },
+          "year": {
+            "$param": "year"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://mediaview.ruc.edu.cn/",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "media.detail",
+      "name": "新闻传播作品平台作品详情",
+      "description": "新闻传播作品平台作品详情；读取接口不提交作品或修改个人资料。",
+      "platform": "media_works",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/studentUser/getWorkDetail",
+        "query": {
+          "id": {
+            "$param": "id"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://mediaview.ruc.edu.cn/detail.html",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "media.profile",
+      "name": "新闻传播作品平台本人资料",
+      "description": "新闻传播作品平台本人资料；读取接口不提交作品或修改个人资料。",
+      "platform": "media_account",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/studentUser/getUserInfo"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://mediaview.ruc.edu.cn/user.html",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "media.activities",
+      "name": "新闻传播作品平台本人可见项目目录",
+      "description": "新闻传播作品平台本人可见项目目录；读取接口不提交作品或修改个人资料。",
+      "platform": "media_account",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/studentUser/getActivityList"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://mediaview.ruc.edu.cn/project.html",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,710 @@
+{
+  "profiles": [
+    {
+      "id": "student_affairs",
+      "origin": "https://xwzx.ruc.edu.cn",
+      "entry": "https://xwzx.ruc.edu.cn/campus",
+      "documentPaths": [
+        "/campus"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://xwzx.ruc.edu.cn/auth/login",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "upgradeHttpPaths": [
+          "/campus"
+        ],
+        "assertion": {
+          "path": "/campus",
+          "response": {
+            "format": "html",
+            "checks": [
+              {
+                "path": [
+                  "text"
+                ],
+                "contains": "Student Affairs Center"
+              }
+            ],
+            "dataPath": []
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "affairs.activity_types",
+      "name": "学务中心活动分类",
+      "description": "学务中心活动分类；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/Activity/getActivityTypes",
+        "method": "POST",
+        "body": {},
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.activities",
+      "name": "学务中心活动目录",
+      "description": "学务中心活动目录；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "new",
+              "coming",
+              "focus",
+              "hot"
+            ],
+            "default": "new"
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/v2/getlist",
+        "method": "GET",
+        "query": {
+          "type": {
+            "$param": "type"
+          },
+          "page": {
+            "$param": "page"
+          },
+          "perpage": {
+            "$param": "page_size"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "data"
+          ],
+          "totalPath": [
+            "data",
+            "count"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.todo",
+      "name": "学务中心本人待办",
+      "description": "学务中心本人待办；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/Index/todo",
+        "method": "POST",
+        "body": {},
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.honors",
+      "name": "学务中心本人荣誉与荣誉大厅",
+      "description": "学务中心本人荣誉与荣誉大厅；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/Index/honor",
+        "method": "POST",
+        "body": {},
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": []
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.score_summary",
+      "name": "学务中心本人积分汇总",
+      "description": "学务中心本人积分汇总；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/Score/stats",
+        "method": "POST",
+        "body": {},
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.score_tags",
+      "name": "学务中心本人积分标签",
+      "description": "学务中心本人积分标签；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/Score/statsByTag",
+        "method": "POST",
+        "body": {},
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.my_activities",
+      "name": "学务中心本人参加的活动",
+      "description": "学务中心本人参加的活动；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "default": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/Join/getMyJoinList",
+        "method": "POST",
+        "body": {
+          "status": {
+            "$param": "status"
+          },
+          "curpage": {
+            "$param": "page"
+          },
+          "perpage": {
+            "$param": "page_size"
+          }
+        },
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "data"
+          ],
+          "totalPath": [
+            "data",
+            "count"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1,
+          "totalEncoding": "decimal_string"
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.activity.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.appointment_types",
+      "name": "学务中心预约分类",
+      "description": "学务中心预约分类；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/v2/appointment/getType",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.appointment.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.appointments",
+      "name": "学务中心咨询与场地预约目录",
+      "description": "学务中心咨询与场地预约目录；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "category": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "default": 0
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          },
+          "date": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/v2/appointment",
+        "method": "GET",
+        "query": {
+          "page": {
+            "$param": "page"
+          },
+          "perpage": {
+            "$param": "page_size"
+          },
+          "cate": {
+            "$param": "category"
+          },
+          "order": "time",
+          "search": {
+            "$param": "keyword"
+          },
+          "type": "",
+          "departmentid": "",
+          "date": {
+            "$param": "date"
+          },
+          "is_full": ""
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "data"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.appointment.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.my_appointments",
+      "name": "学务中心本人预约记录",
+      "description": "学务中心本人预约记录；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2
+            ],
+            "default": 0
+          },
+          "category": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "default": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/v2/appointment/getMyRegist",
+        "method": "GET",
+        "query": {
+          "page": {
+            "$param": "page"
+          },
+          "perpage": {
+            "$param": "page_size"
+          },
+          "status": {
+            "$param": "status"
+          },
+          "cate": {
+            "$param": "category"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "data"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.appointment.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "affairs.scores",
+      "name": "学务中心本人积分记录",
+      "description": "学务中心本人积分记录；读取当前账号可见数据。",
+      "platform": "student_affairs",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "activity",
+              "addorsub"
+            ],
+            "default": "activity"
+          },
+          "score_type": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          },
+          "activity_type": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/campus/v2/Score/getUserScore",
+        "method": "GET",
+        "query": {
+          "type": {
+            "$param": "type"
+          },
+          "page": {
+            "$param": "page"
+          },
+          "perpage": {
+            "$param": "page_size"
+          },
+          "scoretype": {
+            "$param": "score_type"
+          },
+          "aname": {
+            "$param": "keyword"
+          },
+          "tid": {
+            "$param": "activity_type"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "data"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.integral.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

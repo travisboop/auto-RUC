@@ -1,0 +1,412 @@
+{
+  "profiles": [
+    {
+      "id": "forms",
+      "adapter": "portal",
+      "origin": "https://my.ruc.edu.cn",
+      "entry": "https://my.ruc.edu.cn/easyform3/",
+      "documentPaths": [
+        "/easyform3/"
+      ],
+      "authPaths": [
+        "/commoncallback/easyform3/"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "forms.identity",
+      "name": "表单中心本人身份",
+      "description": "表单中心本人身份；actId 从当前门户表单入口取得。",
+      "platform": "forms",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/easyform3/api/user/userInfo"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "success"
+          }
+        ],
+        "dataPath": [
+          "result",
+          "data"
+        ]
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/static/js/main.83009ec1.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "forms.my_submissions",
+      "name": "表单中心本人申请",
+      "description": "表单中心本人申请；actId 从当前门户表单入口取得。",
+      "platform": "forms",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/easyform3/api/activityRuntime/my/apply"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "success"
+          }
+        ],
+        "dataPath": [
+          "result",
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "result",
+            "data"
+          ],
+          "totalPath": [
+            "total"
+          ]
+        }
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/static/js/main.83009ec1.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "forms.todo",
+      "name": "表单中心本人待办",
+      "description": "表单中心本人待办；actId 从当前门户表单入口取得。",
+      "platform": "forms",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/easyform3/api/activityRuntime/my/todo"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "success"
+          }
+        ],
+        "dataPath": [
+          "result",
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "result",
+            "data"
+          ],
+          "totalPath": [
+            "total"
+          ]
+        }
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/static/js/main.83009ec1.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "forms.done",
+      "name": "表单中心本人已办",
+      "description": "表单中心本人已办；actId 从当前门户表单入口取得。",
+      "platform": "forms",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/easyform3/api/activityRuntime/my/done"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "success"
+          }
+        ],
+        "dataPath": [
+          "result",
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "result",
+            "data"
+          ],
+          "totalPath": [
+            "total"
+          ]
+        }
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/static/js/main.83009ec1.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "forms.context",
+      "name": "表单流程和实体上下文",
+      "description": "读取本次活动的流程与实体配置；表单字段使用 forms.schema，调用不创建草稿。",
+      "platform": "forms",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "actId": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "actId"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/easyform3/api/activityRuntime/queryContext/{actId}"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "success"
+          }
+        ],
+        "dataPath": [
+          "result",
+          "data"
+        ]
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/static/js/main.83009ec1.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "forms.schema",
+      "name": "表单定义、必填字段和流程配置",
+      "description": "从当前表单 HTML 的 PAGE_JSON 读取字段、选项、校验与流程，不执行页面脚本或创建草稿。",
+      "platform": "forms",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "actId": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "actId"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/easyform3/api/page/static/{actId}"
+      },
+      "response": {
+        "format": "embedded_json",
+        "variable": "PAGE_JSON",
+        "checks": [
+          {
+            "path": [
+              "id"
+            ],
+            "type": "integer"
+          },
+          {
+            "path": [
+              "pageDefine"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": []
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/static/js/main.83009ec1.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "forms.submit",
+      "name": "提交有流程的表单申请",
+      "description": "提交有流程的表单申请。先读取 forms.schema 和 forms.context，根据当前字段构造 bizData；本能力仅离线验证，不曾在真实平台提交。",
+      "platform": "forms",
+      "readOnly": false,
+      "verification": "source_verified_offline_only",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "actId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "submission": {
+            "type": "object",
+            "properties": {
+              "bizData": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "nextFlow": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "description": "根据本次 context.connectors 和页面流程选择构造的分支数组"
+              },
+              "presetApprovers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "required": [
+              "bizData",
+              "nextFlow"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "actId",
+          "submission"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "path": "/easyform3/api/activityRuntime/start/{actId}",
+        "body": {
+          "$param": "submission"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "success"
+          }
+        ],
+        "dataPath": [
+          "result",
+          "data"
+        ]
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/assets/js/runtime.js",
+        "checkedOn": "2026-11-26"
+      },
+      "receiptQuery": "forms.my_submissions"
+    },
+    {
+      "id": "forms.create",
+      "name": "提交无流程的表单数据",
+      "description": "提交无流程的表单数据。先读取 forms.schema 和 forms.context，根据当前字段构造 bizData；本能力仅离线验证，不曾在真实平台提交。",
+      "platform": "forms",
+      "readOnly": false,
+      "verification": "source_verified_offline_only",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "actId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bizData": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "actId",
+          "bizData"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "path": "/easyform3/api/activityRuntime/create/{actId}",
+        "body": {
+          "$param": "bizData"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "success"
+          }
+        ],
+        "dataPath": [
+          "result",
+          "data"
+        ]
+      },
+      "evidence": {
+        "source": "https://my.ruc.edu.cn/easyform3/assets/js/runtime.js",
+        "checkedOn": "2026-11-26"
+      },
+      "receiptQuery": "forms.my_submissions"
+    }
+  ]
+}

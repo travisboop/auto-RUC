@@ -1,0 +1,124 @@
+{
+  "profiles": [
+    {
+      "id": "postgraduate",
+      "origin": "https://yjs2.ruc.edu.cn",
+      "entry": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/portal/index.do",
+      "auth": {
+        "kind": "cas_cookie",
+        "service": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/portal/index.do",
+        "assertion": {
+          "path": "/gsapp/sys/yjsemaphome/modules/pubWork/getUserInfo.do",
+          "method": "POST",
+          "body": {},
+          "encoding": "form",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": "0"
+              },
+              {
+                "path": [
+                  "data",
+                  "userId"
+                ],
+                "type": "string"
+              }
+            ],
+            "dataPath": [
+              "data"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "platform": "postgraduate",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/home/gzzm/gzzm.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "id": "graduate.profile",
+      "name": "研究生系统当前账号身份",
+      "description": "保留当前角色，不切换研究生或管理员身份。",
+      "request": {
+        "method": "POST",
+        "path": "/gsapp/sys/yjsemaphome/modules/pubWork/getUserInfo.do",
+        "body": {},
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": "0"
+          },
+          {
+            "path": [
+              "data",
+              "userId"
+            ],
+            "type": "string"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      }
+    },
+    {
+      "platform": "postgraduate",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/home/gzzm/home/lmenu.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "id": "graduate.applications",
+      "name": "研究生系统当前可访问应用",
+      "description": "res 为 null 时保留 null，不推断账号拥有研究生业务权限。",
+      "request": {
+        "method": "POST",
+        "path": "/gsapp/sys/yjsemaphome/modules/pubWork/getCanVisitAppList.do",
+        "body": {
+          "KEYWORD": ""
+        },
+        "encoding": "form"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "success"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "res"
+        ]
+      }
+    }
+  ]
+}

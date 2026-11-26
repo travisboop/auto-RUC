@@ -1,0 +1,148 @@
+{
+  "profiles": [
+    {
+      "id": "library_resources",
+      "origin": "https://libproxy.ruc.edu.cn",
+      "entry": "https://libproxy.ruc.edu.cn/ermsClient/browse.do",
+      "authPaths": [
+        "/ermsLogin/SSOLogin.do",
+        "/ermsLogin/SSOLoginResult.do"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://libproxy.ruc.edu.cn/ermsLogin/SSOLogin.do",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "assertion": {
+          "path": "/ermsClient/browse.do",
+          "response": {
+            "format": "html",
+            "checks": [
+              {
+                "path": [
+                  "linkPaths"
+                ],
+                "contains": "/ermsClient/userView.do"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "eresources.catalog",
+      "name": "图书馆电子资源目录",
+      "description": "图书馆电子资源目录；保留官网返回字段。",
+      "platform": "library_resources",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/ermsClient/browse.do"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "电子资源平台"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://libproxy.ruc.edu.cn/ermsClient/browse.do",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "eresources.tags",
+      "name": "图书馆电子资源标签",
+      "description": "图书馆电子资源标签；保留官网返回字段。",
+      "platform": "library_resources",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/ermsClient/tag.do"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "电子资源平台"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://libproxy.ruc.edu.cn/ermsClient/browse.do",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "eresources.detail",
+      "name": "电子资源说明和访问地址",
+      "description": "电子资源说明和访问地址；保留官网返回字段。",
+      "platform": "library_resources",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "rid": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "rid"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/ermsClient/eresourceInfo.do",
+        "query": {
+          "rid": {
+            "$param": "rid"
+          }
+        }
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "电子资源平台"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://libproxy.ruc.edu.cn/ermsClient/browse.do",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "capability": "quiet_booths",
+    "params": {
+      "campus": "中关村",
+      "type": "单人",
+      "minutes": 60
+    }
+  },
+  {
+    "capability": "library_seats"
+  },
+  {
+    "capability": "sports_venues",
+    "params": {
+      "venue": "世纪馆",
+      "site": "羽毛球"
+    }
+  },
+  {
+    "capability": "grades"
+  },
+  {
+    "capability": "rankings"
+  },
+  {
+    "capability": "academic_options",
+    "params": {
+      "kind": "classrooms"
+    }
+  },
+  {
+    "capability": "applications",
+    "params": {
+      "keyword": "图书馆"
+    }
+  }
+]

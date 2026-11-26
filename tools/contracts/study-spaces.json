@@ -1,0 +1,566 @@
+{
+  "profiles": [
+    {
+      "id": "study_spaces",
+      "adapter": "study_spaces",
+      "origin": "https://yxkj.ruc.edu.cn",
+      "entry": "https://yxkj.ruc.edu.cn/jsq-v/",
+      "authPaths": [
+        "/rem/static/sso/login",
+        "/rem/static/sso/webOAuthRed"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "study.identity",
+      "name": "研学空间本人信息",
+      "description": "研学空间本人信息；保留官网返回字段。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/user/getUserInfo",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.catalog",
+      "name": "研学空间楼宇、楼层和开放日期",
+      "description": "研学空间楼宇、楼层和开放日期；保留官网返回字段。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/res/buildingFloorDate",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.current",
+      "name": "研学空间本人当前预约",
+      "description": "研学空间本人当前预约；保留官网返回字段。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/user/currentUseMake",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.rooms",
+      "name": "研学空间房间和座位余量",
+      "description": "研学空间房间和座位余量；保留官网返回字段。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "buildingId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "floorId": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "currentPage": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50
+          },
+          "beginMinute": {
+            "type": "integer",
+            "minimum": -1,
+            "maximum": 1440,
+            "default": -1
+          },
+          "endMinute": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1440,
+            "default": 0
+          }
+        },
+        "required": [
+          "buildingId",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/res/findRoomDuration/{buildingId}/{date}",
+        "body": {
+          "floorId": {
+            "$param": "floorId"
+          },
+          "currentPage": {
+            "$param": "currentPage"
+          },
+          "pageSize": {
+            "$param": "pageSize"
+          },
+          "beginMinute": {
+            "$param": "beginMinute"
+          },
+          "endMinute": {
+            "$param": "endMinute"
+          },
+          "minMinute": 0,
+          "power": false,
+          "roomType": false,
+          "windows": false,
+          "sortField": "",
+          "sortType": ""
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "pageList"
+          ],
+          "totalPath": [
+            "data",
+            "totalCount"
+          ],
+          "identityPath": [
+            "id"
+          ],
+          "pageParameter": "currentPage",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.timeline",
+      "name": "研学空间座位时间线",
+      "description": "研学空间房间时间线；seatId 从 study.seats 的键中取得，不能使用房间编号。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "seatId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "seatId",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/res/getTimeLine/{seatId}/{date}",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.slices",
+      "name": "研学空间可选时间片",
+      "description": "研学空间可选时间片；seatId 从 study.seats 的键中取得，不能使用房间编号。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "seatId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "seatId",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/res/getMakeSlices/{seatId}/{date}",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.start_times",
+      "name": "研学空间可选开始时间",
+      "description": "研学空间可选开始时间；seatId 从 study.seats 的键中取得，不能使用房间编号。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "seatId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "seatId",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/res/getStartTimes/{seatId}/{date}",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.end_times",
+      "name": "研学空间可选结束时间",
+      "description": "seatId 来自 study.seats；beginMinute 从 study.start_times 取得。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "seatId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "beginMinute": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1439
+          }
+        },
+        "required": [
+          "seatId",
+          "date",
+          "beginMinute"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/res/getEndTimes/{seatId}/{date}/{beginMinute}",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "study.seats",
+      "name": "研学空间具体座位状态",
+      "description": "按房间和日期读取座位状态；返回对象键是 seatId。",
+      "platform": "study_spaces",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "beginMinute": {
+            "type": "integer",
+            "minimum": -1,
+            "maximum": 1440,
+            "default": -1
+          },
+          "endMinute": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1440,
+            "default": 0
+          },
+          "roomId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "roomId",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jsq/static/frontApi/res/freeSeatIdsDuration/{roomId}/{date}",
+        "body": {
+          "beginMinute": {
+            "$param": "beginMinute"
+          },
+          "endMinute": {
+            "$param": "endMinute"
+          },
+          "minMinute": 0
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          },
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

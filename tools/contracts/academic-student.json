@@ -1,0 +1,255 @@
+{
+  "capabilities": [
+    {
+      "id": "academic.timetable_modes",
+      "name": "本人课表时间模式",
+      "description": "先取当前学期的时间模式；仅 sfjscxdycode=1 可查询课表。",
+      "platform": "undergraduate_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "pattern": "\\d{4}-\\d{4}-\\d+",
+            "description": "academic_options 返回的学期 id"
+          }
+        },
+        "required": [
+          "term"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "apiCode": "XSMH0701_jw.xsd.xsdInfo.controller.XsdJsjyglController.searchPkgl002List",
+        "body": {
+          "jczy013id": {
+            "$param": "term"
+          },
+          "dwcheck": "1"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": "success"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jw.ruc.edu.cn/Njw2017/student/student-course-list/student.course.list.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "academic.timetable",
+      "name": "本人课程表",
+      "description": "term 和 mode 来自当次目录，返回课程、教师、教室、周次和时间的原始字段。",
+      "platform": "undergraduate_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "pattern": "\\d{4}-\\d{4}-\\d+",
+            "description": "academic_options 返回的学期 id"
+          },
+          "mode": {
+            "type": "string",
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "term",
+          "mode"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "apiCode": "XSMH0701_jw.xsd.xsdInfo.controller.XsdQxxkbController.searchOneXskbList",
+        "body": {
+          "jczy013id": {
+            "$param": "term"
+          },
+          "pkgl002id": {
+            "$param": "mode"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": "success"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jw.ruc.edu.cn/Njw2017/student/student-course-list/student.course.list.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "academic.exam_batches",
+      "name": "学生可查询考试批次",
+      "description": "返回当前学生页面可见的考试批次，供 exams 选择 batch。",
+      "platform": "undergraduate_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "apiCode": "XSMH0604_jw.xsd.xsdInfo.controller.KsapckController.findKwglPkcsszlb",
+        "body": {
+          "iscontrol": "-1",
+          "page": {
+            "pageIndex": 0,
+            "pageSize": 0,
+            "orderBy": "[{\"field\":\"jczy013id\",\"sortType\":\"desc\"}]",
+            "conditions": "QZDATASOFTJddJJVIJY29uZGl0aW9uR3JvdXAlMjIlM0ElNUIlN0IlMjJsaW5rJTIyJTNBJTIyYW5kJTIyJTJDJTIyY29uZGl0aW9uJTIyJTNBJTVCJTVEJTdEyTTECTTE"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": "success"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "items"
+          ],
+          "totalPath": [
+            "data",
+            "rowCount"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jw.ruc.edu.cn/Njw2017/student/test-arrange-search/test.arrange.search.service.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "academic.exams",
+      "name": "本人考试安排",
+      "description": "按当次考试批次查询，保留官网星期/场次结构；空单元格不是查询失败。",
+      "platform": "undergraduate_teaching",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "pattern": "\\d{4}-\\d{4}-\\d+",
+            "description": "academic_options 返回的学期 id"
+          },
+          "batch": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "course_code": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "required": [
+          "term",
+          "batch"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "apiCode": "XSMH0604_jw.xsd.xsdInfo.controller.KsapckController.findXsksapNew",
+        "body": {
+          "jczy013id": {
+            "$param": "term"
+          },
+          "kwgl001id": {
+            "$param": "batch"
+          },
+          "kcbh": {
+            "$param": "course_code"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": "success"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jw.ruc.edu.cn/Njw2017/student/test-arrange-search/test.arrange.search.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,667 @@
+{
+  "profiles": [
+    {
+      "id": "future_classroom",
+      "adapter": "future_classroom",
+      "origin": "https://k.ruc.edu.cn",
+      "entry": "https://k.ruc.edu.cn/UserClient/homePage.html",
+      "contextFields": [
+        "userId",
+        "regionId"
+      ],
+      "documentPaths": [
+        "/UserClient/homePage.html",
+        "/UserClient/platform_index.html",
+        "/UserClient/personalCenter.html"
+      ],
+      "authPaths": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "future.profile",
+      "name": "未来课堂本人资料",
+      "description": "未来课堂本人资料；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/jiakt/adminApi/user/getUserById",
+        "query": {
+          "userId": {
+            "$context": "userId"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/personalCenter.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.terms",
+      "name": "未来课堂学期目录",
+      "description": "未来课堂学期目录；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/jiakt/adminApi/schoolCalendar/schoolCalendarList",
+        "query": {
+          "regionId": {
+            "$context": "regionId"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platform_index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.current_term",
+      "name": "未来课堂当前教学日历",
+      "description": "未来课堂当前教学日历；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/schoolCalendar/getCurrentSchoolCalendar",
+        "body": {
+          "regionId": {
+            "$context": "regionId"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platform_indexClassSchedule.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.courses",
+      "name": "未来课堂本人课程与班级",
+      "description": "未来课堂本人课程与班级；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          },
+          "end_date": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/course/getMyLearnCourse",
+        "body": {
+          "startDate": {
+            "$param": "start_date"
+          },
+          "endDate": {
+            "$param": "end_date"
+          },
+          "keyword": {
+            "$param": "keyword"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platform_index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.links",
+      "name": "未来课堂常用链接",
+      "description": "未来课堂常用链接；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/regionLink/userGetList",
+        "body": {
+          "regionId": {
+            "$context": "regionId"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platform_index.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.unread",
+      "name": "未来课堂未读通知数量",
+      "description": "未来课堂未读通知数量；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/notify/unViewCount",
+        "body": {
+          "classesId": 0,
+          "courseId": 0,
+          "keyword": "",
+          "notifyType": 0,
+          "status": 0
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/homePage.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.notices",
+      "name": "未来课堂本人接收通知",
+      "description": "未来课堂本人接收通知；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/notify/receivePage",
+        "body": {
+          "params": {
+            "notifyType": 1
+          },
+          "page": {
+            "current": {
+              "$param": "page"
+            },
+            "size": {
+              "$param": "page_size"
+            }
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "list"
+          ],
+          "totalPath": [
+            "data",
+            "count"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platformIndex_newTask.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.homework",
+      "name": "未来课堂本人待办作业",
+      "description": "未来课堂本人待办作业；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 50
+          },
+          "course_id": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/historyApi/courseReleaseInfo/stagingHomeworkStudent",
+        "body": {
+          "params": {
+            "coursewareId": {
+              "$param": "course_id"
+            }
+          },
+          "page": {
+            "current": {
+              "$param": "page"
+            },
+            "size": {
+              "$param": "page_size"
+            }
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "list"
+          ],
+          "totalPath": [
+            "data",
+            "count"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platformIndex_newTask.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.timetable",
+      "name": "未来课堂本人周课表",
+      "description": "未来课堂本人周课表；日期为周一至周日，week 从 current_term 的 currentWeek 或学期日历取得。前端字段 teacherId 在学生读取中也使用本人 ID。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "week": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 60
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "start_date",
+          "end_date",
+          "week"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/classroomTime/getStudentClassSchedule",
+        "body": {
+          "teacherId": {
+            "$context": "userId"
+          },
+          "startTime": {
+            "$param": "start_date"
+          },
+          "endTime": {
+            "$param": "end_date"
+          },
+          "weekNum": {
+            "$param": "week"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platform_indexClassSchedule.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      },
+      "constraints": [
+        {
+          "left": "start_date",
+          "op": "lt",
+          "right": "end_date"
+        }
+      ]
+    },
+    {
+      "id": "future.meetings",
+      "name": "未来课堂本人会议目录",
+      "description": "未来课堂本人会议目录；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/course/getMeetingList",
+        "body": {
+          "userId": {
+            "$context": "userId"
+          },
+          "onlyMyMeeting": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/platform_indexClassSchedule.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "future.class_detail",
+      "name": "未来课堂课程班级详情",
+      "description": "未来课堂课程班级详情；保持本次学生身份，仅读取。",
+      "platform": "future_classroom",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "class_id": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "class_id"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "path": "/jiakt/adminApi/classes/getClassesInfoById",
+        "body": {
+          "id": {
+            "$param": "class_id"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "stat"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://k.ruc.edu.cn/UserClient/js/studentRelatedCourseClass.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "ruc-campus": {
+      "command": "/absolute/path/auto-RUC/.venv/bin/python",
+      "args": ["/absolute/path/auto-RUC/scripts/serve.py", "--transport", "mcp"],
+      "env": {"RUC_CREDENTIALS_FILE": "/absolute/path/outside-package/credentials.json"}
+    }
+  }
+}

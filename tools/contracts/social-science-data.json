@@ -1,0 +1,312 @@
+{
+  "profiles": [
+    {
+      "id": "social_science_data",
+      "origin": "https://cssd.ruc.edu.cn",
+      "entry": "https://cssd.ruc.edu.cn/",
+      "auth": {
+        "kind": "public"
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "datasets.featured",
+      "name": "社科数据平台公开精选数据空间",
+      "description": "社科数据平台公开精选数据空间；匿名公开读取，不进入自动注册登录。",
+      "platform": "social_science_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/hub/dataverses/featured"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": "OK"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cssd.ruc.edu.cn/assets/index.C2VHcknU.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "datasets.spaces",
+      "name": "社科数据平台公开数据空间目录",
+      "description": "社科数据平台公开数据空间目录；匿名公开读取，不进入自动注册登录。",
+      "platform": "social_science_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/hub/dataverses/fuzzy"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": "OK"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cssd.ruc.edu.cn/assets/index.C2VHcknU.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "datasets.fieldsets",
+      "name": "社科数据平台公开元数据字段",
+      "description": "社科数据平台公开元数据字段；匿名公开读取，不进入自动注册登录。",
+      "platform": "social_science_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/hub/dataverses/metadata/fieldsets"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": "OK"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cssd.ruc.edu.cn/assets/index.C2VHcknU.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "datasets.metadata",
+      "name": "社科数据公开元数据块",
+      "description": "社科数据公开元数据块；匿名读取。",
+      "platform": "social_science_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/hub/metadatablocks"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": "OK"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cssd.ruc.edu.cn/assets/metadataService.DzgTo5QY.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "datasets.region_levels",
+      "name": "社科数据地区层级",
+      "description": "社科数据地区层级；匿名读取。",
+      "platform": "social_science_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/hub/regions/levels"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": "OK"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cssd.ruc.edu.cn/assets/metadataService.DzgTo5QY.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "datasets.search",
+      "name": "社科数据公开数据、文件和空间检索",
+      "description": "社科数据公开数据、文件和空间检索；匿名读取。",
+      "platform": "social_science_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "default": "*",
+            "maxLength": 1000
+          },
+          "fq": {
+            "type": "string",
+            "default": "",
+            "minLength": 0,
+            "maxLength": 2000
+          },
+          "start": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "per_page": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/hub/search",
+        "query": {
+          "q": {
+            "$param": "q"
+          },
+          "fq": {
+            "$param": "fq"
+          },
+          "start": {
+            "$param": "start"
+          },
+          "per_page": {
+            "$param": "per_page"
+          },
+          "show_entity_ids": "true",
+          "show_facets": "true"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "status"
+            ],
+            "equals": "OK"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "items"
+          ],
+          "totalPath": [
+            "data",
+            "total_count"
+          ],
+          "pageParameter": "start",
+          "firstPage": 0,
+          "pageStepParameter": "per_page"
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cssd.ruc.edu.cn/assets/metadataService.DzgTo5QY.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "profiles": [
+    {
+      "id": "innovation_courses",
+      "origin": "https://cyk.ruc.edu.cn",
+      "entry": "https://cyk.ruc.edu.cn/student2025/index.php",
+      "documentPaths": [
+        "/student2025/index.php",
+        "/student2025/announcement.php",
+        "/student2025/my_research.php",
+        "/student2025/my_team.php",
+        "/student2025/my_message.php"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://cyk.ruc.edu.cn/",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "assertion": {
+          "path": "/student2025/index.php",
+          "response": {
+            "format": "html",
+            "checks": [
+              {
+                "path": [
+                  "text"
+                ],
+                "contains": "创研大厅"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "innovation.catalog",
+      "name": "创研课程大厅",
+      "description": "创研课程大厅；返回当前服务端页面的文字、链接和字段。",
+      "platform": "innovation_courses",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/student2025/index.php"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "text"
+            ],
+            "contains": "创研大厅"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cyk.ruc.edu.cn/student2025/index.php",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "innovation.announcements",
+      "name": "创研课程公告",
+      "description": "创研课程公告；返回当前服务端页面的文字、链接和字段。",
+      "platform": "innovation_courses",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/student2025/announcement.php"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "text"
+            ],
+            "contains": "创研大厅"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cyk.ruc.edu.cn/student2025/announcement.php",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "innovation.my_research",
+      "name": "本人创研项目",
+      "description": "本人创研项目；返回当前服务端页面的文字、链接和字段。",
+      "platform": "innovation_courses",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/student2025/my_research.php"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "text"
+            ],
+            "contains": "创研大厅"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cyk.ruc.edu.cn/student2025/my_research.php",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "innovation.my_teams",
+      "name": "本人创研团队",
+      "description": "本人创研团队；返回当前服务端页面的文字、链接和字段。",
+      "platform": "innovation_courses",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/student2025/my_team.php"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "text"
+            ],
+            "contains": "创研大厅"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cyk.ruc.edu.cn/student2025/my_team.php",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "innovation.messages",
+      "name": "本人创研消息列表",
+      "description": "本人创研消息列表；返回当前服务端页面的文字、链接和字段。",
+      "platform": "innovation_courses",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/student2025/my_message.php"
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "text"
+            ],
+            "contains": "创研大厅"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cyk.ruc.edu.cn/student2025/my_message.php",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "innovation.course_detail",
+      "name": "创研课程详情",
+      "description": "id 来自当前课程大厅链接。",
+      "platform": "innovation_courses",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/student2025/course_detail.php",
+        "query": {
+          "id": {
+            "$param": "id"
+          }
+        }
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "text"
+            ],
+            "contains": "创研大厅"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cyk.ruc.edu.cn/student2025/index.php",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

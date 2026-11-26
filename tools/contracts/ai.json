@@ -1,0 +1,151 @@
+{
+  "profiles": [
+    {
+      "id": "ai_center",
+      "adapter": "ai",
+      "origin": "https://i.ruc.edu.cn",
+      "entry": "https://i.ruc.edu.cn/",
+      "documentPaths": [
+        "/home",
+        "/app-center"
+      ],
+      "authPaths": [
+        "/zgrd-wrd/login.jsp"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "ai.profile",
+      "name": "AI 学伴本人资料",
+      "description": "AI 学伴本人资料；仅读取，不发送对话或修改设置。",
+      "platform": "ai_center",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/console/api/account/profile"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "id"
+            ],
+            "type": "string"
+          }
+        ],
+        "dataPath": []
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://i.ruc.edu.cn/_next/static/chunks/46936-414970545df21158.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "ai.applications",
+      "name": "AI 学伴当前智能体目录",
+      "description": "AI 学伴当前智能体目录；仅读取，不发送对话或修改设置。",
+      "platform": "ai_center",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/console/api/apps/extension/categories/all"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "items"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": []
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://i.ruc.edu.cn/_next/static/chunks/46936-414970545df21158.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "ai.homepage",
+      "name": "AI 学伴首页资讯与配置",
+      "description": "AI 学伴首页资讯与配置；仅读取，不发送对话或修改设置。",
+      "platform": "ai_center",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/console/api/homepage"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": []
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://i.ruc.edu.cn/_next/static/chunks/46936-414970545df21158.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "ai.installed",
+      "name": "AI 学伴本人已安装应用",
+      "description": "AI 学伴本人已安装应用；仅读取，不发送对话或修改设置。",
+      "platform": "ai_center",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/console/api/installed-apps"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "installed_apps"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": []
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://i.ruc.edu.cn/_next/static/chunks/46936-414970545df21158.js",
+        "checkedOn": "2026-11-26",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

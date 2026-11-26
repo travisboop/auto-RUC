@@ -1,0 +1,290 @@
+{
+  "profiles": [
+    {
+      "id": "computing_cloud",
+      "origin": "https://cc.ruc.edu.cn",
+      "entry": "https://cc.ruc.edu.cn/user-info",
+      "auth": {
+        "kind": "cas_cookie",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "entryDiscovery": {
+          "path": "/auth/user",
+          "responsePath": [
+            "ssoUrl"
+          ],
+          "acceptedStatuses": [
+            401
+          ]
+        },
+        "upgradeHttpPaths": [
+          "/auth"
+        ],
+        "assertion": {
+          "path": "/auth/user",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 1
+              },
+              {
+                "path": [
+                  "uid"
+                ],
+                "type": "integer"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "cloud.profile",
+      "name": "公共计算云本人资料",
+      "description": "公共计算云本人资料；不创建、启动或修改计算资源。",
+      "platform": "computing_cloud",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/auth/user"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "uid"
+            ],
+            "type": "integer"
+          }
+        ],
+        "dataPath": []
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cc.ruc.edu.cn/assets/store-DuwlczN1.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "cloud.tutors",
+      "name": "公共计算云可选导师目录",
+      "description": "公共计算云可选导师目录；不创建、启动或修改计算资源。",
+      "platform": "computing_cloud",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/auth/user/tutors"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "retCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cc.ruc.edu.cn/assets/store-DuwlczN1.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "cloud.storage_quotas",
+      "name": "公共计算云本人存储配额",
+      "description": "公共计算云本人存储配额；不创建、启动或修改计算资源。",
+      "platform": "computing_cloud",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/meter/user-storage-quotas"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cc.ruc.edu.cn/assets/store-DuwlczN1.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "cloud.storage_systems",
+      "name": "公共计算云存储系统目录",
+      "description": "公共计算云存储系统目录；不创建、启动或修改计算资源。",
+      "platform": "computing_cloud",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/meter/storage-systems"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cc.ruc.edu.cn/assets/store-DuwlczN1.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "cloud.notifications",
+      "name": "公共计算云平台公告",
+      "description": "公共计算云平台公告；不创建、启动或修改计算资源。",
+      "platform": "computing_cloud",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/meter/platform/notifications"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cc.ruc.edu.cn/assets/store-DuwlczN1.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "cloud.application_specs",
+      "name": "公共计算云公开应用规格",
+      "description": "公共计算云公开应用规格；不创建、启动或修改计算资源。",
+      "platform": "computing_cloud",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/meter/public/app-spec-refs"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errCode"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://cc.ruc.edu.cn/assets/store-DuwlczN1.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

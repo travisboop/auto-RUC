@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "purpose": "发现当前页面接口后，以数据声明请求；不执行下载代码。登记到内存后可立即 query，保存为 JSON 文件可通过 --extensions 复用。",
+  "requiredCapabilityFields": [
+    "id",
+    "name",
+    "description",
+    "platform",
+    "readOnly",
+    "parameters",
+    "request",
+    "response",
+    "evidence"
+  ],
+  "parameters": "支持 object/array/string/integer/number/boolean/null、properties、required、additionalProperties 布尔、items、enum、default、pattern、长度和数值边界。未知关键字拒绝。",
+  "request": "method + path 或 apiCode；query/body 为对象模板。{\"$param\":\"参数名\"} 保留类型，{\"$params\":true} 使用整个已校验参数对象。path 的 {参数名} 自动 URL 编码。encoding=json/form。 {\"$context\":\"userId\"} 从当前适配器的 context 读取标量；名字须列入 profile.contextFields，仅限读取。调用者参数不能替换认证身份，也不解释参数数据中的同名对象。",
+  "response": "checks 支持 equals/type/contains；format=json/html/embedded_json，后者需 variable。dataPath 指定业务数据；认证字段递归脱敏。",
+  "evidence": "填写当前官网来源 URL、核验日期、可选脚本哈希，以及如何确认读取或写入语义。静态源码不等于业务已验证。",
+  "browserReads": "优先登记完整的 readOnly 契约：路径、查询、请求体、固定命令和参数类型共同匹配。browserReads 的精确 method/path 只用于整个接口均为只读的情况。",
+  "example": {
+    "capabilities": [
+      {
+        "id": "custom.booth_rules",
+        "name": "当前静音舱使用规则",
+        "description": "按官网 type=1 读取规则。",
+        "platform": "quiet_booths",
+        "readOnly": true,
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "request": {
+          "method": "GET",
+          "path": "/spa/static/api/book/getAllNotice",
+          "query": {
+            "type": 1
+          }
+        },
+        "response": {
+          "checks": [
+            {
+              "path": [
+                "code"
+              ],
+              "equals": 200
+            },
+            {
+              "path": [
+                "status"
+              ],
+              "equals": true
+            }
+          ],
+          "dataPath": [
+            "data"
+          ]
+        },
+        "evidence": {
+          "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+          "checkedOn": "2026-11-25",
+          "scope": "getAllNotice 的当前前端读调用；首次执行后核对响应"
+        }
+      }
+    ]
+  },
+  "pagination": {
+    "fields": [
+      "itemsPath",
+      "totalPath",
+      "identityPath",
+      "pageParameter",
+      "firstPage",
+      "totalEncoding",
+      "pageStepParameter",
+      "hasNextPath"
+    ],
+    "usage": "ruc_query all_pages=true，max_pages 1–100；按 pageParameter/firstPage 翻页。偏移接口声明 pageStepParameter 为页大小参数。totalPath 与 hasNextPath 二选一；后者必须是布尔值，未提供总数时 totalItems=null。单页 hasNext 不代表已取全，complete=null。检测总数变化、重复行、提前空页；上限达到时 partial/nextPage。totalEncoding 默认 integer，可设 decimal_string。"
+  },
+  "profiles": "adapter 复用专用认证；否则 auth.kind=cas_cookie/legacy_oauth/public。public 不读取凭据。origin 是前端，apiOrigin 可显式指定另一个已核实 HTTPS API 源站；两者 Cookie 分开。entry/service/assertion 来自当前登录流程，assertion 支持 GET/POST、query/body/encoding、JSON/HTML 检查。 contextFields 列出适配器公开的非凭证会话字段，例如未来课堂 userId、regionId。",
+  "authentication": {
+    "tokenBindings": "[{source:query|fragment_query|cookie,parameter,header,prefix?}]；或 {source:response,path,header,prefix?}，读取本次 exchange 响应。只保存在任务内存。",
+    "formBridge": "legacy_oauth 可配置 {path,fields}，只接受已核实的隐藏身份转交表单。",
+    "upgradeHttpPaths": "明确的同主机回跳路径按 HTTPS 请求，不发送明文 HTTP。",
+    "acceptEmptyRedirect": "仅已发出票据后的空 Location 回调可启用，业务身份断言仍必须通过。",
+    "exchange": "{parameters,request,response}：parameters 用 source/parameter 从本次回调取唯一 code，request 使用 API 源站请求模板，response 必须有成功 checks。登录响应仅在任务内存保存；浏览器需要时仅向同一页面的精确交换请求重放一次，不二次消耗 code。",
+    "entryDiscovery": "{path,query?,responsePath,acceptedStatuses}：cas_cookie 从前端源站的已核实 GET 读取本次登录 URL；query 为固定标量参数，状态只允许明确的 200/401，URL 仍须通过来源校验。",
+    "browserState": "[{storage:local|session,key,value}] 或 keyFrom:{source:query|fragment_query,parameter}；只为当前前端源站初始化已核实的登录选项，例如学生角色。",
+    "bootstrap": "{entry,redirectPaths}：完成门户登录后，沿限定同源路径 GET 建立组件会话，最多 12 跳；不能和 exchange 同用。"
+  }
+}

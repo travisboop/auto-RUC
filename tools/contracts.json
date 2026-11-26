@@ -1,0 +1,765 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "id": "quiet_booths",
+      "adapter": "quiet_booths",
+      "origin": "https://jyc.ruc.edu.cn",
+      "entry": "https://jyc.ruc.edu.cn/space/",
+      "documentPaths": [
+        "/space",
+        "/space/"
+      ],
+      "authPaths": [
+        "/rem/static/sso/login",
+        "/rem/static/sso/webOAuthRed",
+        "/spa/static/public/api/remoteCasLogin"
+      ],
+      "readRoutes": [
+        {
+          "method": "GET",
+          "path": "/spa/static/public/api/getFrontVueConfig"
+        },
+        {
+          "method": "GET",
+          "path": "/spa/static/public/api/getGlobalNotice"
+        },
+        {
+          "method": "GET",
+          "path": "/spa/static/public/api/getSystemTime"
+        },
+        {
+          "method": "GET",
+          "path": "/spa/static/api/book/getSchoolList"
+        },
+        {
+          "method": "GET",
+          "path": "/spa/static/api/book/getVenueList"
+        },
+        {
+          "method": "GET",
+          "path": "/spa/static/api/book/getRoomTypeList"
+        },
+        {
+          "method": "GET",
+          "path": "/spa/static/api/book/getOpenDateList"
+        },
+        {
+          "method": "POST",
+          "path": "/spa/static/api/book/getRoomList"
+        }
+      ]
+    },
+    {
+      "id": "undergraduate_teaching",
+      "adapter": "academic",
+      "origin": "https://jw.ruc.edu.cn",
+      "entry": "https://jw.ruc.edu.cn/secService/oauthlogin2",
+      "documentPaths": [
+        "/Njw2017/index.html"
+      ],
+      "authPaths": [
+        "/secService/oauthlogin2"
+      ],
+      "readRoutes": []
+    },
+    {
+      "id": "digital_portal",
+      "adapter": "portal",
+      "origin": "https://my.ruc.edu.cn",
+      "entry": "https://my.ruc.edu.cn/",
+      "documentPaths": [
+        "/"
+      ],
+      "authPaths": [
+        "/commoncallback/"
+      ],
+      "readRoutes": [
+        {
+          "method": "GET",
+          "path": "/sopplus/_web/portal/api/user/loginInfo.rst"
+        },
+        {
+          "method": "GET",
+          "path": "/sopplus/_web/customized/loadAllServiceApps.jsp"
+        },
+        {
+          "method": "GET",
+          "path": "/sopplus/_web/customized/loadAllServiceAppsByGlpt.jsp"
+        }
+      ]
+    },
+    {
+      "id": "library_seats",
+      "adapter": "library",
+      "origin": "https://zwlib.ruc.edu.cn",
+      "entry": "https://zwlib.ruc.edu.cn/jsq-v/",
+      "documentPaths": [
+        "/jsq-v/"
+      ],
+      "readRoutes": []
+    },
+    {
+      "id": "sports_venues",
+      "adapter": "sports",
+      "origin": "https://cgyy.ruc.edu.cn",
+      "entry": "https://cgyy.ruc.edu.cn/venue/home",
+      "documentPaths": [
+        "/venue/home"
+      ],
+      "readRoutes": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "booths.notices",
+      "name": "静音舱公告和规则",
+      "description": "静音舱公告和规则；参数与响应按当前官网契约读取。",
+      "platform": "quiet_booths",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "default": 0,
+            "description": "0 为公告，1 为使用规则；当前官网使用此区分。"
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/spa/static/api/book/getAllNotice",
+        "query": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "booths.usage_types",
+      "name": "静音舱用途目录",
+      "description": "静音舱用途目录；参数与响应按当前官网契约读取。",
+      "platform": "quiet_booths",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/spa/static/api/book/getAllUseType",
+        "query": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "booths.required_fields",
+      "name": "静音舱当前表单字段",
+      "description": "静音舱当前表单字段；参数与响应按当前官网契约读取。",
+      "platform": "quiet_booths",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "roomId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "roomId"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/spa/static/api/book/getRequiredOption",
+        "query": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "booths.my_reservations",
+      "name": "本人静音舱预约记录",
+      "description": "本人静音舱预约记录；参数与响应按当前官网契约读取。",
+      "platform": "quiet_booths",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/spa/static/api/user/getUserReservationList",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "pageList"
+          ],
+          "totalPath": [
+            "data",
+            "totalCount"
+          ],
+          "pageParameter": "currentPage"
+        }
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "booths.my_breaches",
+      "name": "本人静音舱违规记录",
+      "description": "本人静音舱违规记录；参数与响应按当前官网契约读取。",
+      "platform": "quiet_booths",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/spa/static/api/user/getUserBreachRecordList",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "pageList"
+          ],
+          "totalPath": [
+            "data",
+            "totalCount"
+          ],
+          "pageParameter": "currentPage"
+        }
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "booths.my_scores",
+      "name": "本人静音舱积分记录",
+      "description": "本人静音舱积分记录；参数与响应按当前官网契约读取。",
+      "platform": "quiet_booths",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/spa/static/api/user/getUserScoreRecord",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "pageList"
+          ],
+          "totalPath": [
+            "data",
+            "totalCount"
+          ],
+          "pageParameter": "currentPage"
+        }
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "booths.my_blacklist",
+      "name": "本人静音舱限制记录",
+      "description": "本人静音舱限制记录；参数与响应按当前官网契约读取。",
+      "platform": "quiet_booths",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/spa/static/api/user/getUserBlackRecordList",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "pageList"
+          ],
+          "totalPath": [
+            "data",
+            "totalCount"
+          ],
+          "pageParameter": "currentPage"
+        }
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    },
+    {
+      "id": "booths.reserve",
+      "name": "提交静音舱预约表单",
+      "description": "先读当前舱位限制、required_fields 和 usage_types；按实际必填字段准备预览。仅核对当前前端协议，未执行真实预约。",
+      "platform": "quiet_booths",
+      "readOnly": false,
+      "verification": "source_verified",
+      "evidence": {
+        "source": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js",
+        "sha256": "f24f89fc39fa10634e970fbd8ecce3a6a4074d108e02871426b76855f97cd376",
+        "checkedOn": "2026-11-25"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "begin": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1439
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1440
+          },
+          "onDate": {
+            "type": "string",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}",
+            "format": "date"
+          },
+          "roomId": {
+            "type": "string"
+          },
+          "useType": {
+            "type": "string"
+          },
+          "participants": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 0
+          },
+          "theme": {
+            "type": "string",
+            "minLength": 0
+          },
+          "outline": {
+            "type": "string",
+            "minLength": 0
+          },
+          "extraField": {
+            "type": "object",
+            "default": {}
+          },
+          "seatNo": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "teamId": {
+            "type": "string",
+            "minLength": 0,
+            "default": ""
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "WEB"
+            ],
+            "default": "WEB"
+          },
+          "filePath": {
+            "type": "string",
+            "minLength": 0,
+            "enum": [
+              ""
+            ],
+            "default": ""
+          },
+          "batchUserDto": {
+            "type": "object",
+            "properties": {
+              "classCodes": {
+                "type": "string",
+                "minLength": 0,
+                "enum": [
+                  ""
+                ]
+              },
+              "depCodes": {
+                "type": "string",
+                "minLength": 0,
+                "enum": [
+                  ""
+                ]
+              },
+              "usernames": {
+                "type": "string",
+                "minLength": 0,
+                "enum": [
+                  ""
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "default": {
+              "classCodes": "",
+              "depCodes": "",
+              "usernames": ""
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "begin",
+          "end",
+          "onDate",
+          "roomId",
+          "useType"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "path": "/spa/static/api/book/saveReservation",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 200
+          },
+          {
+            "path": [
+              "status"
+            ],
+            "equals": true
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "receiptQuery": "booths.my_reservations",
+      "constraints": [
+        {
+          "left": "begin",
+          "op": "lt",
+          "right": "end"
+        }
+      ]
+    },
+    {
+      "id": "academic.calendar",
+      "name": "教务教学日历原始数据",
+      "description": "按当前学期编号读取教学周和日期映射；term 从 academic_options 取得。原始 rq 为毫秒时间戳。",
+      "platform": "undergraduate_teaching",
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://jw.ruc.edu.cn/Njw2017/biz/biz.config.js",
+        "reference": "evidence/public-validation.json"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "term"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "apiCode": "XSMH1706_com.qzdatasoft.jw.jczy.educationinfo.controller.WeekCalendarInfoController.findWeekCalendarList",
+        "body": {
+          "xnxq": {
+            "$param": "term"
+          },
+          "allshow": "0",
+          "ismr": "1"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "errorCode"
+            ],
+            "equals": "success"
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "liveEvidence": "evidence/public-validation.json"
+    }
+  ],
+  "browserReads": [
+    {
+      "origin": "https://jyc.ruc.edu.cn",
+      "method": "GET",
+      "path": "/spa/static/api/book/getIndexShowNotice",
+      "evidence": "https://jyc.ruc.edu.cn/space/js/app.ae18deb8.js w(true) and 656.bddcdc23.js getForceNotice"
+    }
+  ]
+}

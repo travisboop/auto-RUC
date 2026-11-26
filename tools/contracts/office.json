@@ -1,0 +1,194 @@
+{
+  "profiles": [
+    {
+      "id": "office_workflow",
+      "origin": "https://bpm.ruc.edu.cn",
+      "entry": "https://bpm.ruc.edu.cn/r/casOAServlet",
+      "authPaths": [
+        "/r/casOAServlet"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "service": "https://bpm.ruc.edu.cn/r/casOAServlet",
+        "assertion": {
+          "path": "/r/w",
+          "method": "POST",
+          "encoding": "form",
+          "body": {
+            "sid": "ck",
+            "cmd": "com.awspaas.user.apps.gwskins_searchFun"
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [],
+                "type": "array"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "office.navigation",
+      "name": "办公系统本人功能目录",
+      "description": "办公系统本人功能目录；cmd 固定为当前页面的读取命令，sid=ck 使用本次业务 Cookie。",
+      "platform": "office_workflow",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/r/w",
+        "encoding": "form",
+        "body": {
+          "sid": "ck",
+          "cmd": "com.awspaas.user.apps.gwskins_searchFun"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [],
+            "type": "array"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://bpm.ruc.edu.cn/r/casOAServlet",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人认证后的主页脚本；固定读取 cmd，不放行整个 /r/w 或 /r/jd",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "office.home",
+      "name": "办公系统本人首页",
+      "description": "办公系统本人首页；cmd 固定为当前页面的读取命令，sid=ck 使用本次业务 Cookie。",
+      "platform": "office_workflow",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/r/w",
+        "encoding": "form",
+        "body": {
+          "sid": "ck",
+          "cmd": "COM_ZTHF_CLIENT_USER_HOME",
+          "skinValue": "com.awspaas.user.apps.gwskins",
+          "flag": ""
+        }
+      },
+      "response": {
+        "format": "html",
+        "checks": [
+          {
+            "path": [
+              "title"
+            ],
+            "equals": "中国人民大学办公系统"
+          }
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://bpm.ruc.edu.cn/r/casOAServlet",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人认证后的主页脚本；固定读取 cmd，不放行整个 /r/w 或 /r/jd",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "office.urgent_tasks",
+      "name": "本人公文紧急任务提示",
+      "description": "本人公文紧急任务提示；cmd 固定为当前页面的读取命令，sid=ck 使用本次业务 Cookie。",
+      "platform": "office_workflow",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/r/jd",
+        "encoding": "form",
+        "body": {
+          "sid": "ck",
+          "cmd": "com.awspaas.user.apps.gwskins_getGwList"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "result"
+            ],
+            "equals": "ok"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://bpm.ruc.edu.cn/r/casOAServlet",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人认证后的主页脚本；固定读取 cmd，不放行整个 /r/w 或 /r/jd",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "office.login_history",
+      "name": "办公系统本人登录日志",
+      "description": "办公系统本人登录日志；cmd 固定为当前页面的读取命令，sid=ck 使用本次业务 Cookie。",
+      "platform": "office_workflow",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/r/jd",
+        "encoding": "form",
+        "body": {
+          "sid": "ck",
+          "cmd": "com.awspaas.user.apps.gwskins_get_login_log"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "result"
+            ],
+            "equals": "ok"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://bpm.ruc.edu.cn/r/casOAServlet",
+        "checkedOn": "2026-11-27",
+        "scope": "本次本人认证后的主页脚本；固定读取 cmd，不放行整个 /r/w 或 /r/jd",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

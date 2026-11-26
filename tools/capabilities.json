@@ -1,0 +1,356 @@
+{
+  "updatedOn": "2026-11-27",
+  "version": "0.4.0",
+  "capabilities": [
+    {
+      "id": "quiet_booths",
+      "name": "静音舱",
+      "adapter": "quiet_booths",
+      "method": "collect",
+      "platform": "quiet_booths",
+      "entry": "https://jyc.ruc.edu.cn/space/",
+      "description": "空会话认证后查询各校区舱位和连续空档。",
+      "aliases": [
+        "静音舱",
+        "舱位"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "YYYY-MM-DD；默认北京时间今天"
+          },
+          "campus": {
+            "type": "string",
+            "description": "校区名称包含的文本，如中关村、通州"
+          },
+          "venue": {
+            "type": "string",
+            "description": "楼宇名称包含的文本，如立德楼"
+          },
+          "type": {
+            "type": "string",
+            "description": "舱型名称包含的文本，如单人、多人"
+          },
+          "minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1440,
+            "description": "至少连续分钟数；0 表示只按官网最小时长"
+          },
+          "from": {
+            "type": "string",
+            "description": "开始 HH:MM，须与 to 成对，且符合官网时间格"
+          },
+          "to": {
+            "type": "string",
+            "description": "结束 HH:MM；同一舱须完整覆盖，最晚 24:00"
+          }
+        },
+        "additionalProperties": false
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "中关村单人舱全部88间，五组目录和时段"
+    },
+    {
+      "id": "library_seats",
+      "name": "图书馆座位",
+      "adapter": "library",
+      "method": "query",
+      "platform": "library_seats",
+      "entry": "https://zwlib.ruc.edu.cn/jsq-v/",
+      "description": "查询阅览室座位余量；指定 room_id 可读取座位状态。",
+      "aliases": [
+        "图书馆",
+        "自习座位"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "YYYY-MM-DD；默认北京时间今天"
+          },
+          "building": {
+            "type": "string",
+            "description": "楼宇名称包含文本"
+          },
+          "floor": {
+            "type": "string",
+            "description": "楼层名称包含文本"
+          },
+          "from": {
+            "type": "string",
+            "description": "HH:MM，与 to 成对"
+          },
+          "to": {
+            "type": "string",
+            "description": "HH:MM，与 from 成对"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "duration",
+              "slice"
+            ]
+          },
+          "room_id": {
+            "type": "string",
+            "description": "本次目录返回的阅览室编号"
+          },
+          "power": {
+            "type": "boolean"
+          },
+          "window": {
+            "type": "boolean"
+          },
+          "overnight": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "24个阅览室和一个阅览室的82个座位状态"
+    },
+    {
+      "id": "sports_venues",
+      "name": "体育场馆",
+      "adapter": "sports",
+      "method": "query",
+      "platform": "sports_venues",
+      "entry": "https://cgyy.ruc.edu.cn/venue/home",
+      "description": "公开目录可免登录；具体时段使用本次学生会话的可预约项目目录。",
+      "aliases": [
+        "体育",
+        "羽毛球",
+        "网球",
+        "健身"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "YYYY-MM-DD；默认北京时间今天"
+          },
+          "campus": {
+            "type": "string",
+            "description": "校区名称包含文本"
+          },
+          "venue": {
+            "type": "string",
+            "description": "场馆名称包含文本"
+          },
+          "site": {
+            "type": "string",
+            "description": "项目/场地名称包含文本，如羽毛球"
+          },
+          "site_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000000
+          },
+          "catalog_only": {
+            "type": "boolean"
+          },
+          "from": {
+            "type": "string",
+            "description": "HH:MM，须与 to 成对并对齐官网时间格"
+          },
+          "to": {
+            "type": "string",
+            "description": "HH:MM，与 from 成对"
+          }
+        },
+        "additionalProperties": false
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "学生目录18个项目：17个时段表、1个未排时段"
+    },
+    {
+      "id": "classrooms",
+      "name": "空闲教室",
+      "adapter": "academic",
+      "method": "classrooms",
+      "platform": "undergraduate_teaching",
+      "entry": "https://jw.ruc.edu.cn/Njw2017/index.html#/student/classroom-borrowing-self-study/",
+      "description": "按当次教学日历和节次查询空闲教室；先用 academic_options 获取节次。",
+      "aliases": [
+        "教室",
+        "自习教室"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "YYYY-MM-DD；默认北京时间今天"
+          },
+          "campus": {
+            "type": "string",
+            "description": "校区名称包含文本"
+          },
+          "building": {
+            "type": "string",
+            "description": "教学楼名称包含文本"
+          },
+          "term": {
+            "type": "string",
+            "description": "实时学期目录的完整名称或编号；不传时依能力选择所有或当前学期"
+          },
+          "periods": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 30,
+            "items": {
+              "type": "string",
+              "description": "academic_options 返回的 zyxjs 或 djshow 原值"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "periods"
+        ]
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "当前学期中关村、2026-11-25第七大节、11栋楼147间"
+    },
+    {
+      "id": "grades",
+      "name": "自己的考试成绩",
+      "adapter": "academic",
+      "method": "grades",
+      "platform": "undergraduate_teaching",
+      "entry": "https://jw.ruc.edu.cn/Njw2017/index.html#/student/course-score-search/",
+      "description": "本人本科主修课程成绩和学期汇总；遵循官网评教可见范围。",
+      "aliases": [
+        "成绩",
+        "考试成绩",
+        "分数",
+        "绩点"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "description": "实时学期目录的完整名称或编号；不传时依能力选择所有或当前学期"
+          }
+        },
+        "additionalProperties": false
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "本人主修43条课程和5条学期汇总"
+    },
+    {
+      "id": "rankings",
+      "name": "自己的专业/班级排名",
+      "adapter": "academic",
+      "method": "rankings",
+      "platform": "undergraduate_teaching",
+      "entry": "https://jw.ruc.edu.cn/Njw2017/index.html#/student/student-professional-ranking-query/",
+      "description": "读取学校按所选学期计算的本人专业排名、班级排名和平均学分绩点。",
+      "aliases": [
+        "排名",
+        "专业排名",
+        "班级排名"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "description": "实时学期目录的完整名称或编号；不传时依能力选择所有或当前学期"
+          }
+        },
+        "additionalProperties": false
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "学校返回的一条本人记录"
+    },
+    {
+      "id": "academic_options",
+      "name": "教务查询参数目录",
+      "adapter": "academic",
+      "method": "options",
+      "platform": "undergraduate_teaching",
+      "entry": "https://jw.ruc.edu.cn/Njw2017/index.html#/",
+      "description": "读取可用学期、校区和当前节次。",
+      "aliases": [
+        "学期",
+        "节次",
+        "教学校历"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "terms",
+              "rankings",
+              "classrooms"
+            ]
+          },
+          "term": {
+            "type": "string",
+            "description": "实时学期目录的完整名称或编号；不传时依能力选择所有或当前学期"
+          }
+        },
+        "additionalProperties": false
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "当前学期、校区、节次及排名学期目录"
+    },
+    {
+      "id": "applications",
+      "name": "实时应用入口目录",
+      "adapter": "portal",
+      "method": "applications",
+      "platform": "digital_portal",
+      "entry": "https://my.ruc.edu.cn/",
+      "description": "从全新门户会话检索当前账号可见应用入口及权限标记。",
+      "aliases": [
+        "应用",
+        "入口",
+        "服务发现"
+      ],
+      "readOnly": true,
+      "verification": "fresh_session_verified",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "description": "应用名称包含文本"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          }
+        },
+        "additionalProperties": false
+      },
+      "evidence": "evidence/public-validation.json",
+      "verifiedScope": "全新门户登录、图书馆关键词11个入口"
+    }
+  ]
+}

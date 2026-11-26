@@ -1,0 +1,2 @@
+# Only library-seat HMAC key decryption requires a third-party package.
+cryptography>=46

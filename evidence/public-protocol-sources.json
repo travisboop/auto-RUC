@@ -1,0 +1,1276 @@
+{
+  "checkedAt": "2026-11-27T03:42:09+08:00",
+  "scope": "current public JavaScript used for protocol discovery; hashes cover UTF-8 text",
+  "sources": [
+    {
+      "url": "https://bpm.ruc.edu.cn/apps/com.awspaas.user.apps.gwskins/js/metro.js",
+      "bytes": 12990,
+      "sha256": "56fa66763391dc56edff4c4fed699aa60ce09ffd7977ed1cf670b778c6205243"
+    },
+    {
+      "url": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/app.js",
+      "bytes": 791592,
+      "sha256": "a6e66ae429480c3e56fb4c06352ec33890d6b98f6378091b73db40e54a56030b"
+    },
+    {
+      "url": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/chunk-03b8894f.js",
+      "bytes": 47871,
+      "sha256": "2147a452c028936f3d726f7620664b9dedc140c0cb5496081e293bd72c1bbc1a"
+    },
+    {
+      "url": "https://cardview.ruc.edu.cn/bundle/dds-zgrd/js/chunk-a79966a0.js",
+      "bytes": 26269,
+      "sha256": "386d7f178aec90ea6fa9bc5624f75b3d07ef802ef3570e5da415446ce99a88d0"
+    },
+    {
+      "url": "https://cardview.ruc.edu.cn/bundle/frame/js/app.js",
+      "bytes": 947183,
+      "sha256": "c2862dfc81dc5d208efaa9cf6dc007f6c5ff049a17469b64742e4403f6c05571"
+    },
+    {
+      "url": "https://cardview.ruc.edu.cn/index.js",
+      "bytes": 2391,
+      "sha256": "af2e92cb5f3d491fd2299f89ab719fd8c163da856580f924cc0504bf1d1918ef"
+    },
+    {
+      "url": "https://career.rmbs.ruc.edu.cn/static/js/_syshttp-a7c73164.js",
+      "bytes": 31198,
+      "sha256": "cac0d048c78e65f65fafa66ea5a402761a0c4899f87094a890426975c071ed65"
+    },
+    {
+      "url": "https://career.rmbs.ruc.edu.cn/static/js/admin_users-4d6c34b6.js",
+      "bytes": 1677,
+      "sha256": "410e7fe9000a60182132bdca5fda41682293edb0ae2dcfcc4bb3712451351b49"
+    },
+    {
+      "url": "https://career.rmbs.ruc.edu.cn/static/js/admin_zixun-c316dc54.js",
+      "bytes": 1036,
+      "sha256": "629f246bf9bedf3da7cf742411183be01622a7fb1724e63a3875d2437790b75f"
+    },
+    {
+      "url": "https://career.rmbs.ruc.edu.cn/static/js/history-9bdfe1ce.js",
+      "bytes": 12616,
+      "sha256": "0d324a95d8f547cef5128df3f9cbef0d560456e17aa43f00aa89a51290aa1075"
+    },
+    {
+      "url": "https://career.rmbs.ruc.edu.cn/static/js/login_sz-3c34d8fc.js",
+      "bytes": 970,
+      "sha256": "34030328a3b5dd1815594aa5632546f0a8719d80a9f3ddca2eb6d1e5c997bdb7"
+    },
+    {
+      "url": "https://career.rmbs.ruc.edu.cn/static/js/news_detail-021344ea.js",
+      "bytes": 7291,
+      "sha256": "5343489dd6c2d65d10498a5765304533f33b8486dc26898c683bff44ae374e84"
+    },
+    {
+      "url": "https://career.rmbs.ruc.edu.cn/static/js/public-61cc0b14.js",
+      "bytes": 456,
+      "sha256": "3cd4a9052d8cb1d1dab60cd944551d1d220a7bfa4d0aad04c9a3e3ebd0486a08"
+    },
+    {
+      "url": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+      "bytes": 71329,
+      "sha256": "1cfbf5ffa7a5212de5d82b266500b4049c321021a587df3f48d5235e1354c31e"
+    },
+    {
+      "url": "https://career.ruc.edu.cn/stu/js/chunk-18c2a1a8.e71cbf13.js",
+      "bytes": 14241,
+      "sha256": "1eb41bd6a72c9759076a996c312e7ef433422ee4f663a05316469992e605267e"
+    },
+    {
+      "url": "https://career.ruc.edu.cn/stu/js/chunk-3bbf2e96.8fa18f88.js",
+      "bytes": 119953,
+      "sha256": "4053f962ed070e457f49020b222dd326847439f4a94c361cb71b81ddee4c2eba"
+    },
+    {
+      "url": "https://career.ruc.edu.cn/stu/js/chunk-5164ea32.8c7f1988.js",
+      "bytes": 15110,
+      "sha256": "1e5c09935c478c9a5d64edaeeabc246164e6068307834868318a13b92886da86"
+    },
+    {
+      "url": "https://career.ruc.edu.cn/stu/js/chunk-694e313f.d16e917e.js",
+      "bytes": 10270,
+      "sha256": "8e0731e9327d6d2a007f472b71bb2d14fdf46acd916e581f20f1044cc3ca4afb"
+    },
+    {
+      "url": "https://career.ruc.edu.cn/stu/js/chunk-7f95269e.d2516c50.js",
+      "bytes": 166743,
+      "sha256": "752746c40c004682de316ba2ce86473f848897631b1833a403b861790f5e9462"
+    },
+    {
+      "url": "https://career.ruc.edu.cn/stu/js/chunk-8e6c8f82.58ed77e7.js",
+      "bytes": 9034,
+      "sha256": "51c794045e159d48011732f30f6e1e1ce5c19b2442a1d831c19e4aec7516e52b"
+    },
+    {
+      "url": "https://cssd.ruc.edu.cn/assets/index.BJNMjyoP.js",
+      "bytes": 24231,
+      "sha256": "2962fcf4c0bc51603540d7172b427eda6658190bb04d9a6d515e34e4ebeb42e0"
+    },
+    {
+      "url": "https://cssd.ruc.edu.cn/assets/index.CuPa_4AX.js",
+      "bytes": 6146,
+      "sha256": "8b13229a8161241acc5085965f35576f9fde341c1e3a15960b907858322b12d1"
+    },
+    {
+      "url": "https://cssd.ruc.edu.cn/assets/metadataService.DzgTo5QY.js",
+      "bytes": 576,
+      "sha256": "6336b19801e64cf92812da4d152e4aec011f81cb44162d21d690899b1c1a11a8"
+    },
+    {
+      "url": "https://cyk.ruc.edu.cn/student2025/js/common.js",
+      "bytes": 3216,
+      "sha256": "f7f5585ea4c23c734e7379b7dd7de985bfe32e0b616732b3d2cd318d0d76de13"
+    },
+    {
+      "url": "https://cyk.ruc.edu.cn/student2025/js/index.js",
+      "bytes": 3192,
+      "sha256": "fdfe9567de0623c32d2853d6300c4f79a3ece5db637b74db2a354155ca2ab92e"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chingo.b9e684a9.js",
+      "bytes": 310377,
+      "sha256": "fbfcbaa252a61b6333a83b382d3c6649b850b74479a4b89271d955a4fcb276d1"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-1c8468fa.8a26466c.js",
+      "bytes": 33134,
+      "sha256": "3f96bc7266c78c1bbc21f1e644703faeb0841d8ed35f4fc10766a5d6373c4e78"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-2f07e2d6.3ccdc97f.js",
+      "bytes": 4799,
+      "sha256": "d541c032b221f85cd9f234a13f03125fa8cb548717dffb81c5b5a932a0f54336"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-3e5a626a.6431b9bd.js",
+      "bytes": 40642,
+      "sha256": "17d0b3836145045034dd326fc17a20f275c6cdffdf0d40cfbfcc0570e908e262"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-412036e4.6552ef66.js",
+      "bytes": 13306,
+      "sha256": "bca0b071c257ee88a036e78b7fd0f3a3d6a501250b3d2341c945101bb5fa8ff3"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-516102ec.f72e7259.js",
+      "bytes": 28042,
+      "sha256": "7b94db47bf9876700515eb58ce29cfdc47ddf09d91b38e8fb744f40a8a027690"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-5f654ec0.2571f112.js",
+      "bytes": 21139,
+      "sha256": "fb7e0a83ae035f9d92fe6957814828bd2c54bd5351889e246416d7345b544749"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-62b20663.800c2b5e.js",
+      "bytes": 18766,
+      "sha256": "cb8565acf20b65af6cc6c1a04a928e2c561b015a7e537c8fee561101968a79a9"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-8ceb68f8.d9327de8.js",
+      "bytes": 77705,
+      "sha256": "fb5417eb50e401fd38ca11d7f887675912736d30f313416f410ac7bd9d1af45f"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/js/chunk-9084bcd0.5158f499.js",
+      "bytes": 15988,
+      "sha256": "603f37e1af1cd9ea115e51482d5e532a3a6a39277d4ec531250eb98082c95302"
+    },
+    {
+      "url": "https://easybook.ruc.edu.cn/venue/static/js/app.js",
+      "bytes": 2873,
+      "sha256": "74c06543b9a1f303c449d751e4090816b242340028f697f0446c989d5a878ffb"
+    },
+    {
+      "url": "https://feefo.ruc.edu.cn/xysf/web/user/wap/CoreMethod/Controllers/MECtrlS/MeCtrl.js",
+      "bytes": 9399,
+      "sha256": "6da36afe6dfbc5e427255c96d9caf6fc48c7a03abf103a21288b9b6696ed4409"
+    },
+    {
+      "url": "https://feefo.ruc.edu.cn/xysf/web/user/wap/CoreMethod/Controllers/homeMainCtrl.js",
+      "bytes": 2617,
+      "sha256": "2273559155ee12c8ae78bc985e7e8b7502df8b8ae8ce60448862465d4705890a"
+    },
+    {
+      "url": "https://feefo.ruc.edu.cn/xysf/web/user/wap/CoreMethod/Controllers/homeMainCtrlS/homeControllers.js",
+      "bytes": 170249,
+      "sha256": "b7872778dbd1470bd117a036581190dd5488b96187e2aa5b620f23f9af502ebf"
+    },
+    {
+      "url": "https://feefo.ruc.edu.cn/xysf/web/user/wap/CoreMethod/Controllers/loginAppCtrl.js",
+      "bytes": 283,
+      "sha256": "81912ff7256f35266e01a2f14d179f2b50504e3236e8b325b044e3cccd183936"
+    },
+    {
+      "url": "https://feefo.ruc.edu.cn/xysf/web/user/wap/CoreMethod/Controllers/loginAppCtrlS/loginAppCtrlS.js",
+      "bytes": 7870,
+      "sha256": "9a2e882d3d87a320cd91f2a2b9e63f73734c5972509f343a7e8bec605542d7fe"
+    },
+    {
+      "url": "https://feefo.ruc.edu.cn/xysf/web/user/wap/CoreMethod/Services/AppServices.js",
+      "bytes": 6662,
+      "sha256": "bf634c3ab946ef04d3520d50fbdf6efdd4cbae906ce670ea412a4ae1c95aa5a0"
+    },
+    {
+      "url": "https://feefo.ruc.edu.cn/xysf/web/user/wap/CoreMethod/String/AllVariable.js",
+      "bytes": 5785,
+      "sha256": "e4fb795cce99f2ab9183139191524a59dbdd3bdcbeca92f4428310a3773299a7"
+    },
+    {
+      "url": "https://go2rucm.ruc.edu.cn/static/js/app.64959e8d735ea8437d7a.js",
+      "bytes": 141169,
+      "sha256": "c16fa0048840cfe0ae027a6e5210ca92446ae25af219ced87d07bb08b9445f6b"
+    },
+    {
+      "url": "https://go2rucm.ruc.edu.cn/static/serverConfig.js",
+      "bytes": 752,
+      "sha256": "89ccb30a4f9b7104f4f4a1f9900ed3a9b2fe4fa25df41fcc734657acda77cda8"
+    },
+    {
+      "url": "https://guest.ruc.edu.cn/iportal/static/js/chunk-common.6d2f981f.js",
+      "bytes": 312969,
+      "sha256": "d956c79551ed0cb83d921ba2b85e3ac2476ab6a595eb703fcba956c9a8636a8f"
+    },
+    {
+      "url": "https://guest.ruc.edu.cn/iportal/static/js/workbenchHost.740a9eb5.js",
+      "bytes": 3587,
+      "sha256": "c04be7762b6e73e786e8aa484c30b3e331df99eedc1f6828a4404ae2aa623ab7"
+    },
+    {
+      "url": "https://guest.ruc.edu.cn/visitor/static/js/index.7c44addc.js",
+      "bytes": 2977559,
+      "sha256": "54435fc7825937a5a0548215aabcccbdb2a81a50a279eb00369b7d4669fcebc6"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/0b8e744a-1decbd77e46e7f5d.js",
+      "bytes": 122763,
+      "sha256": "812feba77770f405cf95fc48f56bffe67a2a1a287ae8602025ba1f3db2fa0970"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/11861-c659848cd9e4174a.js",
+      "bytes": 25065,
+      "sha256": "bd5a730bc1afc79e7a6c7c7d583061bbba74063508079a74df0dd16eeecbfca4"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/12427-81bea1387eb341a1.js",
+      "bytes": 11140,
+      "sha256": "cc376d228b2e1c6134689e5981a60699034cb5d3ffe7c4b68420f6faa50f6c53"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/13261-f3308cc31f59dda9.js",
+      "bytes": 24150,
+      "sha256": "83978b064b4a419e710931c37998d5ef689ceb39e89a5116a5346b1b04c0ef94"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/14153-e26ff6a0a7e6b96b.js",
+      "bytes": 179009,
+      "sha256": "179ee48183e77eebb83e69a10d4fdb190094977d71494212f295be52d8fed1f2"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/15462-bb51938fad249233.js",
+      "bytes": 18800,
+      "sha256": "01856db5c3808b7d01fc886f6e2b35d6583e6cb31dee3c9bd0fce9f0d3d06db1"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/17961-289b0697098dd065.js",
+      "bytes": 71524,
+      "sha256": "24a695c877b6783f1d4ef3abc143bdf58f69e1aeedd7df773114470fb1c61d87"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/18197-5d0c983cb212c98d.js",
+      "bytes": 34109,
+      "sha256": "5da11d9f41662cbe3f7c887e93e3a8e0e35dc060278bcf553be7878311b9b511"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/22253-c77f71f2e07cddee.js",
+      "bytes": 49253,
+      "sha256": "82f8ba363b2ed95bd69a781845e339828c504341acfce67948de6fe9b4656f92"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/22315-402905c0433ab99b.js",
+      "bytes": 11792,
+      "sha256": "a21127d74a44c261d31925e7ec8c11561e7f615c447f8ef41cfbf6a2be97334a"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/22718-e3e9270d395a143f.js",
+      "bytes": 18713,
+      "sha256": "eead094ae8c36f8ac5413939d8843328edd9bdd448bdb74fdf23542cb3e95ed3"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/2520-e2b7e299082ecbe2.js",
+      "bytes": 28666,
+      "sha256": "9c9053253f41fb905cf595fc6b6c3d4bdb366c12db940216185cad53b40a9206"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/27000-544726e26a324ef1.js",
+      "bytes": 23800,
+      "sha256": "1e1e1797a2562023011dc6aa791f408d04844a6cd9caf2363b075cd8e68d49cb"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/27465-8f8701204901d8c1.js",
+      "bytes": 10230,
+      "sha256": "5d1e410b8e4edfc007c1bdf12a5649c668bddb37969be6ef906d925f215a0011"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/27817-d2608a48b281e00a.js",
+      "bytes": 42353,
+      "sha256": "1e5672790a14c84f27cda596550d525b7dc6519536da6ca82be97cff9a416bc2"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/29443-5985bd7c5012c340.js",
+      "bytes": 434595,
+      "sha256": "4b3eecde6724f7fc04b5e6ec0f250d74fd82bf8609569071625763f90b96b2df"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/32789-5a0f82d946de3a9f.js",
+      "bytes": 50570,
+      "sha256": "4944b238f75903bd31b25bb8e5e5f2de953df9204731c3c2786ba882392642ee"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/33958-a959eb4fdebcdf07.js",
+      "bytes": 80109,
+      "sha256": "4e8ee7701482ddcf5da70a915a22068658084eadc7f381e69c6c7fd1e99c6756"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/34428-a1d665f5d194c791.js",
+      "bytes": 175454,
+      "sha256": "cd151b5f1f1bb3349cd7fd670c3f6ce2d363671994ef810ba329312b5fedd4db"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/37548-1d6f4124dc9efac8.js",
+      "bytes": 23543,
+      "sha256": "0e9243cc8b75b523ccc605c9d54425d8060fa0b00a85cfd6bd1410724dbc2758"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/39771-f754e25c34f33168.js",
+      "bytes": 22127,
+      "sha256": "3d5ecdffbb7dd8b19fe58d6e32a89c2c6a8602f001a443d10b06606141d1f26f"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/4131-71b75f5ee17a3222.js",
+      "bytes": 30762,
+      "sha256": "260e5fc9d0178db85d6e26d32ee39b658f0a293d832316be59ffb3822a154194"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/42397-711a58a52b11c87e.js",
+      "bytes": 19358,
+      "sha256": "acb5e948e7097a31ead4694a125091d85259e53f6fe494459fd45e072ad4ebdd"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/43630-6a900f20ddfa8381.js",
+      "bytes": 15282,
+      "sha256": "464667ad82608bb20c673538be80bc1e5b8553d458a1ad527a944345dc6a0fbe"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/45016-0c0b6bf54f8271e0.js",
+      "bytes": 110119,
+      "sha256": "a93c819db8d438ab473b6d09b1115674c4d1a4612731adaa347d1d5ed0b7a947"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/46936-414970545df21158.js",
+      "bytes": 61022,
+      "sha256": "4cd0e88681573f3ee3bd1d481df12db837e8e6b266d1563e70d5e9913c6cb343"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/47915-b3e0c7853ffa2880.js",
+      "bytes": 71300,
+      "sha256": "599aa0ae80cf097be8f7e3a587378570845f483b1768a23c4312ea534bce196e"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/50679-4f32dc03cac8828f.js",
+      "bytes": 25050,
+      "sha256": "0752442bad04aebe7460c2b9adf76f0bf2c867fbb46dc0ab8aab918a9e8fffa1"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/5206-bced944ad4b27b36.js",
+      "bytes": 47777,
+      "sha256": "c38f6645549c1598ccef0ba2287a70033cdaf7028e18d5aa495eb430f75aa95d"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/52302-306bcdb2c315e392.js",
+      "bytes": 48259,
+      "sha256": "0bd13d95e2d697bc19b9757af1a795e48e3bba718cf6881121416334ff288eed"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/55096-02bdf04412aeddbe.js",
+      "bytes": 22759,
+      "sha256": "e46019ea9f102c2f1715ecbed64a0d93494b34f571ecf93c1c28dc152e5017e5"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/59367-5ee55c23594303b3.js",
+      "bytes": 80128,
+      "sha256": "2b546fee3c9b356dfbeeb53c8d475c1b31bcfdcdc55130195021554f39246a9e"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/60794-394114089e03b3f8.js",
+      "bytes": 25319,
+      "sha256": "bc7cf465a5b1f903008871cc491fca81f1865a900c7f6aa9a81da43b7ec3729e"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/61893-a535399a7f84c361.js",
+      "bytes": 22547,
+      "sha256": "6120f1224fa2f47e2ed1243812a28ac4db80112266437cb260e89234c8272ce9"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/62292-ae4e04e5beec06b2.js",
+      "bytes": 41539,
+      "sha256": "e5005c68eb73be5a6fc620788b1a439492360cdb2b9d2d0db69559a01e7a2f32"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/63450-8a3b66e103cdaf72.js",
+      "bytes": 32924,
+      "sha256": "b4b255f36fa28cc14562d30fb58c8574c4f990fa07a733fdfde0785346fc52ed"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/63791-e95cc1dfae217852.js",
+      "bytes": 48885,
+      "sha256": "d393da419b09f36a8433b3fc61c271d3dc83889ea06f1e44352f24f5b64c6d45"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/6462-a9714f05f5d48073.js",
+      "bytes": 52653,
+      "sha256": "faf889949f63e89869902800e480df6047423151df3baa37c51e444cf5fee60f"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/65676-a4c8c118ceba900c.js",
+      "bytes": 179213,
+      "sha256": "6adfaa39cb3ee47d81b0d928f1593a173e9d01256d01f1c9e7b3e80577857df3"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/66131-f956f2c88dd2c8eb.js",
+      "bytes": 24836,
+      "sha256": "d0fea8bc734273bf5ccb9419ce42129093d0506369ec89c3b7fed7aa422aef01"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/69685-924aa4473f81dc99.js",
+      "bytes": 34888,
+      "sha256": "64204b7535843a13728d9ba080313bbcdda089c1ecbd9c5178750f4f4ae5f09e"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/71424-4f9ed0cb64add75b.js",
+      "bytes": 20386,
+      "sha256": "654e179de07f907991b4ecd230b47f9d1d42071302838e63f016cdaeffd24e84"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/74287-e0e9b235f14bc2c3.js",
+      "bytes": 56837,
+      "sha256": "2971334cb7f9b20654983a433a1fcd1e667e799870d5f62e350942293bc6bed0"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/75197-bb44a5a6ac6f9c5a.js",
+      "bytes": 20414,
+      "sha256": "8465a92ee9797509cc90d79bad4b9e83859c77a2e64ada54455619ba381faf30"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/77717-2f2cfcdb7d0d6a41.js",
+      "bytes": 16999,
+      "sha256": "0da9011ba1edce4e02b7dc92b232c935f91ad7e75d951ed32c73f71f9f12a31f"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/78172-821aee9ce4feb328.js",
+      "bytes": 22707,
+      "sha256": "2a5257f218c62805f68421ec9c7e78ab9ffaf4843ad961c16e6c2d149a9c314a"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/79891-5b6cf2b750022f32.js",
+      "bytes": 21991,
+      "sha256": "efc48f5fadd6a4eb537c018690c71dabb9eef30001f809f6cd692cc86f00d319"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/81610-aa0cb7730b1f3cca.js",
+      "bytes": 50281,
+      "sha256": "cc7807cfdabc4919b62f78b857362c6ba92269bd13a29c6aafe3c808f6b6ef52"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/83842-8caa546376b09610.js",
+      "bytes": 26156,
+      "sha256": "9a85a34a231f1b2e4afe7dd988360f19ac0d3f380696cf044ab92274b789bb2d"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/85588-342d815d52fc49c8.js",
+      "bytes": 174901,
+      "sha256": "7994b3a03d0af60514d199ceb66636d09471c8689cc8d39fce97a0eeace84208"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/87536-237145bb05508038.js",
+      "bytes": 113045,
+      "sha256": "e6239c2498fd2044698339f16785f7133f47709f66655cdca1b72f4c3e667fa8"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/88043-b7a3fd310f55e36f.js",
+      "bytes": 25199,
+      "sha256": "2ea5d1364faebda8dadde8bf7bd134a53177caf89943143d5720a4990d615bad"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/88788-18d941c59f9cfef8.js",
+      "bytes": 20365,
+      "sha256": "04e1fb684cb948537227e554cef42c8c5e07cf0f793cfbe987ea4acf55dac0dd"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/90262-c2a2f66a5ab0eb5c.js",
+      "bytes": 23718,
+      "sha256": "77d509c72af3c5a273a701d76593d5847a81ccded9380713fd194013a6edfa5b"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/90723-b21bd80a4c0fcfd7.js",
+      "bytes": 624098,
+      "sha256": "4bfee5c319c953c979063b603c177ac4571189afde842ab993389ab14967ee48"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/96831-8f0ef94ac846284b.js",
+      "bytes": 18768,
+      "sha256": "55f2497742a48c3f6995c67716d1dbfaca09f9873807d6a9e2233ddb22099d62"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/99312-db67038d809cfdb9.js",
+      "bytes": 13769,
+      "sha256": "40a75a02187255c20e6e6ceffb16ad4fdd5c9cba2904646c8782ec1af705acc9"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/a3cb186d-6e05e48b6a935857.js",
+      "bytes": 168420,
+      "sha256": "d762f62a9776f1efddaf47243d3cd0568d467dc47d53f2f8f09c5cd1900055c6"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/app/(commonLayout)/home/page-4847b4b65dc6b98b.js",
+      "bytes": 35875,
+      "sha256": "e533e186fda2e499ec1d19698441f262b4c15b6217ba7cfc08bb7db6f7fd6301"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/app/(commonLayout)/layout-dfb96899b586563e.js",
+      "bytes": 736,
+      "sha256": "611a5248077a298abd48a2044eaf92de7751a1bcdd2786a6b1329ac1be2e9df4"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/app/layout-dc1e793f899f6c22.js",
+      "bytes": 8820,
+      "sha256": "a703c855d64536d6a6b87bf0518002a1ca7e77a00511462eb798115be2ef2b75"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/bda40ab4-9c001d2f3ac422cb.js",
+      "bytes": 477021,
+      "sha256": "8a12e2841f4059e6f8238137a0e8a93355b5e03c0cc0105c49e8d3a94c293d23"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/df03a24b-42c9229eb2730fed.js",
+      "bytes": 30297,
+      "sha256": "3c29b9c68ffb0b4440f259989a6792a1374fbfeb178e4baad7fd157619013375"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/fc43f782-2621b70cb3e836f0.js",
+      "bytes": 77858,
+      "sha256": "87f76acf7136054bf22bae2fe41b53dea972ae66991a6a58bcc421bdd35af253"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/ff56f9a9-82878fff463bced1.js",
+      "bytes": 180758,
+      "sha256": "951c1dffa40b6a12c57ee35dd5108377cacb7db31462006acb4bc24c4c6b5b2e"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/main-app-8967edf64187a90b.js",
+      "bytes": 534,
+      "sha256": "f9d804e09d19b2c7665568cd5d98bb91a2621f9362ae3595c785fb9712efa272"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/_next/static/chunks/webpack-f20a62ee4790a636.js",
+      "bytes": 24166,
+      "sha256": "743c992a310bbb2961f6cbf4c87c35379248d0ceb9b80bf2870d8a5fd0722670"
+    },
+    {
+      "url": "https://i.ruc.edu.cn/config.js",
+      "bytes": 2141,
+      "sha256": "3b7cd1a01a9d39a4b3ec957100f620060756520c48e469ce14f4831693705dac"
+    },
+    {
+      "url": "https://international.ruc.edu.cn/static/js/59.f2e881c2.1795683390457.js",
+      "bytes": 1967,
+      "sha256": "127c92b6644dde73c71994e74beb7f23f62115fb410cbfa37282b9f60904b9a3"
+    },
+    {
+      "url": "https://international.ruc.edu.cn/static/js/app.c9616abb.1795683390457.js",
+      "bytes": 77012,
+      "sha256": "39eab91cc42c242aa9bbbdc4cd7c1031ffdb141d1b423655b9477b58fd25a38d"
+    },
+    {
+      "url": "https://international.ruc.edu.cn/static/js/manifest.50087b24.1795683390457.js",
+      "bytes": 3248,
+      "sha256": "e0568d7ef7ec91a8541636b3d2d5da1dfed3707a5a5606f3a0a43b7757e3f8e0"
+    },
+    {
+      "url": "https://jiesujiban.ruc.edu.cn/cp/pl-rmdx/assets/index-seat13-dd60c926ce66.js",
+      "bytes": 2308572,
+      "sha256": "dd60c926ce66f02cdee594c916c6f46d7b912d21cce26b5feba34cfb78353e74"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/biz/biz.config.js",
+      "bytes": 204832,
+      "sha256": "c22e8f3aa69c29314dbb4c2a09999a9a4f014986f434b586d0c2527a21cc66f0"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/biz/hndx.config.js",
+      "bytes": 7329,
+      "sha256": "1de49c7d6c8f853e495b276c26a1a487e04d4a96d422d2c42c8b3798b5e20e4a"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/qz.config.new.js",
+      "bytes": 66804,
+      "sha256": "a04f230a29e96296c6bc57fe2d168ad4b470550a53b411a7672b9ba089b4831b"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/qz.frame.js",
+      "bytes": 19822,
+      "sha256": "411ead6ebd1ba6a9e00f52813bc86210278375f5d562f170211897ef8be8dad4"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/static/js/qz/qz.common.js",
+      "bytes": 478505,
+      "sha256": "11735ba0994dbc7d70bbf6c0c217b9b581e594427bb82a91b6bb4e8de8f19cce"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student/student-course-list/student.course.list.js",
+      "bytes": 13497,
+      "sha256": "d65cd86e4d02ee85c87a32ecc6fcc31c5e444b84d50f92d98e5e3f8474f730a2"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student/student-course-list/student.course.list.service.js",
+      "bytes": 1425,
+      "sha256": "48f112ce73170c37734a180b9d9bf4582e4c73550e76295398e8b236287132c5"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student/student-traning-program-info/student.traning.program.info.js",
+      "bytes": 5153,
+      "sha256": "d86ac3d718e62496cccfa787e0cf11f79856c17d965919d3940498ab6a75fb1c"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student/student-traning-program-info/student.traning.program.info.service.js",
+      "bytes": 2798,
+      "sha256": "6f280c1455bf0a333fd363b8fab7c419d51e0977c44f027c5bc139260259ba06"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student/student-week-calendar/student.week.calendar.service.js",
+      "bytes": 277,
+      "sha256": "bba44f21ab16d61161a529cfc2ca57556d66f4345a5d31511bc481eff5f7da5e"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student/test-arrange-search/test.arrange.search.js",
+      "bytes": 6982,
+      "sha256": "69bddaba135c30309851f5dbada7e1719c224fbdfcf8ff5c54452f8e201d3afc"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student/test-arrange-search/test.arrange.search.service.js",
+      "bytes": 849,
+      "sha256": "85168f841549f25d962c73bde59fe4eabf3eba86d2cd6dac2fc620b64754af84"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student_hndx/student-traning-program-info/student.traning.program.info.js",
+      "bytes": 5307,
+      "sha256": "8a034b496f891395eedcd31bb68ceebd426422cef57acfcad62701bd9e32e36d"
+    },
+    {
+      "url": "https://jw.ruc.edu.cn/Njw2017/student_hndx/student-traning-program-info/student.traning.program.info.service.js",
+      "bytes": 1639,
+      "sha256": "bd95af28b8d47fa7d127595adcb7aae74df1ed09a30e4c66de5cf65953c69bb6"
+    },
+    {
+      "url": "https://jygz.ruc.edu.cn/static/js/631.790da4ea.js",
+      "bytes": 1610740,
+      "sha256": "6aa27bdcdd152d55136008fc12e5ba86689bb69104bf64c87431bfafeecc7321"
+    },
+    {
+      "url": "https://jygz.ruc.edu.cn/static/js/app.079dedd9.js",
+      "bytes": 853375,
+      "sha256": "14a713a7d9ace3e36d63cdb66efa2c33fd5fb0dd68536310fb8993724f21fcd7"
+    },
+    {
+      "url": "https://jygz.ruc.edu.cn/static/js/rzcx-chunk-eb2fbf4c.a4ad9cdf.js",
+      "bytes": 191762,
+      "sha256": "9b192337528ab2c4e290a59a203d73b4df644b3c721817d3b7c0c56980ec9d57"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/UserClient/js/homePage.js",
+      "bytes": 51262,
+      "sha256": "dc3052545bbd7b226ffa412baa00d9d46e3dfa056b3b3d950a242ce3fc92a0f9"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/UserClient/js/personalCenter.js",
+      "bytes": 26979,
+      "sha256": "4640eb5926e4c47b508786b07d330d3246f8909a06f07ab30c050db0bf162e78"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/UserClient/js/personalCenter_main.js",
+      "bytes": 14305,
+      "sha256": "6d435de8e3cce4654bb85d60a1917b3fa6e47be66350d6ea0ffdd1d39e300548"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/UserClient/js/platformIndex_newTask.js",
+      "bytes": 61686,
+      "sha256": "f84edb40aaac064a11841c3b56e9673fa2bcab03ee1b0dad8f622c25acee58dc"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/UserClient/js/platform_index.js",
+      "bytes": 89003,
+      "sha256": "ee212c71c04efef8cebee886bae4bbda69a9be576e2928c53dcfff9b5ca0f7c3"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/UserClient/js/platform_indexClassSchedule.js",
+      "bytes": 79302,
+      "sha256": "efa41a911eff6dadc351de4614b9e2bd1ae60f069ae59961a416a8d3f33e68da"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/UserClient/js/studentRelatedCourseClass.js",
+      "bytes": 10388,
+      "sha256": "2ec21320a1ff233c9d21859a43e478aa2b60f9fdd1cca886c201d94e4f03baf4"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/jquery.cookies.js",
+      "bytes": 2276,
+      "sha256": "12467233b7a158612b1e701d6b3d24a71c14cef496fdf61c88125eca6505c1fd"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/md5.js",
+      "bytes": 9197,
+      "sha256": "3b8666474a6da67578f802de6840e3080d35881d6dc0e63eef5c3f225a0cf0ee"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/yjsoft/common.js",
+      "bytes": 34480,
+      "sha256": "aceee6483971c1ba0636c69048e357189b8c504c345b64760364a5d6fa967910"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/yjsoft/docking_auto.js",
+      "bytes": 11693,
+      "sha256": "c82f8abdfd6d70a916f9e489f639f8e57a42df0c4602eee3cfe5486923e4b9d1"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/yjsoft/global-Const.js",
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/yjsoft/global.js",
+      "bytes": 248062,
+      "sha256": "a6d9ae98d1c7e1af37690a0f8afee9f5f9a326a27aa9817c38019a60a4558858"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/yjsoft/init.js",
+      "bytes": 1678,
+      "sha256": "6934adb23983db14c5113346bfd11efb09507584eab0bd000b5d737ee456ded7"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/yjsoft/login-Const.js",
+      "bytes": 21,
+      "sha256": "09283f68b01784cfeb97888e8ba7578d29cc4bde71acd1fc79e4b573145b9788"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/js/yjsoft/login.js",
+      "bytes": 22730,
+      "sha256": "b584d978e25e09bc0eaa60b847f9c8b15b8c7403109822ad9a75df979c960824"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/oauth2/assets/js/app.d968c065.js",
+      "bytes": 25957,
+      "sha256": "fc64d004d5cb49dcba042cf22e6651df3f56c89a44880f1d7fe9f2395e3ce62f"
+    },
+    {
+      "url": "https://k.ruc.edu.cn/oauth2/assets/js/chunk-551dac38.ce4b674c.js",
+      "bytes": 27299,
+      "sha256": "9a5c76bef6496cf4f07860c2116a44d6e927813649cc75d8f4d9e3106065e1d9"
+    },
+    {
+      "url": "https://lab.ruc.edu.cn/static/js/chunk-2d0df466.2efb9b29.js",
+      "bytes": 1145,
+      "sha256": "c3d21338878224d8778cee42b35b362e6b40025de38d6777fc91883452110841"
+    },
+    {
+      "url": "https://m.ruc.edu.cn/site/static/js/502.89dcffdf5a9ba0acd5db.js",
+      "bytes": 4002,
+      "sha256": "6437a4339ffcc4c7d9465ab6d513c20ba8963e4e80f03268deb99a0ba136a55d"
+    },
+    {
+      "url": "https://m.ruc.edu.cn/site/static/js/504.ca76bb294cb3e4cba587.js",
+      "bytes": 9948,
+      "sha256": "c1999b87c4cff6427a8934f7e18f3d4eb999da567811a7091ce1db66ec00449d"
+    },
+    {
+      "url": "https://m.ruc.edu.cn/site/static/js/app.3331836562dc33394e4a.js",
+      "bytes": 326678,
+      "sha256": "c878c3316a230dea0746acbaa5409054a95741030203bd50d1050c045bb5f849"
+    },
+    {
+      "url": "https://m.ruc.edu.cn/site/static/js/manifest.a105482a6642cb914a77.js",
+      "bytes": 23268,
+      "sha256": "40933871ee432088b50036c9fd3c48d93cd81f9e639823d65323fd89fd4e7788"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+      "bytes": 198495,
+      "sha256": "6173494c6be99c56084856b5fe4e33acd9d68a3ae16b52ae7f62f3f2b56fa956"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-0f5ad310.40eeebcb8d78b2f14f98.js",
+      "bytes": 22295,
+      "sha256": "5f024d6dd8b9dedb5d95df1f6677a9a9d6404894d9434695c5609def1c88dc2f"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-0fc60b2e.791136d5d497cd5b7e49.js",
+      "bytes": 427593,
+      "sha256": "0e68ca732c9da70aa405853d475b19353af448f81c904c0a7098eb8927e30de0"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-4df96883.31d6cfe0d16ae931b73c.js",
+      "bytes": 7023,
+      "sha256": "708a75d32e3cf481c98bf76d5b2f3ebc9abf4750ca3446cadad2887efc0499aa"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-4df96883.e5f220ebbee2d1b40a17.js",
+      "bytes": 112597,
+      "sha256": "436561816ae1a12b610ee07a8b2c334b94b908793f36a63b0aee5649f03d30fb"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-52f4ad2e.1d373b0e913ac62c4cc7.js",
+      "bytes": 184996,
+      "sha256": "f1079912c1278e9e7beb734ce600be153de6be63e0af97ddcdad72808636d826"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-644f42d4.21cb4c52a2eabe1f9001.js",
+      "bytes": 9797,
+      "sha256": "c8390b7879508000d93985813363b8d40c3063f07e7939638a90810114554799"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-78fb6cf1.52e4784c140cef46d65d.js",
+      "bytes": 13981,
+      "sha256": "d5be6046419f29a8dc5dc6869f8b2a320e811f68f59c6c7bd67b786f09868337"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-78fb6cf1.66696500509bd8a14a91.js",
+      "bytes": 7023,
+      "sha256": "708a75d32e3cf481c98bf76d5b2f3ebc9abf4750ca3446cadad2887efc0499aa"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-85dfd832.8749e15a42745408dd81.js",
+      "bytes": 7023,
+      "sha256": "708a75d32e3cf481c98bf76d5b2f3ebc9abf4750ca3446cadad2887efc0499aa"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-85dfd832.af8a360fca1a68393951.js",
+      "bytes": 18307,
+      "sha256": "6497dde11d18d3fc4e060bdd8283dfa051c8999f6848f5817ab33afedd683bf8"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-95123aa2.3a7cb0a2f5088cbd9467.js",
+      "bytes": 12516,
+      "sha256": "f8381939f5f7b5cda1e277e9f90bf97343616610e2a1b648d87f9ef77fa55247"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-a3c5b20e.751abc85151cbd08d48a.js",
+      "bytes": 7023,
+      "sha256": "708a75d32e3cf481c98bf76d5b2f3ebc9abf4750ca3446cadad2887efc0499aa"
+    },
+    {
+      "url": "https://me.ruc.edu.cn/page/static/js/chunk-a3c5b20e.ace39ad34efb0d7681fc.js",
+      "bytes": 30200,
+      "sha256": "f332ce7ff06e1583ef62ed06e5460deea6e771f8d0b9bd23c48703d9abb5791e"
+    },
+    {
+      "url": "https://my.ruc.edu.cn/easyform3/assets/js/runtime.js",
+      "bytes": 2665116,
+      "sha256": "bd27573e8fd96657ad8f114a6cdf6cc6c0485215017be1119cfa58140da7e678"
+    },
+    {
+      "url": "https://my.ruc.edu.cn/easyform3/static/js/main.83009ec1.js",
+      "bytes": 1432409,
+      "sha256": "67c5cc707d427c80acbf9c4d883251b6b0c201e68d1f7cf53462881d098d1e4f"
+    },
+    {
+      "url": "https://nchemcg.ruc.edu.cn/web/config.js",
+      "bytes": 2408,
+      "sha256": "ceeeadd712f234424c50bcab9e4543a7646adab82ee19a31c5486c8f33b9605a"
+    },
+    {
+      "url": "https://nchemcg.ruc.edu.cn/web/js/index.2026721330.js",
+      "bytes": 715747,
+      "sha256": "756007bf12fc429b03a05986122b1ced08f5f79e51ac685ef34c01ea92c460e1"
+    },
+    {
+      "url": "https://opac.ruc.edu.cn/static/js/0.a430bf20d843f2c77483.js",
+      "bytes": 5059927,
+      "sha256": "7867f7f45843ea70f8ecadfa9c7841b1505f2c84b3af149c250f0d0e951f8fe2"
+    },
+    {
+      "url": "https://opac.ruc.edu.cn/static/js/1.44007bf08861678d27a7.js",
+      "bytes": 14272,
+      "sha256": "b325c5e56862dc0a13d774be75f13ec16b3951ffa0bbb75d2819e4d61ce2394e"
+    },
+    {
+      "url": "https://opac.ruc.edu.cn/static/js/17.f094bcef018721f8d4b3.js",
+      "bytes": 655920,
+      "sha256": "843234a3c4ab7fcf77028f83c296aff7e4380a6aad79856b92fc239e477a6037"
+    },
+    {
+      "url": "https://opac.ruc.edu.cn/static/js/2.3f05998d239b95146e9b.js",
+      "bytes": 27714,
+      "sha256": "484cbbebc78a2d7e074199e4ae31771a140077bbb6050999bee49d2f285978df"
+    },
+    {
+      "url": "https://opac.ruc.edu.cn/static/js/3.e709e71d77da884578f5.js",
+      "bytes": 20584,
+      "sha256": "1db6cdb54db960d9619d2f9a2fd467dd6bad05761d49259cc95515a78c209e73"
+    },
+    {
+      "url": "https://opac.ruc.edu.cn/static/js/4.180cb7aed792139e4542.js",
+      "bytes": 896365,
+      "sha256": "c73c1eb5928727768b21a2b0c02934c2ea096a7ae7af3f6b797ebe7670362489"
+    },
+    {
+      "url": "https://opac.ruc.edu.cn/static/js/manifest.da68d64b3a388fedde44.js",
+      "bytes": 7108,
+      "sha256": "ae9952d70e53a9819ed6942c873869f90342f3cb1c7e1ad09ac3e92db5959b2a"
+    },
+    {
+      "url": "https://rdhc.ruc.edu.cn/js/all.min.js",
+      "bytes": 1505880,
+      "sha256": "67afe68ff4190d47d38cbea792aee9c241cd66991563c5e4f00a699f86d32d7b"
+    },
+    {
+      "url": "https://reg.ruc.edu.cn/js/app.540e2722.js",
+      "bytes": 34831,
+      "sha256": "5eb06fca00e1a729b239a41c5849bafc5b9076455ae79248cb20822455213bd3"
+    },
+    {
+      "url": "https://reg.ruc.edu.cn/js/chunk-21495c74.ce603b2c.js",
+      "bytes": 1264,
+      "sha256": "9233a890dc121aaf291279fdd668dd84091ad551b4f915878c9e5beee673ab39"
+    },
+    {
+      "url": "https://reg.ruc.edu.cn/js/chunk-78cfb9f8.30ed4ea0.js",
+      "bytes": 4054,
+      "sha256": "7ae574438881ba230c3a21bb73169dab326f5eabfdcb04eed83577bf351b1d58"
+    },
+    {
+      "url": "https://reg.ruc.edu.cn/js/chunk-f2e28736.968a9e36.js",
+      "bytes": 3790,
+      "sha256": "e47cb2293a343bcf6a32e31833e55a50dd3e4fefbb22fea914c031581217365f"
+    },
+    {
+      "url": "https://sardoffice.ruc.edu.cn/assets/Login-96e3b2fb.js",
+      "bytes": 2819,
+      "sha256": "9edb1f698eeb150c76f2a8bf38e6967104849614bbe222cf488de7cf94b235a3"
+    },
+    {
+      "url": "https://sardoffice.ruc.edu.cn/assets/SardssoSso-f9285c15.js",
+      "bytes": 3882,
+      "sha256": "e64faa8cccf980e42fa1232d7fc7349c47ccba1e17ab1a6655cbcdee4b444122"
+    },
+    {
+      "url": "https://sardoffice.ruc.edu.cn/assets/index-ed532050.js",
+      "bytes": 1630576,
+      "sha256": "9d72dcf3aa3a9956012033778f5f4b86f2abf83bbfbc303187bff82546412d43"
+    },
+    {
+      "url": "https://service.ruc.edu.cn/v2/static/js/chunk-a9b77f92.0b20f6d7cadeb0d14592.js",
+      "bytes": 7212,
+      "sha256": "c7ca12926123709996ef905860176bc63bf1ad1d828b0d1506f243cdbce98541"
+    },
+    {
+      "url": "https://service.ruc.edu.cn/v2/static/js/chunk-a9b77f92.77b8549b56ea044d9a6c.js",
+      "bytes": 8670,
+      "sha256": "ebff8a32a5d34f8c004611fc4d589df3aeac2c78badbfb04e166f9cba886317b"
+    },
+    {
+      "url": "https://service.ruc.edu.cn/v2/static/js/chunk-b8c8e9d6.b89dff4727053bc0759f.js",
+      "bytes": 8670,
+      "sha256": "ebff8a32a5d34f8c004611fc4d589df3aeac2c78badbfb04e166f9cba886317b"
+    },
+    {
+      "url": "https://service.ruc.edu.cn/v2/static/js/chunk-b8c8e9d6.d3c741883d4595575280.js",
+      "bytes": 25681,
+      "sha256": "f45fc9797e89c48af2cd6be94c06c55e92cb83139194c3858b31cd808d4ebdc4"
+    },
+    {
+      "url": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+      "bytes": 440418,
+      "sha256": "f599fe5c0954a886ecf8ae03f95f6b79004a822a4cd3a192156f96629f063be7"
+    },
+    {
+      "url": "https://service.ruc.edu.cn/v2/static/js/chunk-vendors.d49b21e1fb4fe992608a.js",
+      "bytes": 458367,
+      "sha256": "f031623e453c42b1cc180077b569ca66e439538bce6fa91661d44f78da0892d9"
+    },
+    {
+      "url": "https://service.ruc.edu.cn/v2/static/js/index.697587fa17d2e8c7f0b1.js",
+      "bytes": 146277,
+      "sha256": "4c1698910359a02937416070af96ec7e21ddb215c46e78ba951254da98b8b291"
+    },
+    {
+      "url": "https://student.rmbs.ruc.edu.cn/Scripts/VolunteerList.js",
+      "bytes": 1295,
+      "sha256": "0453c2d453ee6692bbf92e0b012e338ae25ab60eb713b16570279a2130cc87a5"
+    },
+    {
+      "url": "https://student.rmbs.ruc.edu.cn/Website/js/GetTopPageNews.js",
+      "bytes": 1032,
+      "sha256": "0724add30d5936e6409ab54d32118c26e85cfccb42199e5d6b9a80caba6da6a1"
+    },
+    {
+      "url": "https://student.rmbs.ruc.edu.cn/js/GradeChange.js",
+      "bytes": 788,
+      "sha256": "f38979d646e16cd8286bba1c13d8194c9bc8367a4247dcff7a50c1f82b276346"
+    },
+    {
+      "url": "https://student.rmbs.ruc.edu.cn/js/Layout.js",
+      "bytes": 188,
+      "sha256": "752e52486f1b8a41ccd0b260e9d284a669e481c6f92b79c9fb90cfe769bb3ad9"
+    },
+    {
+      "url": "https://student.rmbs.ruc.edu.cn/website/js/Utils.js",
+      "bytes": 2694,
+      "sha256": "0f07a3f1ccb2dc07c05d39647f2d10e8a7af76d499f6a716ab8a51c31740f8c9"
+    },
+    {
+      "url": "https://v.ruc.edu.cn/staticv3/js/app.09f585b4.js",
+      "bytes": 113623,
+      "sha256": "e1181ee396e1d05ade10b3a2b4d909c0da362ed4733f5ed30ddc9e31beb06ade"
+    },
+    {
+      "url": "https://vsign.ruc.edu.cn/verify/js/app.0486ea4a.js",
+      "bytes": 14630,
+      "sha256": "2ece49cfcfe01793d0024ee8d7f171ad1affd7f931bac86c7c03167bfde77633"
+    },
+    {
+      "url": "https://wxyb.ruc.edu.cn/cp/pl-sz/assets/index-worker-summary-98ee9de5d56543.js",
+      "bytes": 8372569,
+      "sha256": "98ee9de5d56543742461c712d405ce9afe9f7beccfcd85ecc09f9e5d268eb579"
+    },
+    {
+      "url": "https://xueshenglixiao.ruc.edu.cn/student/assets/Auth.1783928076955.js",
+      "bytes": 902,
+      "sha256": "9207687756553f43c43d6506dc32728ac7d9bf8451ad12e02b050c92fa513202"
+    },
+    {
+      "url": "https://xueshenglixiao.ruc.edu.cn/student/assets/Index.17839280769552.js",
+      "bytes": 17454,
+      "sha256": "8afcaf7b2418ce22903724ca76adf8bf0187c256c6ddf265c5f7e02abd18e5e1"
+    },
+    {
+      "url": "https://xueshenglixiao.ruc.edu.cn/student/assets/index.1783928076955.js",
+      "bytes": 921507,
+      "sha256": "46eacd257875cd7645f41fd850c0e9a98363f579b403a3516b7087a5c7e6c4fc"
+    },
+    {
+      "url": "https://xueshenglixiao.ruc.edu.cn/student/assets/index.17839280769553.js",
+      "bytes": 32811,
+      "sha256": "eb0c9f236d12911518bac9c61bc3d4506e9951dae9fd56ec4a0bf20a67ce4724"
+    },
+    {
+      "url": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.activity.js",
+      "bytes": 96203,
+      "sha256": "f5043b5f381b0bc0b6af6c9edd50ce5c7df6239fb4f5afdf24beca8457fc67ee"
+    },
+    {
+      "url": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.app.js",
+      "bytes": 996085,
+      "sha256": "f3668d1b354d095a2a7cabde1cbce3f21b9be79d986617264d8bfbd4f93bc533"
+    },
+    {
+      "url": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.appointment.js",
+      "bytes": 81169,
+      "sha256": "8756a2cb6a272e0500270c78a9c7606484b9c0406761f754426db0a4d9ff67eb"
+    },
+    {
+      "url": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.index.js",
+      "bytes": 18139,
+      "sha256": "ce1afa405c1d7cf247035c395f2fce2ef2e4dd7723c945e314c2008de2279efc"
+    },
+    {
+      "url": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.info.js",
+      "bytes": 37244,
+      "sha256": "42adfc5c71fe6e5740972369b7c51edf38c4361cdf6ae09725f46858245577fe"
+    },
+    {
+      "url": "https://xwzx.ruc.edu.cn/static/campus/dist/campus.integral.js",
+      "bytes": 26486,
+      "sha256": "2b30a3e806224713f67d34827cec01d4caa3a0603d5bfe6f0e0bb751ea301b5c"
+    },
+    {
+      "url": "https://xwzx.ruc.edu.cn/static/campus/dist/campusbasic.js",
+      "bytes": 1365260,
+      "sha256": "81894716cb8a4d6156ee7a9c66b97721e5647830f02157efca45a72a9c56674c"
+    },
+    {
+      "url": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/home/gzzm/gzzm.js",
+      "bytes": 6097,
+      "sha256": "68022e6bed5ddf66abda2a9da5020ce38c4019cd6e42fcffee2043aade4c987c"
+    },
+    {
+      "url": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/home/gzzm/home/home.js",
+      "bytes": 7177,
+      "sha256": "87b56bea7c92fdb78cdaf2a0ba8907f8de69d61e341def82cb4ffc3605f84306"
+    },
+    {
+      "url": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/home/gzzm/home/lmenu.js",
+      "bytes": 23978,
+      "sha256": "f57eb4c623beb183ce460094878fb6c33405ab7373fed22d96a16db336796ec2"
+    },
+    {
+      "url": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/home/main.js",
+      "bytes": 29757,
+      "sha256": "7ad97b467d737d6133c41b89b28121d96745e64c6d141169c848fba8e99fbb02"
+    },
+    {
+      "url": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/home/require.js",
+      "bytes": 82687,
+      "sha256": "9bc78e93aaa9e24db5850d71781b3272386b4ccea427bddbc0f75aa89ea8d790"
+    },
+    {
+      "url": "https://yjs2.ruc.edu.cn/gsapp/sys/yjsemaphome/public/dist/homeall.min.js",
+      "bytes": 11706,
+      "sha256": "a5480e6ced6fb2113d78c48a7061721a24d26ae6188b4e99065f067dd01340b1"
+    },
+    {
+      "url": "https://yxkj.ruc.edu.cn/jsq-v/static/config.js",
+      "bytes": 82,
+      "sha256": "5b81bac7e9826124b420b06f8580f8e41091954f7a3b88d0fd3dd734dd57a673"
+    },
+    {
+      "url": "https://yxkj.ruc.edu.cn/jsq-v/static/js/app.29ab407eb1d2a2c5382f.js",
+      "bytes": 493024,
+      "sha256": "54ed0ed519a7c73d47a2996dd7afd085e1ecbc1f1b78b32fe3cd5c4387f75b1f"
+    },
+    {
+      "url": "https://yzs.rmbs.ruc.edu.cn/js/app.67119ebf.js",
+      "bytes": 19788,
+      "sha256": "f75bd9ae6dac61c5c69546c82e1a0cbd99c4e1517a32c4a7e384526c3c975744"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/3895.05186b6b.js",
+      "bytes": 2631,
+      "sha256": "9e3ac8e001ca730081e6af9b2fcbd6d4a9e09003f869210db61da33c2975c75f"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/3952.b73c6681.js",
+      "bytes": 17571,
+      "sha256": "e1f180e81e85ba4b7b99c0420de25d2b67b89393bce9613c8051bd02a4c8ace2"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/6570.b3178449.js",
+      "bytes": 6599,
+      "sha256": "793fc399e3430c279abca8e8310140712996218ce2d64a830174478c0c1ac298"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/7752.f136f26d.js",
+      "bytes": 7071,
+      "sha256": "e49d50251ea6e6f44abfecb5bc1e95a2ea14a1d97eb02b7bc94a2ef6838d73c5"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/8781.00633259.js",
+      "bytes": 8980,
+      "sha256": "92c12d9b7b13e5dcd1d1e0a7d0e9a4cd5b73bc76b37f91dfc54bb105d7822fa6"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/chunk-common.bcc7b08d.js",
+      "bytes": 350159,
+      "sha256": "115e55f37ca14fea9dd699a8356232d6506cafde3627b6c8814293e40afc8e81"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/chunk-vendors.17c63ff7.js",
+      "bytes": 1778436,
+      "sha256": "d25fc2f7cd83d6dbd6ece42af4dd4d36184ffe2341ec39c16516bd6ae92153f9"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/front.80fd4718.js",
+      "bytes": 13151,
+      "sha256": "0e308cc7622da6ea517784ee3cfc660be83a7a38e26c8dfb734137b11f2b0662"
+    },
+    {
+      "url": "https://zg.ruc.edu.cn/static/js/runtime.a2044d05.js",
+      "bytes": 12725,
+      "sha256": "ef2d9867104c8ae1b8778de6bb49b54d7f3c069f86eb6d4ac1e985dfbfcfe18c"
+    },
+    {
+      "url": "https://zhlr.ruc.edu.cn/static/js/9334.42d1dd1f.js",
+      "bytes": 5273,
+      "sha256": "e28a70b1ddfc8cffa73010c78e99cc6c0142d153bfe1b3d0258157fe02cd9ece"
+    },
+    {
+      "url": "https://zhlr.ruc.edu.cn/static/js/chunk-common.fcbd38bd.js",
+      "bytes": 188370,
+      "sha256": "1243b164fedef885ac5a498f190af93c9dd883ef1323603eb4c479e5b898785c"
+    },
+    {
+      "url": "https://zhlr.ruc.edu.cn/static/js/runtime.e4284eb3.js",
+      "bytes": 6609,
+      "sha256": "7286e18bea1912f1aa56f8d4d1ce9493da1c007adbb286af1441f9295e91c6bf"
+    },
+    {
+      "url": "https://zsjw.ruc.edu.cn/assets/Home.d4ce6825.js",
+      "bytes": 8558,
+      "sha256": "49183cdbc469cfc682f150392c3cc639839dad69e2b800aba97d907128644bf8"
+    },
+    {
+      "url": "https://zsjw.ruc.edu.cn/assets/exam-schedule-search.ddad48db.js",
+      "bytes": 1731,
+      "sha256": "556f80fe4aa93cf3f2bd3756855187f26e31feaa210867760f88780b0e1f1505"
+    },
+    {
+      "url": "https://zsjw.ruc.edu.cn/assets/index.aa43711f.js",
+      "bytes": 442800,
+      "sha256": "1db7d6bfdd22b8f0e9ae99024bfb2d4cde65046a69d18c207d9f5fa9c967bf64"
+    },
+    {
+      "url": "https://zsjw.ruc.edu.cn/assets/login.a90e21aa.js",
+      "bytes": 4290,
+      "sha256": "9b57aed1bd9fb9fcb6414f3bc516d55dcf349dae11a654ae1f276089e4f47936"
+    },
+    {
+      "url": "https://zsjw.ruc.edu.cn/assets/message.81ab078b.js",
+      "bytes": 3167,
+      "sha256": "3e9d3b78171932f1b3b96af6b9a4bf75ac34d7d2769a2203f1f7302700b686ce"
+    },
+    {
+      "url": "https://zsjw.ruc.edu.cn/assets/my.a5d4679f.js",
+      "bytes": 3385,
+      "sha256": "87c8dea037bc95569d4f7f66aea13c81ecace444a79e46fff8b40c485a89523e"
+    },
+    {
+      "url": "https://zxyhy.ruc.edu.cn/web/assets/Auth-1n4w-evF.js",
+      "bytes": 1699,
+      "sha256": "ced2c144b8959c897db55870a2db0cf212d3a0b7d3187434a197c2b9fba6efd9"
+    },
+    {
+      "url": "https://zxyhy.ruc.edu.cn/web/assets/MyBookings-BxwMTS5i.js",
+      "bytes": 7024,
+      "sha256": "00a77f58e94001fe2b38684fa8a7b1fa86894a708d4642a02d511f8594167ad5"
+    },
+    {
+      "url": "https://zxyhy.ruc.edu.cn/web/assets/OAuthCallback-BMLWte1_.js",
+      "bytes": 2132,
+      "sha256": "752fd23a583e4cdf47a1ec0b6b73049c2f128aa5d07599c28c66a5e4b0998897"
+    },
+    {
+      "url": "https://zxyhy.ruc.edu.cn/web/assets/RoomDetail-Sk7eOGuA.js",
+      "bytes": 3330,
+      "sha256": "541399c84ef84aaad800d41a9131a248fc0aa3bec2b6daf4c3d2665b53b27f9f"
+    },
+    {
+      "url": "https://zxyhy.ruc.edu.cn/web/assets/Rooms--sfrUNY-.js",
+      "bytes": 10727,
+      "sha256": "f15139c4ce2ddb99489ae4ab078d7151d24a06df9f12568f256f4077f29b9282"
+    },
+    {
+      "url": "https://zxyhy.ruc.edu.cn/web/assets/index-CWsf-KWL.js",
+      "bytes": 235680,
+      "sha256": "9c72423c1450cc9b2ddb216a122e675cf251b3b9cd2ca66400c897e31241ab7d"
+    },
+    {
+      "url": "https://zxyhy.ruc.edu.cn/web/assets/rooms-xI05SQr_.js",
+      "bytes": 4391,
+      "sha256": "ba63a1d5a246ba0a401e80c406800f5522efa7b66067c4322a7a8865c571886e"
+    }
+  ]
+}

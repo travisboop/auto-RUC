@@ -1,0 +1,958 @@
+{
+  "profiles": [
+    {
+      "id": "career",
+      "origin": "https://career.ruc.edu.cn",
+      "entry": "https://career.ruc.edu.cn/stu/",
+      "documentPaths": [
+        "/stu/"
+      ],
+      "authPaths": [
+        "/oauth/authorization",
+        "/oauth/callback"
+      ],
+      "auth": {
+        "kind": "legacy_oauth",
+        "entry": "https://career.ruc.edu.cn/oauth/authorization",
+        "service": "https://career.ruc.edu.cn/oauth/callback",
+        "assertion": {
+          "path": "/api/v2/auth/logged",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "data",
+                  "role"
+                ],
+                "equals": "school_user"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "fragment_query",
+            "parameter": "token",
+            "header": "Authorization",
+            "prefix": "Bearer "
+          }
+        ]
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "career.identity",
+      "name": "就业平台本人身份",
+      "description": "就业平台本人身份；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/v2/auth/logged",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.profile",
+      "name": "就业平台本人学籍资料",
+      "description": "就业平台本人学籍资料；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/student/odata/info",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.competencies",
+      "name": "本人就业能力和意向标签",
+      "description": "本人就业能力和意向标签；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/user/competency-tag",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.procedures",
+      "name": "本人的就业手续",
+      "description": "本人的就业手续；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/graduate-procedure/list/user",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.activity_hours",
+      "name": "本人的就业活动学时",
+      "description": "本人的就业活动学时；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/v2/activity/stu/period-total",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.resumes",
+      "name": "本人的简历目录",
+      "description": "本人的简历目录；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/resume/list",
+        "method": "POST",
+        "body": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.majors",
+      "name": "就业平台专业选项",
+      "description": "就业平台专业选项；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/code/major/ruc",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.message_types",
+      "name": "本人的就业消息类型及数量",
+      "description": "本人的就业消息类型及数量；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/message/records/newsletter/type/list",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.carousels",
+      "name": "就业平台首页展示",
+      "description": "就业平台首页展示；使用本人学生身份。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "path": "/api/carousel/list/show",
+        "method": "GET"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/app.30aced52.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.jobs",
+      "name": "可检索的招聘职位",
+      "description": "可检索的招聘职位；分页按本次接口总数检查，消息查询不会标为已读。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10
+          },
+          "employerName": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "major": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "education": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "workLocation": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "employerNature": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "positionName": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "industry": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "formatType": {
+            "type": "integer",
+            "enum": [
+              2
+            ],
+            "default": 2,
+            "description": "当前学生职业中心的职位发布形式"
+          },
+          "typeFlag": {
+            "type": "string",
+            "enum": [
+              "",
+              "1",
+              "2"
+            ],
+            "minLength": 0,
+            "default": "",
+            "description": "全部、招聘、实习"
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/recruitment/user/positions",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "records"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "current",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-3bbf2e96.8fa18f88.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.messages",
+      "name": "本人的就业消息列表",
+      "description": "本人的就业消息列表；分页按本次接口总数检查，消息查询不会标为已读。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10
+          },
+          "newsletterType": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "search": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "startTime": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "endTime": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/message/records/newsletter/page",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "records"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "current",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-8e6c8f82.58ed77e7.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.guiding_activities",
+      "name": "职业指导活动目录",
+      "description": "职业指导活动目录；分页按本次接口总数检查，消息查询不会标为已读。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 6
+          },
+          "type": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "field": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "search": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          },
+          "state": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 256,
+            "default": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/open/api/activity/guiding/list",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "records"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "current",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-18c2a1a8.e71cbf13.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.news",
+      "name": "就业新闻与公告",
+      "description": "就业新闻与公告；只读取前端展示的 records 和 total。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10
+          },
+          "category": {
+            "type": "string",
+            "default": "pc23"
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/posts/list/show",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "records"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "current",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-7f95269e.d2516c50.js",
+        "checkedOn": "2026-11-27",
+        "scope": "gornData 将返回 records 渲染为新闻列表",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.guidance_courses",
+      "name": "职业指导课程目录",
+      "description": "职业指导课程目录；只读取前端展示的 records 和 total。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/guidanceCourse/user/page",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "records"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "current",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-7f95269e.d2516c50.js",
+        "checkedOn": "2026-11-27",
+        "scope": "learnData 将返回 records 渲染为 LearningList",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.quizzes",
+      "name": "职业测评目录",
+      "description": "职业测评目录；只读取前端展示的 records 和 total。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/careerQuiz/user/page",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "records"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "current",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-7f95269e.d2516c50.js",
+        "checkedOn": "2026-11-27",
+        "scope": "cqzData 将返回 records 渲染为测评列表",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.counseling_slots",
+      "name": "职业咨询当前可约目录",
+      "description": "职业咨询当前可约目录；只读取前端展示的 records 和 total。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 9
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/consult-record/stu/home-page-data",
+        "body": {
+          "$params": true
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data",
+            "records"
+          ],
+          "totalPath": [
+            "data",
+            "total"
+          ],
+          "pageParameter": "current",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-7f95269e.d2516c50.js",
+        "checkedOn": "2026-11-27",
+        "scope": "getConsul 将返回 records 渲染为咨询可约目录，预约使用另一个 appoint 接口",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "career.badges",
+      "name": "本人就业收藏和申请数量",
+      "description": "读取 student_homepage 的收藏活动、职位、报名及简历数量。",
+      "platform": "career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/common/badge/numbers",
+        "body": {
+          "type": "student_homepage",
+          "content": ""
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.ruc.edu.cn/stu/js/chunk-7f95269e.d2516c50.js",
+        "checkedOn": "2026-11-27",
+        "scope": "badgeNbrData 在首页加载时读取四个计数；固定 type 与 content，不能变换动作",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

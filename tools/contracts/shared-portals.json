@@ -1,0 +1,934 @@
+{
+  "profiles": [
+    {
+      "id": "personal_data",
+      "origin": "https://me.ruc.edu.cn",
+      "entry": "https://me.ruc.edu.cn/page/site/homeIndex",
+      "documentPaths": [
+        "/page/site/homeIndex"
+      ],
+      "authPaths": [
+        "/common/auth",
+        "/common/actionCasLogin"
+      ],
+      "headers": {
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://me.ruc.edu.cn/common/auth?redirect_url=https%3A%2F%2Fme.ruc.edu.cn%2Fpage%2Fsite%2FhomeIndex",
+        "service": "https://me.ruc.edu.cn/common/actionCasLogin?redirect_url=https%3A%2F%2Fme.ruc.edu.cn%2Fpage%2Fsite%2FhomeIndex",
+        "assertion": {
+          "path": "/site/user_info",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "e"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "d"
+                ],
+                "type": "object"
+              },
+              {
+                "path": [
+                  "d",
+                  "is_login"
+                ],
+                "equals": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "service_hall",
+      "origin": "https://service.ruc.edu.cn",
+      "entry": "https://service.ruc.edu.cn/v2/site/index",
+      "documentPaths": [
+        "/v2/site/index"
+      ],
+      "authPaths": [
+        "/api/login/main",
+        "/site/login/cas-login"
+      ],
+      "headers": {
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      "auth": {
+        "kind": "cas_cookie",
+        "entry": "https://service.ruc.edu.cn/api/login/main?redirect_url=https%3A%2F%2Fservice.ruc.edu.cn%2Fv2%2Fsite%2Findex",
+        "service": "https://service.ruc.edu.cn/site/login/cas-login?redirect_url=https%3A%2F%2Fservice.ruc.edu.cn%2Fv2%2Fsite%2Findex",
+        "assertion": {
+          "path": "/site/user/get-name",
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "e"
+                ],
+                "equals": 0
+              },
+              {
+                "path": [
+                  "d"
+                ],
+                "type": "object"
+              },
+              {
+                "path": [
+                  "d",
+                  "uid"
+                ],
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "personal.identity",
+      "name": "当前本人身份",
+      "description": "当前本人身份；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/user_info"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.menus",
+      "name": "个人数据助手菜单",
+      "description": "个人数据助手菜单；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/c_menu"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.categories",
+      "name": "本人数据分类目录",
+      "description": "本人数据分类目录；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/classify_list"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.applications",
+      "name": "本人数据应用目录",
+      "description": "本人数据应用目录；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/application_center"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.overview",
+      "name": "个人数据首页概览",
+      "description": "个人数据首页概览；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/shouye",
+        "query": {
+          "model_list[]": [
+            "table_hot",
+            "user",
+            "app_hot",
+            "chart",
+            "process_stastist"
+          ]
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.tasks_count",
+      "name": "本人待办统计",
+      "description": "本人待办统计；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/number_task_todo_processed"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.associations",
+      "name": "本人关联账号目录",
+      "description": "本人关联账号目录；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/user_associate_list"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.messages_count",
+      "name": "本人消息数量",
+      "description": "本人消息数量；字段按当前平台原样返回。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/message_num"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.identity",
+      "name": "办事大厅本人身份",
+      "description": "办事大厅本人身份；字段按当前平台原样返回。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/user/get-name"
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.tables",
+      "name": "个人数据分类下的表结构、字段和权限",
+      "description": "个人数据分类下的表结构、字段和权限；仅查询本人，uid 固定为 0。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "classify_id": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "classify_id"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/table_info_list",
+        "query": {
+          "classify_id": {
+            "$param": "classify_id"
+          },
+          "uid": 0,
+          "table_id": ""
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/app.83086bcf44096e489ec4.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "personal.records",
+      "name": "本人动态数据表记录",
+      "description": "本人动态数据表记录；仅查询本人，uid 固定为 0。",
+      "platform": "personal_data",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "classify_table_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "table_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "required": [
+          "classify_table_id",
+          "table_id"
+        ],
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/table_data_list",
+        "query": {
+          "classify_table_id": {
+            "$param": "classify_table_id"
+          },
+          "table_id": {
+            "$param": "table_id"
+          },
+          "uid": 0,
+          "page": {
+            "$param": "page"
+          },
+          "pageSize": {
+            "$param": "pageSize"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "d",
+            "data"
+          ],
+          "totalPath": [
+            "d",
+            "total"
+          ],
+          "pageParameter": "page",
+          "identityPath": [
+            "id"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "checkedOn": "2026-11-26",
+        "source": "https://me.ruc.edu.cn/page/static/js/chunk-0fc60b2e.791136d5d497cd5b7e49.js",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.applications",
+      "name": "办事大厅当前服务目录",
+      "description": "办事大厅当前服务目录；按当前账号权限返回。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/apps/list",
+        "query": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "checkedOn": "2026-11-26",
+        "mapping": "当前页面 appConfig.apis 与只读浏览器网络请求",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.reservation_halls",
+      "name": "办事大厅预约大厅及资源目录",
+      "description": "办事大厅预约大厅及资源目录；按当前账号权限返回。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/reservation/hall",
+        "query": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "checkedOn": "2026-11-26",
+        "mapping": "当前页面 appConfig.apis 与只读浏览器网络请求",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.todo",
+      "name": "办事大厅本人待办",
+      "description": "办事大厅本人待办；按当前账号权限返回。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/my-task/todo",
+        "query": {
+          "p": {
+            "$param": "p"
+          },
+          "page_size": {
+            "$param": "page_size"
+          },
+          "keyword_type": "",
+          "orderby": "createdDesc",
+          "time_type": ""
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "d",
+            "list"
+          ],
+          "totalPath": [
+            "d",
+            "total"
+          ],
+          "pageParameter": "p"
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "checkedOn": "2026-11-26",
+        "mapping": "当前页面 appConfig.apis 与只读浏览器网络请求",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.my_applications",
+      "name": "办事大厅本人申请",
+      "description": "办事大厅本人申请；按当前账号权限返回。 默认 status=1 为页面首页使用的处理中范围；其他状态含义需查当次页面。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "status": {
+            "type": "integer",
+            "default": 1,
+            "enum": [
+              1
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/process/inst-list",
+        "query": {
+          "p": {
+            "$param": "p"
+          },
+          "page_size": {
+            "$param": "page_size"
+          },
+          "status": {
+            "$param": "status"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "d",
+            "list"
+          ],
+          "totalPath": [
+            "d",
+            "total"
+          ],
+          "pageParameter": "p"
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "checkedOn": "2026-11-26",
+        "mapping": "当前页面 appConfig.apis 与只读浏览器网络请求",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.my_forms",
+      "name": "办事大厅本人填报任务",
+      "description": "办事大厅本人填报任务；按当前账号权限返回。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/fillreport/my-list",
+        "query": {
+          "p": {
+            "$param": "p"
+          },
+          "page_size": {
+            "$param": "page_size"
+          },
+          "status": "going"
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "d",
+            "data"
+          ],
+          "totalPath": [
+            "d",
+            "total"
+          ],
+          "pageParameter": "p"
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "checkedOn": "2026-11-26",
+        "mapping": "当前页面 appConfig.apis 与只读浏览器网络请求",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.favorites",
+      "name": "办事大厅本人收藏目录",
+      "description": "办事大厅本人收藏目录；按当前账号权限返回。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/site/user/my-apps",
+        "query": {}
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "checkedOn": "2026-11-26",
+        "mapping": "当前页面 appConfig.apis 与只读浏览器网络请求",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "services.search",
+      "name": "办事大厅服务公告和预约搜索",
+      "description": "办事大厅服务公告和预约搜索；按当前账号权限返回。",
+      "platform": "service_hall",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "keyword"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/home/all-search",
+        "query": {
+          "keyword": {
+            "$param": "keyword"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "e"
+            ],
+            "equals": 0
+          }
+        ],
+        "dataPath": [
+          "d"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://service.ruc.edu.cn/v2/static/js/chunk-common.fe509d7cd19e195dad58.js",
+        "checkedOn": "2026-11-26",
+        "mapping": "当前页面 appConfig.apis 与只读浏览器网络请求",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}

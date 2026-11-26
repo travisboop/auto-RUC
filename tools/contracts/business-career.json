@@ -1,0 +1,369 @@
+{
+  "profiles": [
+    {
+      "id": "business_career",
+      "origin": "https://career.rmbs.ruc.edu.cn",
+      "apiOrigin": "https://manager.rmbs.ruc.edu.cn",
+      "entry": "https://career.rmbs.ruc.edu.cn/stuv",
+      "documentPaths": [
+        "/stuv",
+        "/login_sz"
+      ],
+      "auth": {
+        "kind": "cas_cookie",
+        "service": "https://cas.ruc.edu.cn/cas/oauth2.0/callbackAuthorize",
+        "entry": "https://cas.ruc.edu.cn/cas/oauth2.0/authorize?client_id=iJIDFoRANJSvwXFvVPuJ-dep&redirect_uri=https%3A%2F%2Fcareer.rmbs.ruc.edu.cn%2Flogin_sz&response_type=code&state=ruc-agent-student&scope=all",
+        "exchange": {
+          "parameters": {
+            "code": {
+              "source": "query",
+              "parameter": "code"
+            }
+          },
+          "request": {
+            "method": "GET",
+            "path": "/api/Login/AIOAthLoginByToken",
+            "query": {
+              "code": {
+                "$param": "code"
+              },
+              "userType": "1"
+            }
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 1
+              },
+              {
+                "path": [
+                  "data",
+                  "Role"
+                ],
+                "equals": 1
+              },
+              {
+                "path": [
+                  "msg"
+                ],
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "tokenBindings": [
+          {
+            "source": "response",
+            "path": [
+              "msg"
+            ],
+            "header": "Authorization",
+            "prefix": "Bearer "
+          }
+        ],
+        "browserState": [
+          {
+            "storage": "local",
+            "keyFrom": {
+              "source": "query",
+              "parameter": "state"
+            },
+            "value": "1"
+          }
+        ],
+        "assertion": {
+          "path": "/api/StuIndex/GetNewsList",
+          "query": {
+            "DataType": "1",
+            "keyword": "",
+            "pageIndex": 1,
+            "pageSize": 1,
+            "totalPage": 0
+          },
+          "response": {
+            "checks": [
+              {
+                "path": [
+                  "code"
+                ],
+                "equals": 1
+              },
+              {
+                "path": [
+                  "data"
+                ],
+                "type": "array"
+              }
+            ],
+            "dataPath": [
+              "data"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "business_career.news",
+      "name": "商学院职业发展资讯、通知和招聘",
+      "description": "商学院职业发展资讯、通知和招聘；保持当前学生身份。",
+      "platform": "business_career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "9"
+            ],
+            "default": "1",
+            "description": "1 新闻、2 通知、3 活动、4 职业资料、5 招聘、6 政策、9 数据"
+          },
+          "keyword": {
+            "type": "string",
+            "default": "",
+            "minLength": 0,
+            "maxLength": 200
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/StuIndex/GetNewsList",
+        "query": {
+          "DataType": {
+            "$param": "category"
+          },
+          "keyword": {
+            "$param": "keyword"
+          },
+          "pageIndex": {
+            "$param": "page"
+          },
+          "pageSize": {
+            "$param": "page_size"
+          },
+          "totalPage": 0
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data"
+          ],
+          "totalPath": [
+            "totalNum"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1,
+          "identityPath": [
+            "ID"
+          ]
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.rmbs.ruc.edu.cn/static/js/public-61cc0b14.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business_career.detail",
+      "name": "商学院职业发展内容详情",
+      "description": "商学院职业发展内容详情；保持当前学生身份。",
+      "platform": "business_career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "9"
+            ],
+            "default": "1"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ]
+      },
+      "request": {
+        "method": "GET",
+        "path": "/api/StuIndex/GetNewsDetailBytype",
+        "query": {
+          "ID": {
+            "$param": "id"
+          },
+          "pkey": {
+            "$param": "category"
+          }
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "object"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ]
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.rmbs.ruc.edu.cn/static/js/public-61cc0b14.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    },
+    {
+      "id": "business_career.consultations",
+      "name": "商学院本人职业咨询记录",
+      "description": "商学院本人职业咨询记录；保持当前学生身份。",
+      "platform": "business_career",
+      "readOnly": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "method": "POST",
+        "path": "/api/Common/GetZxTimeAll",
+        "body": {
+          "DataType": 0,
+          "keyWord": "",
+          "pageIndex": {
+            "$param": "page"
+          },
+          "pageSize": {
+            "$param": "page_size"
+          },
+          "zxjID": 0,
+          "usertype": 1,
+          "date": [],
+          "sdate": "",
+          "edate": "",
+          "stutype": "",
+          "yuyue": "",
+          "fankui": "",
+          "fankuish": "",
+          "ganxie": "",
+          "ganxiesh": "",
+          "yiguoqi": "",
+          "close": "",
+          "liucheng": ""
+        }
+      },
+      "response": {
+        "checks": [
+          {
+            "path": [
+              "code"
+            ],
+            "equals": 1
+          },
+          {
+            "path": [
+              "data"
+            ],
+            "type": "array"
+          }
+        ],
+        "dataPath": [
+          "data"
+        ],
+        "pagination": {
+          "itemsPath": [
+            "data"
+          ],
+          "totalPath": [
+            "totalNum"
+          ],
+          "pageParameter": "page",
+          "firstPage": 1
+        }
+      },
+      "verification": "fresh_session_verified",
+      "evidence": {
+        "source": "https://career.rmbs.ruc.edu.cn/static/js/history-9bdfe1ce.js",
+        "checkedOn": "2026-11-27",
+        "validation": "evidence/public-validation.json"
+      }
+    }
+  ]
+}
